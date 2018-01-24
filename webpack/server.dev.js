@@ -4,10 +4,6 @@ const webpack = require('webpack');
 
 const res = p => path.resolve(__dirname, p);
 
-// if you're specifying externals to leave unbundled, you need to tell Webpack
-// to still bundle `react-universal-component`, `webpack-flush-chunks` and
-// `require-universal-module` so that they know they are running
-// within Webpack and can properly make connections to client modules:
 const externals = fs
   .readdirSync(res('../node_modules'))
   .filter(x =>
@@ -20,7 +16,6 @@ const externals = fs
 module.exports = {
   name: 'server',
   target: 'node',
-  // devtool: 'source-map',
   devtool: 'eval',
   entry: ['babel-polyfill', res('../server/render.jsx')],
   externals,

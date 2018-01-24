@@ -7,7 +7,6 @@ const AutoDllPlugin = require('autodll-webpack-plugin');
 module.exports = {
   name: 'client',
   target: 'web',
-  devtool: 'source-map',
   entry: ['babel-polyfill', path.resolve(__dirname, '../src/index.jsx')],
   output: {
     filename: '[name].[chunkhash].js',
