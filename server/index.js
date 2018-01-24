@@ -32,7 +32,7 @@ if (DEV) {
   app.use(serverRender({ clientStats, outputPath }));
 }
 
-app.listen(3000, () => {
+app.listen(4000, () => {
   // eslint-disable-next-line no-console
-  console.log('Listening @ http://localhost:3000/');
+  console.log('Listening @ http://localhost:4000/');
 });

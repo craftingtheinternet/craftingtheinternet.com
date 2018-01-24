@@ -1,5 +1,3 @@
-/* eslint-disable global-require */
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
@@ -11,13 +9,13 @@ import configureStore from './configureStore';
 const history = createHistory();
 const { store } = configureStore(history, window.REDUX_STATE);
 
-const render = (App) => {
+const render = (EntryPoint) => {
   const root = document.getElementById('root');
 
   ReactDOM.hydrate(
     <AppContainer>
       <Provider store={store}>
-        <App />
+        <EntryPoint />
       </Provider>
     </AppContainer>,
     root,
@@ -28,8 +26,8 @@ render(App);
 
 if (module.hot && process.env.NODE_ENV === 'development') {
   module.hot.accept('./components/App', () => {
-    const App = require('./components/App').default;
-
-    render(App);
+    // eslint-disable-next-line global-require
+    const EntryPoint = require('./components/App').default;
+    render(EntryPoint);
   });
 }
