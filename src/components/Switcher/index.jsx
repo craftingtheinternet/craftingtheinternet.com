@@ -18,7 +18,7 @@ const UniversalComponent = universal(({ page }) => import(`../${page}`), {
 
 const component = ({
   page,
-  category,
+  pathname,
   direction,
   isLoading,
 }) => (
@@ -27,25 +27,28 @@ const component = ({
     duration={500}
     prefix="fade"
   >
-    <Transition key={`${page}${category}`}>
+    <Transition key={pathname}>
       <UniversalComponent page={page} isLoading={isLoading} />
     </Transition>
   </TransitionGroup>
 );
 
 component.defaultProps = {
-  category: undefined,
   direction: 'next',
   isLoading: false,
 };
 component.propTypes = {
   page: PropTypes.string.isRequired,
-  category: PropTypes.string,
+  pathname: PropTypes.string.isRequired,
   isLoading: PropTypes.bool,
   direction: PropTypes.oneOf(['back', 'next']),
 };
 
-export const mapStateToProps = ({ page, category }) => ({ page, category });
+export const mapStateToProps = ({ page, category, location: { pathname } }) => ({
+  page,
+  category,
+  pathname,
+});
 
 export { component };
 
