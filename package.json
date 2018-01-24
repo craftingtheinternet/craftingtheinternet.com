@@ -39,7 +39,6 @@
     "babel-core": "^6.24.0",
     "babel-eslint": "^8.0.1",
     "babel-loader": "^7.1.1",
-    "babel-plugin-transform-optional-chaining": "^7.0.0-beta.3",
     "babel-plugin-universal-import": "^1.2.2",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.23.0",
