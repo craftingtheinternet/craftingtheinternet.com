@@ -1,8 +1,8 @@
 import React from 'react';
-import styles from '../css/App';
+import styles from '../../css/App.css';
 
-export default ({ title, text, url }) =>
-  (<div>
+export default ({ title, text, url }) => (
+  <div>
     <div className={styles.more}>{title}</div>
 
     <a
@@ -13,4 +13,5 @@ export default ({ title, text, url }) =>
     >
       {text}
     </a>
-   </div>);
+  </div>
+);

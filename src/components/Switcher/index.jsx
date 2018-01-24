@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import universal from 'react-universal-component';
 
-import styles from '../css/Switcher';
+import styles from '../../css/Switcher.css';
 
 const UniversalComponent = universal(({ page }) => import(`./${page}`), {
   minDelay: 500,

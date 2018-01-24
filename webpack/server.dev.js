@@ -22,7 +22,7 @@ module.exports = {
   target: 'node',
   // devtool: 'source-map',
   devtool: 'eval',
-  entry: ['babel-polyfill', res('../server/render.js')],
+  entry: ['babel-polyfill', res('../server/render.jsx')],
   externals,
   output: {
     path: res('../buildServer'),
@@ -33,7 +33,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: 'babel-loader',
       },
@@ -51,7 +51,7 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['.js', '.css'],
+    extensions: ['.jsx', '.js', '.css'],
   },
   plugins: [
     new webpack.optimize.LimitChunkCountPlugin({

@@ -6,9 +6,15 @@ import flushChunks from 'webpack-flush-chunks';
 import configureStore from './configureStore';
 import App from '../src/components/App';
 
-export default ({ clientStats }) => async (req, res, next) => {
+const createApp = (EntryPoint, store) => (
+  <Provider store={store}>
+    <EntryPoint />
+  </Provider>
+);
+
+export default ({ clientStats }) => async (req, res) => {
   const store = await configureStore(req, res);
-  if (!store) return; // no store means redirect was already served
+  if (!store) return;
 
   const app = createApp(App, store);
   const appString = ReactDOM.renderToString(app);
@@ -20,7 +26,7 @@ export default ({ clientStats }) => async (req, res, next) => {
   console.log('REQUESTED PATH:', req.path);
   console.log('CHUNK NAMES RENDERED', chunkNames);
 
-  return res.send(`<!doctype html>
+  res.send(`<!doctype html>
       <html>
         <head>
           <meta charset="utf-8">
@@ -36,8 +42,3 @@ export default ({ clientStats }) => async (req, res, next) => {
         </body>
       </html>`);
 };
-
-const createApp = (App, store) =>
-  (<Provider store={store}>
-    <App />
-   </Provider>);

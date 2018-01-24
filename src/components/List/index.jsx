@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import ArticlePromotion from './ArticlePromotion';
+import ArticlePromotion from '../ArticlePromotion';
 
-import styles from '../css/List';
+import styles from '../../css/List.css';
 
 const List = ({ category, packages }) => (
   <div className={styles.list}>

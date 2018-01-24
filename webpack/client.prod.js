@@ -8,7 +8,7 @@ module.exports = {
   name: 'client',
   target: 'web',
   devtool: 'source-map',
-  entry: ['babel-polyfill', path.resolve(__dirname, '../src/index.js')],
+  entry: ['babel-polyfill', path.resolve(__dirname, '../src/index.jsx')],
   output: {
     filename: '[name].[chunkhash].js',
     chunkFilename: '[name].[chunkhash].js',
@@ -18,7 +18,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: 'babel-loader',
       },
@@ -37,7 +37,7 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['.js', '.css'],
+    extensions: ['.jsx', '.js', '.css'],
   },
   plugins: [
     new StatsPlugin('stats.json'),
