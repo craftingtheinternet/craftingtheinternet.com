@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import ArticlePromotion from '../ArticlePromotion';
+import ArticlePromotion from 'components/ArticlePromotion';
 
 import styles from '../../styl/List.styl';
 

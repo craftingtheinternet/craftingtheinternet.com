@@ -30,6 +30,9 @@
     "import/resolver": {
       "node": {
         "extensions": [".js", ".jsx", ".json", ".styl"]
+      },
+      "webpack": {
+        "config": "webpack/client.dev.js"
       }
     }
   }

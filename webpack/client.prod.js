@@ -47,8 +47,8 @@ module.exports = {
   resolve: {
     extensions: ['.jsx', '.js', '.styl'],
     alias: {
-      components: path.resolve(__dirname, 'src/components/'),
-      containers: path.resolve(__dirname, 'src/containers/'),
+      components: path.resolve(__dirname, '../src/components/'),
+      containers: path.resolve(__dirname, '../src/containers/'),
     },
   },
   plugins: [

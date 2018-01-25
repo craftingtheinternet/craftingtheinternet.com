@@ -6,7 +6,8 @@ import universal from 'react-universal-component';
 
 import styles from '../../styl/Switcher.styl';
 
-const UniversalComponent = universal(({ page }) => import(`../${page}`), {
+const UniversalComponent = universal(({ page }) => import(`../../${page}`), {
+  chunkName: ({ page }) => page.replace('/', '-'),
   minDelay: 500,
   loading: () => (
     <div className={styles.spinner}>
