@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const WriteFilePlugin = require('write-file-webpack-plugin');
 const AutoDllPlugin = require('autodll-webpack-plugin');
 const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
+const nib = require('nib');
 
 module.exports = {
   name: 'client',
@@ -28,21 +29,33 @@ module.exports = {
         use: 'babel-loader',
       },
       {
-        test: /\.css$/,
+        test: /\.styl$/,
         use: ExtractCssChunks.extract({
-          use: {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-              localIdentName: '[name]__[local]--[hash:base64:5]',
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                modules: true,
+                localIdentName: '[name]__[local]--[hash:base64:5]',
+              },
+            }, {
+              loader: 'stylus-loader',
+              options: {
+                use: [nib()],
+                import: ['~nib/lib/nib/index.styl'],
+              },
             },
-          },
+          ],
         }),
       },
     ],
   },
   resolve: {
-    extensions: ['.jsx', '.js', '.css'],
+    extensions: ['.jsx', '.js', '.styl'],
+    alias: {
+      components: path.resolve(__dirname, 'src/components/'),
+      containers: path.resolve(__dirname, 'src/containers/'),
+    },
   },
   plugins: [
     new WriteFilePlugin(), // used so you can see what chunks are produced in dev

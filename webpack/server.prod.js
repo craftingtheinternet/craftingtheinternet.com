@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
+const nib = require('nib');
 
 const res = p => path.resolve(__dirname, p);
 
@@ -31,20 +32,32 @@ module.exports = {
         use: 'babel-loader',
       },
       {
-        test: /\.css$/,
+        test: /\.styl$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'css-loader/locals',
-          options: {
-            modules: true,
-            localIdentName: '[name]__[local]--[hash:base64:5]',
+        use: [
+          {
+            loader: 'css-loader/locals',
+            options: {
+              modules: true,
+              localIdentName: '[name]__[local]--[hash:base64:5]',
+            },
+          }, {
+            loader: 'stylus-loader',
+            options: {
+              use: [nib()],
+              import: ['~nib/lib/nib/index.styl'],
+            },
           },
-        },
+        ],
       },
     ],
   },
   resolve: {
-    extensions: ['.jsx', '.js', '.css'],
+    extensions: ['.jsx', '.js', '.styl'],
+    alias: {
+      components: path.resolve(__dirname, 'src/components/'),
+      containers: path.resolve(__dirname, 'src/containers/'),
+    },
   },
   plugins: [
     new webpack.optimize.LimitChunkCountPlugin({
