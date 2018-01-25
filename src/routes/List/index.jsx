@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import ArticlePromotion from 'components/ArticlePromotion';
 
-import styles from '../../styl/List.styl';
+import styles from 'styl/List.styl';
 
 const List = ({ category, packages }) => (
   <div className={styles.list}>

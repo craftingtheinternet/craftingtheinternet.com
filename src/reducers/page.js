@@ -1,8 +1,8 @@
 import { NOT_FOUND } from 'redux-first-router';
 
 const components = {
-  HOME: 'components/Home',
-  LIST: 'containers/List',
+  HOME: 'Home',
+  LIST: 'List',
   [NOT_FOUND]: 'NotFound',
 };
 
