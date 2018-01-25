@@ -8,7 +8,7 @@ const nib = require('nib');
 module.exports = {
   name: 'client',
   target: 'web',
-  devtool: 'eval',
+  devtool: 'cheap-module-eval-source-map',
   entry: [
     'babel-polyfill',
     'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=false&quiet=false&noInfo=false',
@@ -53,8 +53,10 @@ module.exports = {
   resolve: {
     extensions: ['.jsx', '.js', '.styl'],
     alias: {
-      components: path.resolve(__dirname, 'src/components/'),
-      containers: path.resolve(__dirname, 'src/containers/'),
+      components: path.resolve(__dirname, '../src/components/'),
+      containers: path.resolve(__dirname, '../src/containers/'),
+      routes: path.resolve(__dirname, '../src/routes/'),
+      styl: path.resolve(__dirname, '../src/styl/'),
     },
   },
   plugins: [

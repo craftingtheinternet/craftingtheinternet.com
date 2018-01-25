@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import { TransitionGroup, Transition } from 'transition-group';
 import universal from 'react-universal-component';
 
-import styles from '../../styl/Switcher.styl';
+import styles from 'styl/Switcher.styl';
 
-const UniversalComponent = universal(({ page }) => import(`../${page}`), {
+const UniversalComponent = universal(({ page }) => import(`routes/${page}`), {
   minDelay: 500,
   loading: () => (
     <div className={styles.spinner}>

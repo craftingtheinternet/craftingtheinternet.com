@@ -1,9 +1,9 @@
 import React from 'react';
 
-import Sidebar from '../Sidebar';
-import Switcher from '../Switcher';
+import Sidebar from 'containers/Sidebar';
+import Switcher from 'containers/Switcher';
 
-import styles from '../../styl/App.styl';
+import styles from 'styl/App.styl';
 
 const App = () => (
   <div className={styles.app}>

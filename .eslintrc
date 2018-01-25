@@ -29,7 +29,11 @@
   "settings": {
     "import/resolver": {
       "node": {
+        "paths": ["src"],
         "extensions": [".js", ".jsx", ".json", ".styl"]
+      },
+      "webpack": {
+        "config": "webpack/client.dev.js"
       }
     }
   }
