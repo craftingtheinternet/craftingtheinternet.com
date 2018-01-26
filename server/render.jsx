@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/server';
 import { Provider } from 'react-redux';
 import { flushChunkNames } from 'react-universal-component/server';
 import flushChunks from 'webpack-flush-chunks';
-import App from 'components/App';
+import App from '../src/containers/App';
 import configureStore from './configureStore';
 
 const createApp = (EntryPoint, store) => (
