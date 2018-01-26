@@ -1,10 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import ArticlePromotion from 'components/ArticlePromotion';
 
-import styles from 'styl/List.styl';
+import styles from 'routes/List/styles.styl';
 
-const List = ({ category, packages }) => (
+const component = ({
+  category,
+  packages,
+}) => (
   <div className={styles.list}>
     <div className={styles.title}>Category: {category}</div>
 
@@ -28,9 +32,15 @@ const List = ({ category, packages }) => (
   </div>
 );
 
+component.displayName = 'List';
+component.propTypes = {
+  category: PropTypes.string.isRequired,
+  packages: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
+
 const mapStateToProps = state => ({
   category: state.category,
   packages: state.packages,
 });
 
-export default connect(mapStateToProps)(List);
+export default connect(mapStateToProps)(component);

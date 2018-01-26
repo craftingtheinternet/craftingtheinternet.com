@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import Sidebar from 'containers/Sidebar';
 import Switcher from 'containers/Switcher';
 
-import styles from 'styl/App.styl';
+import styles from 'containers/App/styles.styl';
 
 const component = ({ panelColor }) => (
   <div

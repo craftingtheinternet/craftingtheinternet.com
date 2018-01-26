@@ -2,7 +2,7 @@ import React from 'react';
 
 import ArticlePromotion from 'components/ArticlePromotion';
 
-import styles from 'styl/Home.styl';
+import styles from 'routes/Home/styles.styl';
 
 const Home = () => (
   <div className={styles.home}>
