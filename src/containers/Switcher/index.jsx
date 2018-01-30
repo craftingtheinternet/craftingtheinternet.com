@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { TransitionGroup, Transition } from 'transition-group';
 import universal from 'react-universal-component';
 
-import styles from 'styl/Switcher.styl';
+import styles from 'containers/Switcher/styles.styl';
 
 const UniversalComponent = universal(({ page }) => import(`routes/${page}`), {
   minDelay: 500,

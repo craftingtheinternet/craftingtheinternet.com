@@ -43,6 +43,7 @@ module.exports = {
               options: {
                 use: [nib()],
                 import: ['~nib/lib/nib/index.styl'],
+                preferPathResolver: 'webpack',
               },
             },
           ],
@@ -51,12 +52,12 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['.jsx', '.js', '.styl'],
+    extensions: ['.jsx', '.js', '.json', '.styl'],
     alias: {
-      components: path.resolve(__dirname, '../src/components/'),
-      containers: path.resolve(__dirname, '../src/containers/'),
-      routes: path.resolve(__dirname, '../src/routes/'),
-      styl: path.resolve(__dirname, '../src/styl/'),
+      components: path.resolve(__dirname, '../src/components'),
+      containers: path.resolve(__dirname, '../src/containers'),
+      routes: path.resolve(__dirname, '../src/routes'),
+      manifests: path.resolve(__dirname, '../src/manifests'),
     },
   },
   plugins: [

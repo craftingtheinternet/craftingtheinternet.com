@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Link, { NavLink } from 'redux-first-router-link';
 
-import styles from 'styl/Sidebar.styl';
+import styles from 'containers/Sidebar/styles.styl';
 
 const Sidebar = ({ path, dispatch }) => (
   <div className={styles.sidebar}>
