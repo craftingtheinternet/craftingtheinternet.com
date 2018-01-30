@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import SelfPortrait from 'components/SelfPortrait';
+import colors from 'manifests/colors.json';
 
 import styles from 'routes/List/styles.styl';
 
@@ -14,7 +15,7 @@ const component = ({
     <div className={styles.content}>
       <ul>{packages.map(pkg => <li key={pkg}>{pkg}</li>)}</ul>
       <div style={{ width: 460, height: 720 }}>
-        <SelfPortrait width={460} />
+        <SelfPortrait color={colors.armadillo} width={460} />
       </div>
     </div>
   </div>
