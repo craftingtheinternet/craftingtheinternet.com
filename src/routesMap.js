@@ -20,6 +20,8 @@ const fetch = async (path) => {
 export default {
   HOME: '/',
 
+  ABOUT: '/about',
+
   LIST: {
     path: '/list/:category',
     thunk: async (dispatch, getState) => {

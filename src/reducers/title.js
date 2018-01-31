@@ -1,12 +1,9 @@
-const capitalize = str =>
-  str.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-
-export default (state = 'RFR Demo', action = {}) => {
+export default (state = 'HOME', action = {}) => {
   switch (action.type) {
     case 'HOME':
-      return 'RFR Boilerplate';
-    case 'LIST':
-      return `RFR: ${capitalize(action.payload.category)}`;
+      return 'Crafting the Internet';
+    case 'ABOUT':
+      return 'About — Crafting the Internet';
     default:
       return state;
   }
