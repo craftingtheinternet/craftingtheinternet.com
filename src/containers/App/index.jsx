@@ -1,53 +1,86 @@
-import React from 'react';
+import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import Switcher from 'containers/Switcher';
-import Navigation from 'components/Navigation';
+import Navigation from 'containers/Navigation';
 import Image from 'components/Image';
 import styles from './styles.styl';
 
-const component = ({
-  page,
-  panelColor,
-  pageIdent,
-  typeColor,
-}) => (
-  <div className={styles.container} style={{ backgroundColor: panelColor }}>
-    <div className={styles.sidebar}>
-      <div className={styles.brandIdent}>
-        <Image src="Crafting" color="white" />
-      </div>
-      <div className={styles.pageIdent}>
-        {pageIdent && <Image src={pageIdent} color={typeColor} />}
-      </div>
-    </div>
-    <div className={styles.contentPane}>
-      <Navigation current={page} />
-      <main className={styles.content}>
-        <Switcher />
-      </main>
-    </div>
-  </div>
-);
+class component extends PureComponent {
+  static displayName = 'App';
+  static defaultProps = {
+    panelColor: undefined,
+    pageIdent: undefined,
+    typeColor: undefined,
+    hasPreviousLocation: false,
+  };
+  static propTypes = {
+    page: PropTypes.string.isRequired,
+    panelColor: PropTypes.string,
+    pageIdent: PropTypes.string,
+    typeColor: PropTypes.string,
+    hasPreviousLocation: PropTypes.bool,
+  };
 
-component.displayName = 'App';
-component.defaultProps = {
-  panelColor: undefined,
-  pageIdent: undefined,
-  typeColor: undefined,
-};
-component.propTypes = {
-  page: PropTypes.string.isRequired,
-  panelColor: PropTypes.string,
-  pageIdent: PropTypes.string,
-  typeColor: PropTypes.string,
-};
+  render() {
+    const {
+      page,
+      panelColor,
+      pageIdent,
+      typeColor,
+      hasPreviousLocation,
+    } = this.props;
+    return (
+      <Fragment>
+        <Helmet>
+          <style>{`body { background-color: ${panelColor}; }`}</style>
+        </Helmet>
+        <div className={styles.heraldry}>
+          <div className={styles.left}>
+            <div className={[styles.ident, styles.padded].join(' ')}>
+              <Image src="Crafting" color="white" disableAnimation={hasPreviousLocation} />
+              {/* responsive
+                <div className={styles.strapline}>
+                  <Image src="TheInternet" color="white" />
+                </div>
+              */}
+            </div>
+          </div>
+          <div className={[styles.right, styles.fill].join(' ')}>
+            <Navigation current={page} color={typeColor} />
+          </div>
+        </div>
+        <div className={styles.heraldry}>
+          <div className={styles.left}>
+            <div className={styles.ident}>
+              <div className={styles.strapline}>
+                <Image src="TheInternet" color="white" disableAnimation={hasPreviousLocation} />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className={styles.contentPane}>
+          <div className={styles.left}>
+            <figure className={styles.pageIdent}>
+              {pageIdent && <Image src={pageIdent} color={typeColor} />}
+            </figure>
+          </div>
+          <main className={styles.right}>
+            <Switcher />
+          </main>
+        </div>
+      </Fragment>
+    );
+  }
+}
 
 const mapStateToProps = state => ({
   page: state.page,
   panelColor: state.panelColor,
   pageIdent: state.pageIdent,
   typeColor: state.typeColor,
+  hasPreviousLocation: !!state.location.prev.pathname,
 });
 
 export { component };

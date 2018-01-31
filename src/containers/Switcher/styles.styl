@@ -1,111 +1,38 @@
 .switcher
-  position relative
-  margin 0 10px
-  min-height 100%
-  overflow hidden
-  flex 1
-
-  > div
-    position absolute
-    top 0px
-    left 0px
-    width 100%
-    height 100%
-    box-sizing border-box
-    color white
-
-@media (max-height: 700px)
-  .switcher
-    height calc(100vh - 20px)
-
-.spinner
   display flex
+  position relative
+  flex 1 0 auto
   flex-direction column
-  align-items center
-  justify-content center
 
-  > div
-    position absolute
-    top 0px
-    left 0px
-    width 100%
-    height 100%
-    background #141414
-    border 1px solid rgb(30,30,30)
-    box-sizing border-box
-    font-size 10px
-    margin 50px auto
-    text-indent -9999em
-    width 11em
-    height 11em
-    border-radius 50%
-    background #373737
-    background linear-gradient(to right, rgb(67, 170, 217) 10%, rgba(55,55,55,0) 42%)
-    position relative
-    animation load3 1.4s infinite linear
-    transform translateZ(0)
+.next
+  .fade
+    &:global(-enter)
+      transform translateX(100%)
+      opacity 0
+    &:global(-enter-active)
+      transform translateX(0%)
+      opacity 1
+      transition all 500ms
+    &:global(-leave)
+      transform translateX(0%)
+      opacity 1
+    &:global(-leave-active)
+      transform translateX(-100%)
+      opacity 0
+      transition all 500ms
 
-    &:before
-      width 50%
-      height 50%
-      background rgb(67, 170, 217)
-      border-radius 100% 0 0 0
-      position absolute
-      top 0
-      left 0
-      content ''
-
-    &:after
-      background rgb(49, 71, 79)
-      width 75%
-      height 75%
-      border-radius 50%
-      content ''
-      margin auto
-      position absolute
-      top 0
-      left 0
-      bottom 0
-      right 0
-
-@keyframes load3
-  0% {
-    transform rotate(0deg)
-  }
-  100% {
-    transform rotate(360deg)
-  }
-
-:global(.next)
-  :global(.fade-enter)
-    transform translateX(100%)
-    opacity 0
-
-:global(.next)
-  :global(.fade-enter-active)
-    transform translateX(0%)
-    opacity 1
-    transition all 500ms
-  :global(.fade-leave)
-    transform translateX(0%)
-    opacity 1
-  :global(.fade-leave-active)
+.back
+  &:global(-enter)
     transform translateX(-100%)
     opacity 0
-    transition all 500ms
-
-:global(.back)
-  :global(.fade-enter)
-    transform translateX(-100%)
-    opacity 0
-  :global(.fade-enter-active)
+  &:global(-enter-active)
     transform translateX(0%)
     opacity 1
     transition all 500ms
-  :global(.fade-leave)
+  &:global(-leave)
     transform translateX(0%)
     opacity 1
-  :global(.fade-leave-active)
+  &:global(-leave-active)
     transform translateX(100%)
     opacity 0
     transition all 500ms

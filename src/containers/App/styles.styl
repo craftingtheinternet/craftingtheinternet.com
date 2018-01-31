@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600')
+
 *
 *:before
 *:after
@@ -8,57 +10,75 @@ body
   width 100%
   height 100%
   font-size 12px
+  margin 0
+  font-family: 'Montserrat', sans-serif;
 
 body
-  margin 0
-  background rgb(27, 32, 34)
-
-:global(#root)
-.container
-  display flex
-  flex-direction row
-  width 100%
-  min-height 100%
-
-.container
   transition background-color 0.2s
 
-.sidebar
+:global(#root)
+  display flex
+  flex-direction column
+  width 100%
+  min-height 100%
+  flex 1 1 100%
+
+.navigationPane
+.heraldry
+  display flex
+  align-items stretch
+  width 100%
+
+.navigationPane
+  flex-direction column
+
+.heraldry
+  flex-direction row
+
+.left
   display flex
   flex 0 1 33.333%
   flex-direction column
-  justify-content stretch
-  padding 4.5rem 0 0
 
-.brandIdent
+.right
+  display flex
+  flex 1 0 66.666%
+  padding 0 4rem 0 2rem
+  flex-direction column
+
+.ident
   display flex
   flex 0 1 auto
   flex-direction column
   justify-content center
   align-self center
+  align-items center
   width 100%
   max-width 28rem
-  padding 0 2rem 2rem
+  padding 0 2rem
+
+  &.padded
+    padding 4.5rem 2rem 0
+
+.strapline
+  padding-top 1rem
+  width 71%
+
+.contentPane
+  display flex
+  flex-direction row
+  flex 1 0 auto
+  flex-wrap wrap
+  font-size 1.2rem
+  line-height 1.8
 
 .pageIdent
   display flex
   flex 1 0 auto
   flex-direction column
   justify-content flex-end
-
-.contentPane
-  display flex
-  flex 1 0 auto
-  flex-direction column
-
-.nav
-  flex 0 1 auto
-  padding-bottom 2rem
-
-.navList
-  padding 0
   margin 0
-  list-style none
-
-.content
-  flex 1 0 auto
+  padding 0
+  position fixed
+  bottom 0
+  width 33.333%

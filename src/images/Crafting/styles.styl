@@ -470,6 +470,11 @@
   stroke-linejoin bevel
   animation s_draw 800ms ease-in-out 400ms forwards
 
+.disableAnimation
+  stroke-dashoffset 0 !important
+  stroke-opacity 1 !important
+  animation none !important
+
 @keyframes s_draw
   100%
     stroke-dashoffset 0
