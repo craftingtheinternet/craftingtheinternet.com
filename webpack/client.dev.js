@@ -8,7 +8,7 @@ const nib = require('nib');
 module.exports = {
   name: 'client',
   target: 'web',
-  devtool: 'cheap-module-eval-source-map',
+  devtool: 'cheap-module-source-map',
   entry: [
     'babel-polyfill',
     'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=false&quiet=false&noInfo=false',

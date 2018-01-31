@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import styles from './styles.styl';
 import { viewBox, paths } from './svg.json';
+import styles from './styles.styl';
 
 class component extends PureComponent {
   static displayName = 'SelfPortrait';
