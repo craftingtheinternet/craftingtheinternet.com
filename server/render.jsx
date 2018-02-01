@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/server';
 import { Provider } from 'react-redux';
+import Helmet from 'react-helmet';
 import { flushChunkNames } from 'react-universal-component/server';
 import flushChunks from 'webpack-flush-chunks';
 import App from '../src/containers/App';
@@ -18,6 +19,7 @@ export default ({ clientStats }) => async (req, res) => {
 
   const app = createApp(App, store);
   const appString = ReactDOM.renderToString(app);
+  const helmet = Helmet.renderStatic();
   const state = store.getState();
   const stateJson = JSON.stringify(state);
   const chunkNames = flushChunkNames();
@@ -34,6 +36,7 @@ export default ({ clientStats }) => async (req, res) => {
           <meta charset="utf-8">
           <title>${state.title}</title>
           ${styles}
+          ${helmet.style.toString()}
         </head>
         <body>
           <script>window.REDUX_STATE = ${stateJson}</script>

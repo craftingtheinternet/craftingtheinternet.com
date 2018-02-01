@@ -1,29 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Header from 'components/Header';
-import RichText from 'components/RichText';
+import activeHtml from 'react-active-html';
+import styles from './styles.styl';
 
 const component = ({
-  title,
-  content,
+  children,
+  columns,
 }) => (
-  <div>
-    <Header giant>{title}</Header>
-    <RichText columns={2}>
-      {content}
-    </RichText>
+  <div
+    className={styles.content}
+    style={{ columnCount: columns }}
+  >
+    {typeof children === 'string' && activeHtml(children)}
   </div>
 );
 
 component.displayName = 'About';
 component.defaultProps = {
-  title: undefined,
-  content: undefined,
+  columns: undefined,
 };
 component.propTypes = {
-  title: PropTypes.string,
-  content: PropTypes.string,
+  children: PropTypes.string.isRequired,
+  columns: PropTypes.number,
 };
 
 const mapStateToProps = state => ({

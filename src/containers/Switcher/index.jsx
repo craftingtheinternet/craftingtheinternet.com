@@ -8,20 +8,20 @@ import styles from 'containers/Switcher/styles.styl';
 
 const UniversalComponent = universal(({ page }) => import(`routes/${page}`), {
   minDelay: 500,
-  loading: () => <div />,
+  loading: () => null,
   error: () => <div>PAGE NOT FOUND - 404</div>,
 });
 
 const component = ({
   page,
   pathname,
-  direction,
   isLoading,
 }) => (
   <TransitionGroup
-    className={[styles.switcher, styles[direction]].join(' ')}
+    component="div"
+    className={styles.switcher}
     duration={500}
-    prefix={styles.fade}
+    prefix={styles.transition}
   >
     <Transition key={pathname}>
       <UniversalComponent page={page} isLoading={isLoading} />
@@ -30,14 +30,12 @@ const component = ({
 );
 
 component.defaultProps = {
-  direction: 'next',
   isLoading: false,
 };
 component.propTypes = {
   page: PropTypes.string.isRequired,
   pathname: PropTypes.string.isRequired,
   isLoading: PropTypes.bool,
-  direction: PropTypes.oneOf(['back', 'next']),
 };
 
 export const mapStateToProps = ({ page, category, location: { pathname } }) => ({

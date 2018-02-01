@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import Switcher from 'containers/Switcher';
-import Navigation from 'containers/Navigation';
 import Image from 'components/Image';
+import Navigation from 'components/Navigation';
 import styles from './styles.styl';
 
 class component extends PureComponent {
@@ -40,11 +40,6 @@ class component extends PureComponent {
           <div className={styles.left}>
             <div className={[styles.ident, styles.padded].join(' ')}>
               <Image src="Crafting" color="white" disableAnimation={hasPreviousLocation} />
-              {/* responsive
-                <div className={styles.strapline}>
-                  <Image src="TheInternet" color="white" />
-                </div>
-              */}
             </div>
           </div>
           <div className={[styles.right, styles.fill].join(' ')}>
@@ -66,7 +61,7 @@ class component extends PureComponent {
               {pageIdent && <Image src={pageIdent} color={typeColor} />}
             </figure>
           </div>
-          <main className={styles.right}>
+          <main className={[styles.content, styles.right].join(' ')} style={{ color: typeColor }}>
             <Switcher />
           </main>
         </div>

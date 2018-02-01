@@ -1,10 +1,29 @@
 import React from 'react';
-import styles from 'routes/Home/styles.styl';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import activeHtml from 'react-active-html';
 
-const Home = () => (
-  <div className={styles.home}>
-    <h1 className={styles.title}>HOME</h1>
+const component = ({
+  title,
+  content,
+}) => (
+  <div>
+    {title && <h1>{title.split(' ').reverse().join(' ')}</h1>}
+    {content && activeHtml(content).reverse()}
   </div>
 );
 
-export default Home;
+component.displayName = 'Home';
+component.propTypes = {
+  title: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
+};
+
+const mapStateToProps = state => ({
+  title: state.about.title,
+  content: state.about.content,
+});
+
+export { component };
+
+export default connect(mapStateToProps)(component);

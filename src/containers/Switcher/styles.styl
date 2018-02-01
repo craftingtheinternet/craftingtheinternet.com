@@ -3,39 +3,26 @@
   position relative
   flex 1 0 auto
   flex-direction column
+  transform-origin 0 0
 
-.next
-  .fade
-    &:global(-enter)
-      transform translateX(100%)
-      opacity 0
-    &:global(-enter-active)
-      transform translateX(0%)
-      opacity 1
-      transition all 500ms
-    &:global(-leave)
-      transform translateX(0%)
-      opacity 1
-    &:global(-leave-active)
-      transform translateX(-100%)
-      opacity 0
-      transition all 500ms
-
-.back
+.transition
   &:global(-enter)
-    transform translateX(-100%)
+    position absolute
+    transform translateX(100px)
     opacity 0
+    transform-origin top right
   &:global(-enter-active)
-    transform translateX(0%)
+    transition 0.5s
+    transform translateX(0);
     opacity 1
-    transition all 500ms
   &:global(-leave)
-    transform translateX(0%)
+    transform translateX(0);
     opacity 1
+    transform-origin top left
   &:global(-leave-active)
-    transform translateX(100%)
+    transition 0.5s
+    transform translateX(-100px)
     opacity 0
-    transition all 500ms
 
 .notFound
   background #141414
