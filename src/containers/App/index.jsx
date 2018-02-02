@@ -61,8 +61,8 @@ class component extends PureComponent {
               {pageIdent && <Image src={pageIdent} color={typeColor} />}
             </figure>
           </div>
-          <main className={[styles.content, styles.right].join(' ')} style={{ color: typeColor }}>
-            <Switcher />
+          <main className={[styles.content, styles.right].join(' ')}>
+            <Switcher typeColor={typeColor} />
           </main>
         </div>
       </Fragment>

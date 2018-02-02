@@ -15,6 +15,7 @@ const UniversalComponent = universal(({ page }) => import(`routes/${page}`), {
 const component = ({
   page,
   pathname,
+  typeColor,
   isLoading,
 }) => (
   <TransitionGroup
@@ -24,17 +25,19 @@ const component = ({
     prefix={styles.transition}
   >
     <Transition key={pathname}>
-      <UniversalComponent page={page} isLoading={isLoading} />
+      <UniversalComponent page={page} typeColor={typeColor} isLoading={isLoading} />
     </Transition>
   </TransitionGroup>
 );
 
 component.defaultProps = {
+  typeColor: 'black',
   isLoading: false,
 };
 component.propTypes = {
   page: PropTypes.string.isRequired,
   pathname: PropTypes.string.isRequired,
+  typeColor: PropTypes.string,
   isLoading: PropTypes.bool,
 };
 

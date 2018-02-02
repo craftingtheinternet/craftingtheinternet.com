@@ -1,22 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import activeHtml from 'react-active-html';
+import Header from 'components/Header';
+import RichText from 'components/RichText';
 
 const component = ({
   title,
   content,
+  typeColor,
 }) => (
-  <div>
-    {title && <h1>{title.split(' ').reverse().join(' ')}</h1>}
-    {content && activeHtml(content).reverse()}
+  <div style={{ color: typeColor }}>
+    {title && (
+      <Header giant>{title.split(' ').reverse().join(' ')}</Header>
+    )}
+    {content && (
+      <RichText columns={2}>
+        {content}
+      </RichText>
+    )}
   </div>
 );
 
 component.displayName = 'Home';
+component.defaultProps = {
+  title: undefined,
+  content: undefined,
+  typeColor: 'black',
+};
 component.propTypes = {
-  title: PropTypes.string.isRequired,
-  content: PropTypes.string.isRequired,
+  title: PropTypes.string,
+  content: PropTypes.string,
+  typeColor: PropTypes.string,
 };
 
 const mapStateToProps = state => ({

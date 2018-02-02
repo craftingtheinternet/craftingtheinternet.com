@@ -7,8 +7,9 @@ import RichText from 'components/RichText';
 const component = ({
   title,
   content,
+  typeColor,
 }) => (
-  <div>
+  <div style={{ color: typeColor }}>
     <Header giant>{title}</Header>
     <RichText columns={2}>
       {content}
@@ -20,10 +21,12 @@ component.displayName = 'About';
 component.defaultProps = {
   title: undefined,
   content: undefined,
+  typeColor: 'black',
 };
 component.propTypes = {
   title: PropTypes.string,
   content: PropTypes.string,
+  typeColor: PropTypes.string,
 };
 
 const mapStateToProps = state => ({
