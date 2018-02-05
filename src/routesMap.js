@@ -1,10 +1,13 @@
 import aboutThunk from 'routes/About/thunk';
+import resumeThunk from 'routes/Resume/thunk';
 
 export default {
-  HOME: '/',
-
   ABOUT: {
-    path: '/about',
+    path: '/',
     thunk: aboutThunk,
+  },
+  RESUME: {
+    path: '/resume',
+    thunk: resumeThunk,
   },
 };

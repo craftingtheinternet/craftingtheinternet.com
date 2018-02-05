@@ -6,36 +6,32 @@ import RichText from 'components/RichText';
 
 const component = ({
   title,
-  content,
+  abstract,
   typeColor,
 }) => (
   <div style={{ color: typeColor }}>
-    {title && (
-      <Header giant>{title.split(' ').reverse().join(' ')}</Header>
-    )}
-    {content && (
-      <RichText columns={2}>
-        {content}
-      </RichText>
-    )}
+    <Header giant>{title}</Header>
+    <RichText columns={2}>
+      {abstract}
+    </RichText>
   </div>
 );
 
-component.displayName = 'Home';
+component.displayName = 'Resume';
 component.defaultProps = {
   title: undefined,
-  content: undefined,
+  abstract: undefined,
   typeColor: 'black',
 };
 component.propTypes = {
   title: PropTypes.string,
-  content: PropTypes.string,
+  abstract: PropTypes.string,
   typeColor: PropTypes.string,
 };
 
 const mapStateToProps = state => ({
-  title: state.about.title,
-  content: state.about.content,
+  title: state.resume.title,
+  abstract: state.resume.abstract,
 });
 
 export { component };

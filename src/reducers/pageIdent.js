@@ -1,6 +1,6 @@
 const components = {
-  HOME: null,
   ABOUT: 'SelfPortrait',
+  RESUME: null,
 };
 
 export default (state = 'HOME', action = {}) => (

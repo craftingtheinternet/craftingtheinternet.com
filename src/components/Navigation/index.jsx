@@ -8,15 +8,13 @@ const HORIZONTAL = 'horizontal';
 const VERTICAL = 'vertical';
 
 const links = {
-  Home: {
-    to: '/',
-    exact: true,
-  },
   About: {
     to: { type: 'ABOUT' },
+    exact: true,
   },
   Résumé: {
     to: { type: 'RESUME' },
+    exact: true,
   },
   Portfolio: {
     to: { type: 'PORTFOLIO' },
