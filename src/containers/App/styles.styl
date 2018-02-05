@@ -73,6 +73,14 @@ body
   font-size 1.2rem
   line-height 1.8
 
+  .left:global(.medium)
+    height 100vh
+    max-height 100%
+    justify-content stretch
+    align-self stretch
+    position sticky
+    top 0
+
 .pageIdent
   display flex
   flex 1 0 auto
@@ -84,5 +92,10 @@ body
   bottom 0
   width 33.333%
 
-.content 
+  :global(.medium) &
+    width 100%
+    position sticky
+    top 100vh
+
+.content
   transition color 0.2s 0.5s

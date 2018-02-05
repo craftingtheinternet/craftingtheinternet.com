@@ -14,6 +14,10 @@ class component extends PureComponent {
     pageIdent: undefined,
     typeColor: undefined,
     hasPreviousLocation: false,
+    desktop: false,
+    tablet: false,
+    mobile: false,
+    mediaType: undefined,
   };
   static propTypes = {
     page: PropTypes.string.isRequired,
@@ -21,7 +25,22 @@ class component extends PureComponent {
     pageIdent: PropTypes.string,
     typeColor: PropTypes.string,
     hasPreviousLocation: PropTypes.bool,
+    desktop: PropTypes.bool,
+    tablet: PropTypes.bool,
+    mobile: PropTypes.bool,
+    mediaType: PropTypes.string,
   };
+
+  constructor() {
+    super();
+    this.state = { breakpointHasChanged: false };
+  }
+
+  componentWillReceiveProps = (nextProps) => {
+    if (nextProps.mediaType !== this.props.mediaType) {
+      this.setState(() => ({ breakpointHasChanged: true }));
+    }
+  }
 
   render() {
     const {
@@ -30,35 +49,70 @@ class component extends PureComponent {
       pageIdent,
       typeColor,
       hasPreviousLocation,
+      desktop,
+      tablet,
+      mobile,
+      mediaType,
     } = this.props;
+    const {
+      breakpointHasChanged,
+    } = this.state;
     return (
       <Fragment>
         <Helmet>
           <style>{`body { background-color: ${panelColor}; }`}</style>
+          <meta name="viewport" content="scale: 1.0" />
         </Helmet>
         <div className={styles.heraldry}>
           <div className={styles.left}>
             <div className={[styles.ident, styles.padded].join(' ')}>
-              <Image src="Crafting" color="white" disableAnimation={hasPreviousLocation} />
+              <Image
+                src="Crafting"
+                color="white"
+                disableAnimation={hasPreviousLocation || breakpointHasChanged}
+              />
             </div>
           </div>
-          <div className={[styles.right, styles.fill].join(' ')}>
-            <Navigation current={page} color={typeColor} />
-          </div>
+          {desktop && (
+            <div className={[styles.right, styles.fill].join(' ')}>
+              <Navigation
+                current={page}
+                color={typeColor}
+                orientation="horizontal"
+              />
+            </div>
+          )}
         </div>
         <div className={styles.heraldry}>
           <div className={styles.left}>
             <div className={styles.ident}>
               <div className={styles.strapline}>
-                <Image src="TheInternet" color="white" disableAnimation={hasPreviousLocation} />
+                <Image
+                  src="TheInternet"
+                  color="white"
+                  disableAnimation={hasPreviousLocation || breakpointHasChanged}
+                />
               </div>
             </div>
           </div>
         </div>
         <div className={styles.contentPane}>
-          <div className={styles.left}>
+          <div className={[styles.left, mediaType].join(' ')}>
+            {tablet && (
+              <Navigation
+                current={page}
+                color={typeColor}
+                orientation="vertical"
+              />
+            )}
             <figure className={styles.pageIdent}>
-              {pageIdent && <Image src={pageIdent} color={typeColor} />}
+              {pageIdent && (
+                <Image
+                  src={pageIdent}
+                  color={typeColor}
+                  disableAnimation={breakpointHasChanged}
+                />
+              )}
             </figure>
           </div>
           <main className={[styles.content, styles.right].join(' ')}>
@@ -76,6 +130,10 @@ const mapStateToProps = state => ({
   pageIdent: state.pageIdent,
   typeColor: state.typeColor,
   hasPreviousLocation: !!state.location.prev.pathname,
+  desktop: state.breakpoint.greaterThan.medium,
+  tablet: state.breakpoint.is.medium,
+  mobile: state.breakpoint.lessThan.medium,
+  mediaType: state.breakpoint.mediaType,
 });
 
 export { component };

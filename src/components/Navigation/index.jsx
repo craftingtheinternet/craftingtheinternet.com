@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'redux-first-router-link';
 import styles from './styles.styl';
 
-const BAR_WIDTH = 200;
+const BAR_SIZE = 200;
+const HORIZONTAL = 'horizontal';
+const VERTICAL = 'vertical';
 
 const links = {
   Home: {
@@ -31,9 +33,11 @@ class component extends PureComponent {
   static displayName = 'Navigation';
   static defaultProps = {
     color: 'black',
+    orientation: HORIZONTAL,
   };
   static propTypes = {
     color: PropTypes.string,
+    orientation: PropTypes.oneOf([HORIZONTAL, VERTICAL]),
   };
 
   constructor() {
@@ -41,16 +45,19 @@ class component extends PureComponent {
     this.listItems = {};
     this.state = {
       hoveredListItemOffset: null,
-      hoveredListItemWidth: null,
+      hoveredListItemSize: null,
       hoveredListItemIsVisible: false,
     };
   }
 
   onMouseEnter = key => () => {
+    const { orientation } = this.props;
+    const offsetDimension = orientation === HORIZONTAL ? 'Left' : 'Top';
+    const sizeDimension = orientation === HORIZONTAL ? 'Width' : 'Height';
     if (this.listItems[key]) {
       this.setState(() => ({
-        hoveredListItemOffset: this.listItems[key].offsetLeft,
-        hoveredListItemWidth: this.listItems[key].clientWidth,
+        hoveredListItemOffset: this.listItems[key][`offset${offsetDimension}`],
+        hoveredListItemSize: this.listItems[key][`client${sizeDimension}`],
         hoveredListItemIsVisible: true,
       }));
     }
@@ -67,14 +74,22 @@ class component extends PureComponent {
   }
 
   render() {
-    const { color } = this.props;
+    const {
+      color,
+      orientation,
+    } = this.props;
     const {
       hoveredListItemOffset,
-      hoveredListItemWidth,
+      hoveredListItemSize,
       hoveredListItemIsVisible,
     } = this.state;
+    const dimension = orientation === HORIZONTAL ? 'X' : 'Y';
+    const literalDimension = orientation === HORIZONTAL ? 'width' : 'height';
     return (
-      <nav className={styles.nav} onMouseLeave={this.onMouseLeave}>
+      <nav
+        className={[styles.nav, styles[orientation]].join(' ')}
+        onMouseLeave={this.onMouseLeave}
+      >
         <ul className={styles.list}>
           {Object.keys(links).map(key => (
             <li
@@ -98,10 +113,10 @@ class component extends PureComponent {
         <div
           className={styles.bar}
           style={{
-            width: BAR_WIDTH,
+            [literalDimension]: BAR_SIZE,
             opacity: hoveredListItemIsVisible ? 1 : 0,
             backgroundColor: color,
-            transform: `translateX(${hoveredListItemOffset || 0}px) scaleX(${hoveredListItemWidth / BAR_WIDTH})`,
+            transform: `translate${dimension}(${hoveredListItemOffset || 0}px) scale${dimension}(${hoveredListItemSize / BAR_SIZE})`,
           }}
         />
       </nav>
