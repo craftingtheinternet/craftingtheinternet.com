@@ -6,23 +6,15 @@ import styles from './styles.styl';
 
 const component = ({
   children,
-  columns,
 }) => (
-  <div
-    className={styles.content}
-    style={{ columnCount: columns }}
-  >
+  <div className={styles.content}>
     {typeof children === 'string' && activeHtml(children)}
   </div>
 );
 
-component.displayName = 'About';
-component.defaultProps = {
-  columns: undefined,
-};
+component.displayName = 'RichText';
 component.propTypes = {
   children: PropTypes.string.isRequired,
-  columns: PropTypes.number,
 };
 
 const mapStateToProps = state => ({

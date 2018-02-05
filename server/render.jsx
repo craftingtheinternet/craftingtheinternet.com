@@ -4,8 +4,11 @@ import { Provider } from 'react-redux';
 import Helmet from 'react-helmet';
 import { flushChunkNames } from 'react-universal-component/server';
 import flushChunks from 'webpack-flush-chunks';
+import { DOMParser } from 'xmldom';
 import App from '../src/containers/App';
 import configureStore from './configureStore';
+
+global.DOMParser = DOMParser;
 
 const createApp = (EntryPoint, store) => (
   <Provider store={store}>

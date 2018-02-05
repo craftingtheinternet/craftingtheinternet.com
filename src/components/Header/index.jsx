@@ -2,6 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './styles.styl';
 
+const removeOrphans = text => text
+  .split(' ')
+  .slice(0, text.split(' ').length - 2)
+  .concat(text
+    .split(' ')
+    .slice(-2)
+    .join('\xa0'))
+  .join(' ');
+
 const component = ({
   giant,
   level,
@@ -11,7 +20,7 @@ const component = ({
     React.createElement(
       `h${level}`,
       { className: [styles[`h${level}`], giant ? styles.giant : ''].join(' ') },
-      children,
+      removeOrphans(children),
     )
   ) : (
     null

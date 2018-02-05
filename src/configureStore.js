@@ -1,5 +1,6 @@
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension/logOnlyInProduction';
+import { responsiveStoreEnhancer } from 'redux-responsive';
 import { connectRoutes } from 'redux-first-router';
 
 import routesMap from './routesMap';
@@ -11,7 +12,10 @@ const composeEnhancers = (...args) => (
 
 export default (history, preloadedState) => {
   const {
-    reducer, middleware, enhancer, thunk,
+    reducer,
+    middleware,
+    enhancer,
+    thunk,
   } = connectRoutes(
     history,
     routesMap,
@@ -19,7 +23,7 @@ export default (history, preloadedState) => {
 
   const rootReducer = combineReducers({ ...reducers, location: reducer });
   const middlewares = applyMiddleware(middleware);
-  const enhancers = composeEnhancers(enhancer, middlewares);
+  const enhancers = composeEnhancers(enhancer, middlewares, responsiveStoreEnhancer);
   const store = createStore(rootReducer, preloadedState, enhancers);
 
   if (module.hot && process.env.NODE_ENV === 'development') {

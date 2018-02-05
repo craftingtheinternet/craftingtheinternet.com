@@ -1,3 +1,4 @@
+export { responsiveStateReducer as breakpoint } from 'redux-responsive';
 export { default as page } from './page';
 export { default as category } from './category';
 export { default as packages } from './packages';

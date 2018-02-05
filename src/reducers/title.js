@@ -3,7 +3,7 @@ export default (state = 'HOME', action = {}) => {
     case 'HOME':
       return 'Crafting the Internet — Ben Ceglowski';
     case 'ABOUT':
-      return 'About — Crafting the Internet';
+      return 'Crafting the Internet — Ben Ceglowski';
     default:
       return state;
   }
