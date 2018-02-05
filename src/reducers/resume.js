@@ -2,6 +2,13 @@ const initialState = {
   id: undefined,
   title: undefined,
   abstract: undefined,
+  education: {
+    additionalNotes: undefined,
+    degree: undefined,
+    placeOfStudy: undefined,
+  },
+  workEligibility: [],
+  workHistory: [],
 };
 
 export default (state = initialState, action = {}) => {

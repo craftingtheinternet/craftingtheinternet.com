@@ -73,15 +73,20 @@ class component extends PureComponent {
               />
             </div>
           </div>
-          {desktop && (
-            <div className={[styles.right, styles.fill].join(' ')}>
-              <Navigation
-                current={page}
-                color={typeColor}
-                orientation="horizontal"
-              />
-            </div>
-          )}
+          <Fragment>
+            {desktop && (
+              <div className={[styles.right, styles.fill].join(' ')}>
+                <Navigation
+                  current={page}
+                  color={typeColor}
+                  orientation="horizontal"
+                />
+              </div>
+            )}
+            {mobile && (
+              null
+            )}
+          </Fragment>
         </div>
         <div className={styles.heraldry}>
           <div className={styles.left}>
