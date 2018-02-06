@@ -6,6 +6,8 @@ import universal from 'react-universal-component';
 
 import styles from 'containers/Switcher/styles.styl';
 
+const DURATION = 300;
+
 const UniversalComponent = universal(({ page }) => import(`routes/${page}`), {
   minDelay: 500,
   loading: () => null,
@@ -20,12 +22,16 @@ const component = ({
 }) => (
   <TransitionGroup
     component="div"
+    duration={DURATION}
     className={styles.switcher}
-    duration={500}
     prefix={styles.transition}
   >
     <Transition key={pathname}>
-      <UniversalComponent page={page} typeColor={typeColor} isLoading={isLoading} />
+      <UniversalComponent
+        page={page}
+        isLoading={isLoading}
+        typeColor={typeColor}
+      />
     </Transition>
   </TransitionGroup>
 );

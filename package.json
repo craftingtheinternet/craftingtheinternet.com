@@ -13,9 +13,11 @@
     "build:client": "rimraf buildClient && cross-env NODE_ENV=production webpack --progress -p --config webpack/client.prod.js",
     "build:server": "rimraf buildServer && cross-env NODE_ENV=production webpack --progress -p --config webpack/server.prod.js",
     "build:node": "cross-env NODE_ENV=production babel server/index.js -o buildServer/index.js",
+    "ssg": "rimraf buildStatic && cross-env NODE_ENV=production babel-node server/staticSiteGenerator.js",
     "clean": "rimraf buildClient buildServer",
     "lint": "eslint --fix src server webpack",
-    "format": "prettier --single-quote --semi=false --write '{src,server,webpack}/**/*.js' && npm run lint"
+    "format": "prettier --single-quote --semi=false --write '{src,server,webpack}/**/*.js' && npm run lint",
+    "serveStatic": "babel-node server/staticSiteServer.js"
   },
   "dependencies": {
     "babel-polyfill": "^6.23.0",
@@ -51,6 +53,7 @@
     "babel-preset-react": "^6.23.0",
     "babel-preset-stage-2": "^6.22.0",
     "babel-watch": "^2.0.6",
+    "chalk": "^2.3.0",
     "cross-env": "^5.0.1",
     "css-loader": "^0.28.7",
     "eslint": "^4.9.0",
@@ -60,6 +63,7 @@
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.4.0",
     "extract-css-chunks-webpack-plugin": "^2.0.15",
+    "fs-extra": "^5.0.0",
     "nib": "^1.1.2",
     "prettier": "^1.4.4",
     "rimraf": "^2.6.1",

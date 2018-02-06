@@ -28,10 +28,12 @@ export default ({ clientStats }) => async (req, res) => {
   const chunkNames = flushChunkNames();
   const { js, styles, cssHash } = flushChunks(clientStats, { chunkNames });
 
-  // eslint-disable-next-line no-console
-  console.log('REQUESTED PATH:', req.path);
-  // eslint-disable-next-line no-console
-  console.log('CHUNK NAMES RENDERED', chunkNames);
+  if (process.env.NODE_ENV !== 'production') {
+    // eslint-disable-next-line no-console
+    console.log('REQUESTED PATH:', req.path);
+    // eslint-disable-next-line no-console
+    console.log('CHUNK NAMES RENDERED', chunkNames);
+  }
 
   res.send(`<!doctype html>
       <html lang="en">
