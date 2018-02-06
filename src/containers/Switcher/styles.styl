@@ -8,9 +8,9 @@
 .transition
   &:global(-enter)
     position absolute
-    transform scale(1.1)
+    transform scale(1.075)
     opacity 0
-    transform-origin top
+    transform-origin 0 0
   &:global(-enter-active)
     transition 0.3s
     transform scale(1);
@@ -18,10 +18,10 @@
   &:global(-leave)
     transform scale(1);
     opacity 1
-    transform-origin top
+    transform-origin 100% 0
   &:global(-leave-active)
     transition 0.3s
-    transform scale(0.9)
+    transform scale(0.95)
     opacity 0
 
 .notFound
