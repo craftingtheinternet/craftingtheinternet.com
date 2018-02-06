@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import Switcher from 'containers/Switcher';
+import BrandIdent from 'components/BrandIdent';
+import Strapline from 'components/Strapline';
 import Image from 'components/Image';
 import Navigation from 'components/Navigation';
 import styles from './styles.styl';
@@ -57,24 +59,19 @@ class component extends PureComponent {
     const {
       breakpointHasChanged,
     } = this.state;
+    const disableAnimation = hasPreviousLocation || breakpointHasChanged;
     return (
       <Fragment>
         <Helmet>
           <style>{`body { background-color: ${panelColor}; }`}</style>
-          <meta name="viewport" content="scale: 1.0" />
+          <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
         </Helmet>
-        <div className={styles.heraldry}>
-          <div className={styles.left}>
-            <div className={[styles.ident, styles.padded].join(' ')}>
-              <Image
-                src="Crafting"
-                color="white"
-                disableAnimation={hasPreviousLocation || breakpointHasChanged}
-              />
-            </div>
-          </div>
+        {desktop && (
           <Fragment>
-            {desktop && (
+            <div className={styles.heraldry}>
+              <div className={styles.left}>
+                <BrandIdent disableAnimation={disableAnimation} />
+              </div>
               <div className={[styles.right, styles.fill].join(' ')}>
                 <Navigation
                   current={page}
@@ -82,33 +79,26 @@ class component extends PureComponent {
                   orientation="horizontal"
                 />
               </div>
-            )}
-            {mobile && (
-              null
-            )}
-          </Fragment>
-        </div>
-        <div className={styles.heraldry}>
-          <div className={styles.left}>
-            <div className={styles.ident}>
-              <div className={styles.strapline}>
-                <Image
-                  src="TheInternet"
-                  color="white"
-                  disableAnimation={hasPreviousLocation || breakpointHasChanged}
-                />
+            </div>
+            <div className={styles.heraldry}>
+              <div className={styles.left}>
+                <Strapline disableAnimation={disableAnimation} />
               </div>
             </div>
-          </div>
-        </div>
-        <div className={styles.contentPane}>
-          <div className={[styles.left, mediaType].join(' ')}>
+          </Fragment>
+        )}
+        <div className={[styles.contentPane, mediaType].join(' ')}>
+          <div className={styles.left}>
             {tablet && (
-              <Navigation
-                current={page}
-                color={typeColor}
-                orientation="vertical"
-              />
+              <Fragment>
+                <BrandIdent disableAnimation={disableAnimation} />
+                <Strapline disableAnimation={disableAnimation} />
+                <Navigation
+                  current={page}
+                  color={typeColor}
+                  orientation="vertical"
+                />
+              </Fragment>
             )}
             <figure className={styles.pageIdent}>
               {pageIdent && (

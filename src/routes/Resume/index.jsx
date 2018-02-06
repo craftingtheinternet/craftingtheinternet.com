@@ -35,7 +35,7 @@ const component = ({
       </div>
     ))}
     {workHistory.sort(descendingDate).map(job => (
-      <ul>
+      <ul key={job.company}>
         <li>{`${dateFormat(job.from, DATE_FORMAT)} — ${dateFormat(job.to, DATE_FORMAT)}`}</li>
         {job.company.toLowerCase() === 'freelance' ? (
           <li>{job.company} {job.position}</li>
