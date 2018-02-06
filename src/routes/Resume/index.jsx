@@ -30,7 +30,7 @@ const component = ({
       </div>
     )}
     {workEligibility.map(eligibility => (
-      <div>
+      <div key={eligibility.title}>
         {eligibility.title} {eligibility.value}
       </div>
     ))}

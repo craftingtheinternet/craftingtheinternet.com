@@ -2,6 +2,8 @@ const initialState = {
   id: undefined,
   title: undefined,
   content: undefined,
+  quote: undefined,
+  quoteAttribution: undefined,
   seo: undefined,
 };
 
