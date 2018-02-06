@@ -1,12 +1,13 @@
-const capitalize = str =>
-  str.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+import { NOT_FOUND } from 'redux-first-router';
 
-export default (state = 'RFR Demo', action = {}) => {
+export default (state = 'HOME', action = {}) => {
   switch (action.type) {
-    case 'HOME':
-      return 'RFR Boilerplate';
-    case 'LIST':
-      return `RFR: ${capitalize(action.payload.category)}`;
+    case 'ABOUT':
+      return 'Crafting the Internet — Ben Ceglowski';
+    case 'RESUME':
+      return 'Resume — Crafting the Internet';
+    case [NOT_FOUND]:
+      return 'Page Not Found';
     default:
       return state;
   }

@@ -8,7 +8,7 @@ const nib = require('nib');
 module.exports = {
   name: 'client',
   target: 'web',
-  devtool: 'cheap-module-eval-source-map',
+  devtool: 'cheap-module-source-map',
   entry: [
     'babel-polyfill',
     'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=false&quiet=false&noInfo=false',
@@ -58,6 +58,7 @@ module.exports = {
       containers: path.resolve(__dirname, '../src/containers'),
       routes: path.resolve(__dirname, '../src/routes'),
       manifests: path.resolve(__dirname, '../src/manifests'),
+      images: path.resolve(__dirname, '../src/images'),
     },
   },
   plugins: [
@@ -74,6 +75,7 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('development'),
+        CRAFTING_CONTENT: JSON.stringify(process.env.CRAFTING_CONTENT),
       },
     }),
     new AutoDllPlugin({

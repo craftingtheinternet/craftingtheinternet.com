@@ -62,6 +62,7 @@ module.exports = {
       containers: path.resolve(__dirname, '../src/containers'),
       routes: path.resolve(__dirname, '../src/routes'),
       manifests: path.resolve(__dirname, '../src/manifests'),
+      images: path.resolve(__dirname, '../src/images'),
     },
   },
   plugins: [
@@ -72,6 +73,7 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('development'),
+        CRAFTING_CONTENT: JSON.stringify(process.env.CRAFTING_CONTENT),
       },
     }),
   ],

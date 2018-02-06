@@ -1,0 +1,68 @@
+.nav
+  display flex
+  width 100%
+
+  &.horizontal
+    align-items flex-end
+    height 100%
+    position sticky
+  
+  &.vertical
+    position relative
+    align-items baseline
+    padding 4rem 2rem 0
+    flex 1 0 auto
+
+.list
+  display flex
+  width 100%
+  margin 0
+  padding 0
+  list-style none
+  justify-content space-between
+  flex-wrap wrap
+
+  .horizontal &
+    flex-direction row
+    height 50%
+  
+  .vertical &
+    flex-direction column
+
+.listItem
+  display flex
+  font-size 1.333rem
+  line-height 0.9rem
+  text-transform uppercase
+
+  .vertical &
+    width 100%
+    line-height 2
+
+.link
+  display flex
+  transition color 0.2s
+  text-decoration none
+  align-items flex-end
+  
+  .vertical &
+    width 100%
+
+.active
+  font-weight 600
+
+.bar
+  display block
+  position absolute
+  transition transform 0.3s, opacity 0.3s
+  transform-origin 0 0
+
+  .horizontal &
+    bottom -0.75rem
+    left 0
+    height 0.333rem
+  
+  .vertical &
+    right 0
+    top 0
+    width 0.333rem

@@ -19,11 +19,15 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.23.0",
+    "dateformat": "^3.0.2",
     "express": "^4.15.2",
     "history": "^4.6.3",
+    "isomorphic-fetch": "^2.2.1",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
+    "react-active-html": "^1.1.6",
     "react-dom": "^16.0.0",
+    "react-helmet": "^5.2.0",
     "react-hot-loader": "^3.1.1",
     "react-redux": "^5.0.5",
     "react-universal-component": "^2.5.0",
@@ -31,8 +35,10 @@
     "redux-devtools-extension": "^2.13.2",
     "redux-first-router": "^1.9.15",
     "redux-first-router-link": "^1.1.4",
+    "redux-responsive": "^4.3.5",
     "transition-group": "^0.0.2",
-    "webpack-flush-chunks": "^1.1.22"
+    "webpack-flush-chunks": "^1.1.22",
+    "xmldom": "^0.1.27"
   },
   "devDependencies": {
     "autodll-webpack-plugin": "^0.3.4",

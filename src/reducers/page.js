@@ -1,9 +1,9 @@
 import { NOT_FOUND } from 'redux-first-router';
 
-const components = {
-  HOME: 'Home',
-  LIST: 'List',
+export const pages = {
+  ABOUT: 'About',
+  RESUME: 'Resume',
   [NOT_FOUND]: 'NotFound',
 };
 
-export default (state = 'HOME', action = {}) => components[action.type] || state;
+export default (state = 'ABOUT', action = {}) => pages[action.type] || state;

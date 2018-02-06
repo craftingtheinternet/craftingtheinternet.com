@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600')
+
 *
 *:before
 *:after
@@ -7,42 +9,84 @@ html
 body
   width 100%
   height 100%
+  font-size 12px
+  margin 0
+  font-family: 'Montserrat', sans-serif;
 
 body
-  margin 0
-  background rgb(27, 32, 34)
+  transition background-color 0.5s
 
 :global(#root)
   display flex
+  flex-direction column
   width 100%
   min-height 100%
+  flex 1 1 100%
 
-.app
+.navigationPane
+.heraldry
+  display flex
+  align-items stretch
+  width 100%
+  z-index 1
+
+.navigationPane
+  flex-direction column
+
+.heraldry
+  flex-direction row
+
+.left
+  display flex
+  flex 0 1 33.333%
+  flex-direction column
+
+.right
+  display flex
+  flex 1 0 66.666%
+  padding 0 4rem 0 2rem
+  flex-direction column
+
+.contentPane
   display flex
   flex-direction row
-  padding 10px
-  transition background-color 500ms
   flex 1 0 auto
-  min-height 100%
+  flex-wrap wrap
+  font-size 1.2rem
+  line-height 1.8
 
-.more
-  margin-top 50px
-  color red
-  font-size 22px
-  text-align center
-  font-smoothing antialiased
+  &:global(.medium)
+    display block
+    position relative
 
-.link
-  color rgb(255, 44, 145)
-  font-size 26px
-  margin-top 10px
-  text-shadow 1px 1px 1px rgb(20,30,20)
-  text-decoration none
-  background rgba(65,50,50, .9)
-  padding 16px
-  display block
-  font-smoothing antialiased
+    .left
+      display flex
+      height 100vh
+      width 33.333%
+      position fixed
+      top 0
+  
+    .right
+      display block
+      position relative
+      margin-left 33.333%
+      flex none
 
-.link:hover
-  color white
-  background rgb(255, 44, 145)
+.pageIdent
+  display flex
+  flex 1 0 auto
+  flex-direction column
+  justify-content flex-end
+  margin 0
+  padding 0
+  position fixed
+  bottom 0
+  width 33.333%
+
+  :global(.medium) &
+    flex 1 1 auto
+    width 100%
+    position relative
+
+.content
+  transition color 0.2s 0.5s
