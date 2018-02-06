@@ -34,12 +34,12 @@ export default ({ clientStats }) => async (req, res) => {
   console.log('CHUNK NAMES RENDERED', chunkNames);
 
   res.send(`<!doctype html>
-      <html>
+      <html lang="en">
         <head>
-          <meta charset="utf-8">
           <title>${state.title}</title>
           ${styles}
           ${helmet.style.toString()}
+          ${helmet.meta.toString()}
         </head>
         <body>
           <script>window.REDUX_STATE = ${stateJson}</script>

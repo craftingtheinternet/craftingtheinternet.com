@@ -63,9 +63,13 @@ class component extends PureComponent {
     return (
       <Fragment>
         <Helmet>
-          <style>{`body { background-color: ${panelColor}; }`}</style>
+          <meta charSet="utf-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+          <style>{`body { background-color: ${panelColor}; }`}</style>
         </Helmet>
+        {mobile && (
+          null
+        )}
         {desktop && (
           <Fragment>
             <div className={styles.heraldry}>
