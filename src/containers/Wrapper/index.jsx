@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Sidebar from 'react-sidebar';
 import App from 'containers/App';
-import MobileNavigation from 'components/MobileNavigation';
+import MobileNavigation from 'containers/MobileNavigation';
 import * as sidebarActions from 'actions/sidebar';
+import { contentClassName } from 'manifests/sidebar.json';
 
 class component extends PureComponent {
   static displayName = 'Wrapper';
@@ -41,6 +42,7 @@ class component extends PureComponent {
       shadow: false,
       open: sidebarOpen,
       onSetOpen: toggleSidebar,
+      contentClassName,
     } : {};
     return React.createElement(mobile ? Sidebar : Fragment, { ...sidebarProps }, <App />);
   }
