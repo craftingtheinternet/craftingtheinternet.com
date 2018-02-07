@@ -91,7 +91,14 @@ module.exports = {
     new AutoDllPlugin({
       context: path.join(__dirname, '..'),
       filename: '[name].js',
-      plugins: [uglify],
+      plugins: [
+        uglify,
+        new webpack.DefinePlugin({
+          'process.env': {
+            NODE_ENV: JSON.stringify('production'),
+          },
+        }),
+      ],
       entry: {
         vendor: [
           'react',
