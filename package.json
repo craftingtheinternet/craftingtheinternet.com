@@ -18,7 +18,9 @@
     "postssg": "ncp buildClient buildStatic/static",
     "clean": "rimraf buildClient buildServer",
     "lint": "eslint --fix src server webpack",
-    "format": "prettier --single-quote --semi=false --write '{src,server,webpack}/**/*.js' && npm run lint"
+    "format": "prettier --single-quote --semi=false --write '{src,server,webpack}/**/*.js' && npm run lint",
+    "predeploy": "npm run build && npm run ssg",
+    "deploy": "firebase deploy"
   },
   "dependencies": {
     "babel-polyfill": "^6.23.0",
@@ -66,6 +68,7 @@
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.4.0",
     "extract-css-chunks-webpack-plugin": "^2.0.15",
+    "firebase-tools": "^3.17.4",
     "fs-extra": "^5.0.0",
     "ncp": "^2.0.0",
     "nib": "^1.1.2",
