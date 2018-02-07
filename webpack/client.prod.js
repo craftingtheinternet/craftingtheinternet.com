@@ -5,6 +5,21 @@ const StatsPlugin = require('stats-webpack-plugin');
 const AutoDllPlugin = require('autodll-webpack-plugin');
 const nib = require('nib');
 
+const uglify = new webpack.optimize.UglifyJsPlugin({
+  compress: {
+    screw_ie8: true,
+    warnings: false,
+  },
+  mangle: {
+    screw_ie8: true,
+  },
+  output: {
+    screw_ie8: true,
+    comments: false,
+  },
+  sourceMap: true,
+});
+
 module.exports = {
   name: 'client',
   target: 'web',
@@ -65,31 +80,18 @@ module.exports = {
       filename: '[name].[chunkhash].js',
       minChunks: Infinity,
     }),
-
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production'),
         CRAFTING_CONTENT: JSON.stringify(process.env.CRAFTING_CONTENT),
       },
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        screw_ie8: true,
-        warnings: false,
-      },
-      mangle: {
-        screw_ie8: true,
-      },
-      output: {
-        screw_ie8: true,
-        comments: false,
-      },
-      sourceMap: true,
-    }),
+    uglify,
     new webpack.HashedModuleIdsPlugin(), // not needed for strategy to work (just good practice)
     new AutoDllPlugin({
       context: path.join(__dirname, '..'),
       filename: '[name].js',
+      plugins: [uglify],
       entry: {
         vendor: [
           'react',

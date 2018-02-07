@@ -5,7 +5,7 @@ import styles from './styles.styl';
 
 const component = ({
   color,
-  disableAnimation,
+  isClient,
 }) => (
   <svg
     width="100%"
@@ -14,7 +14,7 @@ const component = ({
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    {paths.map(({
+    {isClient && paths.map(({
       d,
       className,
       transform,
@@ -23,7 +23,7 @@ const component = ({
       <path
         d={d}
         key={className}
-        className={[styles[className], (disableAnimation ? styles.disableAnimation : '')].join(' ')}
+        className={styles[className]}
         transform={transform}
         strokeWidth={strokeWidth}
       />
@@ -34,11 +34,11 @@ const component = ({
 component.displayName = 'Typewriter';
 component.defaultProps = {
   color: 'black',
-  disableAnimation: false,
+  isClient: typeof window !== 'undefined',
 };
 component.propTypes = {
   color: PropTypes.string,
-  disableAnimation: PropTypes.bool,
+  isClient: PropTypes.bool,
 };
 
 export default component;

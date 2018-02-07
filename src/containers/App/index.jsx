@@ -66,6 +66,7 @@ class component extends PureComponent {
           <meta charSet="utf-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
           <meta name="theme-color" content={panelColor} />
+          <meta name="robots" content="noindex, nofollow" />
           <style>{`body { background-color: ${panelColor}; }`}</style>
         </Helmet>
         {mobile && (

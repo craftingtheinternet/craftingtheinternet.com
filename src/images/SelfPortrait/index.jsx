@@ -3,7 +3,10 @@ import PropTypes from 'prop-types';
 import { viewBox, paths } from './svg.json';
 import styles from './styles.styl';
 
-const component = ({ color }) => (
+const component = ({
+  color,
+  isClient,
+}) => (
   <svg
     width="100%"
     viewBox={viewBox}
@@ -11,7 +14,7 @@ const component = ({ color }) => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    {paths.map(({ d, className, transform }) => (
+    {isClient && paths.map(({ d, className, transform }) => (
       <path
         d={d}
         key={className}
@@ -25,9 +28,11 @@ const component = ({ color }) => (
 component.displayName = 'SelfPortrait';
 component.defaultProps = {
   color: 'black',
+  isClient: typeof window !== 'undefined',
 };
 component.propTypes = {
   color: PropTypes.string,
+  isClient: PropTypes.bool,
 };
 
 export default component;
