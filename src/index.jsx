@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import { calculateResponsiveState } from 'redux-responsive';
 import createHistory from 'history/createBrowserHistory';
 import AppContainer from 'react-hot-loader/lib/AppContainer';
 import App from 'containers/App';
@@ -23,6 +24,8 @@ const render = (EntryPoint) => {
 };
 
 render(App);
+
+store.dispatch(calculateResponsiveState(window))
 
 if (module.hot && process.env.NODE_ENV === 'development') {
   module.hot.accept('containers/App', () => {

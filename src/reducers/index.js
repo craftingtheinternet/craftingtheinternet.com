@@ -1,4 +1,6 @@
-export { responsiveStateReducer as breakpoint } from 'redux-responsive';
+import { createResponsiveStateReducer } from 'redux-responsive';
+
+export const breakpoint = createResponsiveStateReducer(null, { initialMediaType: 'small' });
 export { default as page } from './page';
 export { default as title } from './title';
 export { default as panelColor } from './panelColor';
