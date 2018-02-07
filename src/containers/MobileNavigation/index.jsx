@@ -12,26 +12,25 @@ class component extends PureComponent {
   static defaultProps = {
     color: 'black',
     panelColor: 'transparent',
-    isClient: typeof window !== 'undefined',
   };
   static propTypes = {
     color: PropTypes.string,
     panelColor: PropTypes.string,
     closeSidebar: PropTypes.func.isRequired,
-    isClient: PropTypes.bool,
   };
 
   onLinkClick = () => {
-    const {
-      isClient,
-      closeSidebar,
-    } = this.props;
-    closeSidebar();
-    if (isClient) {
-      const container = document.querySelector(`.${contentClassName}`);
-      if (container) {
-        container.scrollTop = 0;
-      }
+    const { closeSidebar } = this.props;
+    const container = document.querySelector(`.${contentClassName}`);
+    if (container) {
+      container.scrollTop = 0;
+    }
+    if (requestIdleCallback) {
+      requestIdleCallback(() => {
+        closeSidebar();
+      });
+    } else {
+      closeSidebar();
     }
   }
 
@@ -42,25 +41,23 @@ class component extends PureComponent {
     } = this.props;
     return (
       <nav className={styles.nav} style={{ backgroundColor: panelColor }}>
-        <ul className={styles.list}>
+        <div
+          className={styles.list}
+          style={{ maxHeight: `${Object.keys(links).length * 3}rem` }}
+        >
           {Object.keys(links).map(key => (
-            <li
-              key={key}
-              className={styles.listItem}
+            <NavLink
+              to={links[key].to}
+              exact={links[key].exact}
+              className={styles.link}
+              activeClassName={styles.active}
+              style={{ color }}
+              onClick={this.onLinkClick}
             >
-              <NavLink
-                to={links[key].to}
-                exact={links[key].exact}
-                className={styles.link}
-                activeClassName={styles.active}
-                style={{ color }}
-                onClick={this.onLinkClick}
-              >
-                {key}
-              </NavLink>
-            </li>
+              {key}
+            </NavLink>
           ))}
-        </ul>
+        </div>
       </nav>
     );
   }
