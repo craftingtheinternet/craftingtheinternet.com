@@ -65,7 +65,7 @@ class component extends PureComponent {
                 <Image
                   src={pageIdent}
                   color={typeColor}
-                  disableAnimation={!hasPreviousLocation}
+                  disableAnimation
                 />
               )}
             </figure>

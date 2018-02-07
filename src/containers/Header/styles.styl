@@ -14,11 +14,19 @@ h5Size = 0.825rem
   &.giant
     margin 0.8em 0
 
+    :global(.small) &
+    :global(.extraSmall) &
+      margin 0 0 0.8em
+
 .h1
   font-size h1Size
   font-weight 600
   &.giant
     font-size h1Size * 2
+
+    :global(.small) &
+    :global(.extraSmall) &
+      font-size h1Size * 1.4
 
 .h2
   font-size h2Size

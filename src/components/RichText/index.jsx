@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import activeHtml from 'react-active-html';
 import styles from './styles.styl';
 
@@ -17,11 +16,4 @@ component.propTypes = {
   children: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = state => ({
-  title: state.about.title,
-  content: state.about.content,
-});
-
-export { component };
-
-export default connect(mapStateToProps)(component);
+export default component;

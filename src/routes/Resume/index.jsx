@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import dateFormat from 'dateformat';
-import Header from 'components/Header';
+import Header from 'containers/Header';
 import RichText from 'components/RichText';
 
 const DATE_FORMAT = 'mmm yyyy';
