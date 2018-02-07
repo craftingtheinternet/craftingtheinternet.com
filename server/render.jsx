@@ -5,7 +5,7 @@ import Helmet from 'react-helmet';
 import { flushChunkNames } from 'react-universal-component/server';
 import flushChunks from 'webpack-flush-chunks';
 import { DOMParser } from 'xmldom';
-import App from '../src/containers/App';
+import Wrapper from '../src/containers/Wrapper';
 import configureStore from './configureStore';
 
 global.DOMParser = DOMParser;
@@ -20,7 +20,7 @@ export default ({ clientStats }) => async (req, res) => {
   const store = await configureStore(req, res);
   if (!store) return;
 
-  const app = createApp(App, store);
+  const app = createApp(Wrapper, store);
   const appString = ReactDOM.renderToString(app);
   const helmet = Helmet.renderStatic();
   const state = store.getState();

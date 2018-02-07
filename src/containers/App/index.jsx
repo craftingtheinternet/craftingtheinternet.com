@@ -33,17 +33,6 @@ class component extends PureComponent {
     mediaType: PropTypes.string,
   };
 
-  constructor() {
-    super();
-    this.state = { breakpointHasChanged: false };
-  }
-
-  componentWillReceiveProps = (nextProps) => {
-    if (nextProps.mediaType !== this.props.mediaType) {
-      this.setState(() => ({ breakpointHasChanged: true }));
-    }
-  }
-
   render() {
     const {
       page,
@@ -56,10 +45,6 @@ class component extends PureComponent {
       mobile,
       mediaType,
     } = this.props;
-    const {
-      breakpointHasChanged,
-    } = this.state;
-    const disableAnimation = hasPreviousLocation || breakpointHasChanged;
     return (
       <Fragment>
         <Helmet>
@@ -70,13 +55,27 @@ class component extends PureComponent {
           <style>{`body { background-color: ${panelColor}; }`}</style>
         </Helmet>
         {mobile && (
-          null
+          <div className={styles.mobileHeraldry}>
+            <div className={styles.mobileBranding}>
+              <BrandIdent disableAnimation={hasPreviousLocation} />
+              <Strapline disableAnimation={hasPreviousLocation} />
+            </div>
+            <figure className={styles.mobilePageIdent}>
+              {pageIdent && (
+                <Image
+                  src={pageIdent}
+                  color={typeColor}
+                  disableAnimation={!hasPreviousLocation}
+                />
+              )}
+            </figure>
+          </div>
         )}
         {desktop && (
           <Fragment>
             <div className={styles.heraldry}>
               <div className={styles.left}>
-                <BrandIdent disableAnimation={disableAnimation} />
+                <BrandIdent disableAnimation={hasPreviousLocation} />
               </div>
               <div className={[styles.right, styles.fill].join(' ')}>
                 <Navigation
@@ -88,35 +87,38 @@ class component extends PureComponent {
             </div>
             <div className={styles.heraldry}>
               <div className={styles.left}>
-                <Strapline disableAnimation={disableAnimation} />
+                <Strapline disableAnimation={hasPreviousLocation} />
               </div>
             </div>
           </Fragment>
         )}
         <div className={[styles.contentPane, mediaType].join(' ')}>
-          <div className={styles.left}>
-            {tablet && (
-              <Fragment>
-                <BrandIdent disableAnimation={disableAnimation} />
-                <Strapline disableAnimation={disableAnimation} />
-                <Navigation
-                  current={page}
-                  color={typeColor}
-                  orientation="vertical"
-                />
-              </Fragment>
-            )}
-            <figure className={styles.pageIdent}>
-              {pageIdent && (
-                <Image
-                  src={pageIdent}
-                  color={typeColor}
-                  disableAnimation={breakpointHasChanged}
-                />
+          {!mobile && (
+            <div className={styles.left}>
+              {tablet && (
+                <Fragment>
+                  <BrandIdent disableAnimation={hasPreviousLocation} />
+                  <Strapline disableAnimation={hasPreviousLocation} />
+                  <Navigation
+                    current={page}
+                    color={typeColor}
+                    orientation="vertical"
+                  />
+                </Fragment>
               )}
-            </figure>
-          </div>
-          <main className={[styles.content, styles.right].join(' ')}>
+              <figure className={styles.pageIdent}>
+                {pageIdent && (
+                  <Image
+                    src={pageIdent}
+                    color={typeColor}
+                  />
+                )}
+              </figure>
+            </div>
+          )}
+          <main
+            className={[styles.content, mobile ? styles.mobileContent : styles.right].join(' ')}
+          >
             <Switcher typeColor={typeColor} />
           </main>
         </div>

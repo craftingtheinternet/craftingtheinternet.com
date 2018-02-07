@@ -6,6 +6,7 @@ import styles from './styles.styl';
 const component = ({
   color,
   isClient,
+  disableAnimation,
 }) => (
   <svg
     width="100%"
@@ -18,7 +19,7 @@ const component = ({
       <path
         d={d}
         key={className}
-        className={styles[className]}
+        className={[styles[className], (disableAnimation ? styles.disableAnimation : '')].join(' ')}
         transform={transform}
       />
     ))}
@@ -29,10 +30,12 @@ component.displayName = 'SelfPortrait';
 component.defaultProps = {
   color: 'black',
   isClient: typeof window !== 'undefined',
+  disableAnimation: false,
 };
 component.propTypes = {
   color: PropTypes.string,
   isClient: PropTypes.bool,
+  disableAnimation: PropTypes.bool,
 };
 
 export default component;

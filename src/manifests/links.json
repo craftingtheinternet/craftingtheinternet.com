@@ -1,0 +1,29 @@
+{
+  "About": {
+    "to": {
+      "type": "ABOUT"
+    },
+    "exact": true
+  },
+  "Résumé": {
+    "to": {
+      "type": "RESUME"
+    },
+    "exact": true
+  },
+  "Portfolio": {
+    "to": {
+      "type": "PORTFOLIO"
+    }
+  },
+  "Blog": {
+    "to": {
+      "type": "BLOG"
+    }
+  },
+  "Contact": {
+    "to": {
+      "type": "CONTACT"
+    }
+  }
+}
