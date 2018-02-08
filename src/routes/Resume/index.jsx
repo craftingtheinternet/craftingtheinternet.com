@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import dateFormat from 'dateformat';
 import Header from 'containers/Header';
 import RichText from 'components/RichText';
+import styles from './styles.styl';
 
 const DATE_FORMAT = 'mmm yyyy';
 
@@ -19,32 +20,58 @@ const component = ({
 }) => (
   <div style={{ color: typeColor }}>
     <Header giant>{title}</Header>
+    <Header level={2}>In Brief</Header>
     <RichText columns={2}>
       {abstract}
     </RichText>
+    <div className={styles.separator} />
+    <Header level={2}>Education</Header>
     {education && (
-      <div>
-        {education.degree}
-        {education.placeOfStudy}
-        {education.additionalNotes}
-      </div>
+      <Fragment>
+        <div className={styles.degree}>
+          {education.degree}
+        </div>
+        <div className={styles.placeOfStudy}>
+          {education.placeOfStudy}
+        </div>
+        <div className={styles.additionalNotes}>
+          {education.additionalNotes}
+        </div>
+      </Fragment>
     )}
-    {workEligibility.map(eligibility => (
-      <div key={eligibility.title}>
-        {eligibility.title} {eligibility.value}
-      </div>
-    ))}
-    {workHistory.sort(descendingDate).map(job => (
-      <ul key={job.company}>
-        <li>{`${dateFormat(job.from, DATE_FORMAT)} — ${dateFormat(job.to, DATE_FORMAT)}`}</li>
-        {job.company.toLowerCase() === 'freelance' ? (
-          <li>{job.company} {job.position}</li>
-        ) : (
-          <li>{job.position} at {job.company}</li>
-        )}
-        <li>{job.description}</li>
-      </ul>
-    ))}
+    <div className={styles.separator} />
+    <Header level={2}>Work Eligibility</Header>
+    <ul className={styles.workEligibility}>
+      {workEligibility.map(eligibility => (
+        <li
+          key={eligibility.title}
+          className={styles.workEligibilityItem}
+        >
+          <div className={styles.workEligibilityTitle}>{eligibility.title}</div>
+          <div className={styles.workEligibilityValue}>{eligibility.value}</div>
+        </li>
+      ))}
+    </ul>
+    <div className={styles.separator} />
+    <Header level={2}>Professional History</Header>
+    <ul className={styles.workHistory}>
+      {workHistory.sort(descendingDate).map(job => (
+        <li
+          key={job.company}
+          className={styles.workHistoryItem}
+        >
+          <div className={styles.dates}>
+            {`${dateFormat(job.from, DATE_FORMAT)} — ${dateFormat(job.to, DATE_FORMAT)}`}
+          </div>
+          {job.company.toLowerCase() === 'freelance' ? (
+            <div className={styles.position}>{job.company} {job.position}</div>
+          ) : (
+            <div className={styles.position}>{job.position} at {job.company}</div>
+          )}
+          <div className={styles.description}>{job.description}</div>
+        </li>
+      ))}
+    </ul>
   </div>
 );
 
