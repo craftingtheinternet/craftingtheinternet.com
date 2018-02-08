@@ -5,6 +5,21 @@ const StatsPlugin = require('stats-webpack-plugin');
 const AutoDllPlugin = require('autodll-webpack-plugin');
 const nib = require('nib');
 
+const uglify = new webpack.optimize.UglifyJsPlugin({
+  compress: {
+    screw_ie8: true,
+    warnings: false,
+  },
+  mangle: {
+    screw_ie8: true,
+  },
+  output: {
+    screw_ie8: true,
+    comments: false,
+  },
+  sourceMap: true,
+});
+
 module.exports = {
   name: 'client',
   target: 'web',
@@ -53,6 +68,9 @@ module.exports = {
       routes: path.resolve(__dirname, '../src/routes'),
       manifests: path.resolve(__dirname, '../src/manifests'),
       images: path.resolve(__dirname, '../src/images'),
+      actions: path.resolve(__dirname, '../src/actions'),
+      reducers: path.resolve(__dirname, '../src/reducers'),
+      selectors: path.resolve(__dirname, '../src/selectors'),
     },
   },
   plugins: [
@@ -63,31 +81,25 @@ module.exports = {
       filename: '[name].[chunkhash].js',
       minChunks: Infinity,
     }),
-
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production'),
         CRAFTING_CONTENT: JSON.stringify(process.env.CRAFTING_CONTENT),
       },
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        screw_ie8: true,
-        warnings: false,
-      },
-      mangle: {
-        screw_ie8: true,
-      },
-      output: {
-        screw_ie8: true,
-        comments: false,
-      },
-      sourceMap: true,
-    }),
+    uglify,
     new webpack.HashedModuleIdsPlugin(), // not needed for strategy to work (just good practice)
     new AutoDllPlugin({
       context: path.join(__dirname, '..'),
       filename: '[name].js',
+      plugins: [
+        uglify,
+        new webpack.DefinePlugin({
+          'process.env': {
+            NODE_ENV: JSON.stringify('production'),
+          },
+        }),
+      ],
       entry: {
         vendor: [
           'react',

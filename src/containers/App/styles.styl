@@ -9,9 +9,14 @@ html
 body
   width 100%
   height 100%
-  font-size 12px
+  font-size 16px
   margin 0
   font-family: 'Montserrat', sans-serif;
+  font-smoothing antialiased
+
+html
+  overflow-x hidden
+  overflow-y scroll
 
 body
   transition background-color 0.5s
@@ -22,6 +27,24 @@ body
   width 100%
   min-height 100%
   flex 1 1 100%
+
+.mobileHeraldry
+  display flex
+  flex-direction column
+  min-height 91vh
+  width 100%
+  justify-content stretch
+
+.mobileBranding
+  display flex
+  flex-direction column
+  flex 1 0 auto
+
+.mobilePageIdent
+  flex 0 1 auto
+  padding 0 0.5rem 0 0
+  margin 0
+  line-height 0
 
 .navigationPane
 .heraldry
@@ -44,7 +67,7 @@ body
 .right
   display flex
   flex 1 0 66.666%
-  padding 0 4rem 0 2rem
+  padding 0 3rem 0 1.5rem
   flex-direction column
 
 .contentPane
@@ -52,13 +75,16 @@ body
   flex-direction row
   flex 1 0 auto
   flex-wrap wrap
-  font-size 1.2rem
+  font-size 1rem
   line-height 1.8
 
   &:global(.medium)
+  &:global(.small)
+  &:global(.extraSmall)
     display block
     position relative
 
+  &:global(.medium)
     .left
       display flex
       height 100vh
@@ -71,6 +97,10 @@ body
       position relative
       margin-left 33.333%
       flex none
+  
+  &:global(.small)
+  &:global(.extraSmall)
+    margin-top 9vh
 
 .pageIdent
   display flex
@@ -90,3 +120,14 @@ body
 
 .content
   transition color 0.2s 0.5s
+  padding-bottom 3rem
+
+  &.mobileContent
+    padding 0 3rem 2rem 1rem
+
+.footerIdent
+  display block
+  width 100%
+  padding 0
+  margin 0
+  line-height 0

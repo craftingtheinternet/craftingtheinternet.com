@@ -3,25 +3,24 @@
   position relative
   flex 1 0 auto
   flex-direction column
-  transform-origin 0 0
 
 .transition
   &:global(-enter)
     position absolute
-    transform translateX(100px)
+    transform scale(1.075)
     opacity 0
-    transform-origin top right
+    transform-origin 0 0
   &:global(-enter-active)
-    transition 0.5s
-    transform translateX(0);
+    transition 0.3s
+    transform scale(1);
     opacity 1
   &:global(-leave)
-    transform translateX(0);
+    transform scale(1);
     opacity 1
-    transform-origin top left
+    transform-origin 0 0
   &:global(-leave-active)
-    transition 0.5s
-    transform translateX(-100px)
+    transition 0.3s
+    transform scale(0.95)
     opacity 0
 
 .notFound

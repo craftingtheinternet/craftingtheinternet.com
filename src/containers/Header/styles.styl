@@ -1,8 +1,8 @@
-h1Size = 2.5rem
-h2Size = 2rem
-h3Size = 1.5rem
-h4Size = 1.25rem
-h5Size = 1.1rem
+h1Size = 1.875rem
+h2Size = 1.5rem
+h3Size = 1.125rem
+h4Size = 0.9375rem
+h5Size = 0.825rem
 
 .h1
 .h2
@@ -10,15 +10,23 @@ h5Size = 1.1rem
 .h4
 .h5
   line-height 1
-  margin 0 0 2rem
+  margin 0 0 1.5rem
   &.giant
     margin 0.8em 0
+
+    :global(.small) &
+    :global(.extraSmall) &
+      margin 0 0 0.8em
 
 .h1
   font-size h1Size
   font-weight 600
   &.giant
     font-size h1Size * 2
+
+    :global(.small) &
+    :global(.extraSmall) &
+      font-size h1Size * 1.4
 
 .h2
   font-size h2Size
@@ -27,20 +35,20 @@ h5Size = 1.1rem
     font-size h2Size * 2
 
 .h3
-  font-size 1.5rem
+  font-size h3Size
   font-weight 600
   &.giant
     font-size h3Size * 2
 
 .h4
-  font-size 1.25rem
+  font-size h4Size
   font-weight 600
   &.giant
     font-size h4Size * 2
 
 .h5
-  font-size 1.1rem
+  font-size h5Size
   font-weight 600
   &.giant
     font-size h5Size * 2
-    margin-bottom 2rem
+    margin-bottom 1.5rem

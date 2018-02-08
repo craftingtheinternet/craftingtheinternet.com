@@ -1,31 +1,12 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'redux-first-router-link';
+import links from 'manifests/links.json';
 import styles from './styles.styl';
 
 const BAR_SIZE = 200;
 const HORIZONTAL = 'horizontal';
 const VERTICAL = 'vertical';
-
-const links = {
-  About: {
-    to: { type: 'ABOUT' },
-    exact: true,
-  },
-  Résumé: {
-    to: { type: 'RESUME' },
-    exact: true,
-  },
-  Portfolio: {
-    to: { type: 'PORTFOLIO' },
-  },
-  Blog: {
-    to: { type: 'BLOG' },
-  },
-  Contact: {
-    to: { type: 'CONTACT' },
-  },
-};
 
 class component extends PureComponent {
   static displayName = 'Navigation';

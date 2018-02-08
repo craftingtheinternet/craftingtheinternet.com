@@ -15,18 +15,24 @@ const component = ({
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    {isClient && paths.map(({ d, className, transform }) => (
+    {isClient && paths.map(({
+      d,
+      className,
+      transform,
+      strokeWidth,
+    }) => (
       <path
         d={d}
         key={className}
         className={[styles[className], (disableAnimation ? styles.disableAnimation : '')].join(' ')}
         transform={transform}
+        strokeWidth={strokeWidth}
       />
     ))}
   </svg>
 );
 
-component.displayName = 'SelfPortrait';
+component.displayName = 'Typewriter';
 component.defaultProps = {
   color: 'black',
   isClient: typeof window !== 'undefined',

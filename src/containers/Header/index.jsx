@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import styles from './styles.styl';
 
 const removeOrphans = text => text
@@ -15,12 +16,14 @@ const component = ({
   giant,
   level,
   children,
+  mediaType,
+  mobile,
 }) => (
   children ? (
     React.createElement(
       `h${level}`,
-      { className: [styles[`h${level}`], giant ? styles.giant : ''].join(' ') },
-      removeOrphans(children),
+      { className: [styles[`h${level}`], mediaType, giant ? styles.giant : ''].join(' ') },
+      mobile ? children : removeOrphans(children),
     )
   ) : (
     null
@@ -31,6 +34,8 @@ component.displayName = 'Header';
 component.defaultProps = {
   giant: false,
   level: 1,
+  mediaType: '',
+  mobile: false,
 };
 component.propTypes = {
   giant: PropTypes.bool,
@@ -40,6 +45,15 @@ component.propTypes = {
     PropTypes.string,
     PropTypes.number,
   ]).isRequired,
+  mediaType: PropTypes.string,
+  mobile: PropTypes.bool,
 };
 
-export default component;
+const mapStateToProps = state => ({
+  mediaType: state.breakpoint.mediaType,
+  mobile: state.breakpoint.lessThan.medium,
+});
+
+export { component };
+
+export default connect(mapStateToProps)(component);

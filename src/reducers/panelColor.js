@@ -1,9 +1,8 @@
 import colors from '../manifests/colors.json';
 
 const components = {
-  HOME: colors.easternBlue,
   ABOUT: colors.wattle,
-  LIST: colors.wattle,
+  RESUME: colors.fuchsiaBlue,
 };
 
-export default (state = 'HOME', action = {}) => components[action.type] || state;
+export default (state = 'ABOUT', action = {}) => components[action.type] || state;

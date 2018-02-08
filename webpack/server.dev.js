@@ -63,6 +63,9 @@ module.exports = {
       routes: path.resolve(__dirname, '../src/routes'),
       manifests: path.resolve(__dirname, '../src/manifests'),
       images: path.resolve(__dirname, '../src/images'),
+      actions: path.resolve(__dirname, '../src/actions'),
+      reducers: path.resolve(__dirname, '../src/reducers'),
+      selectors: path.resolve(__dirname, '../src/selectors'),
     },
   },
   plugins: [
