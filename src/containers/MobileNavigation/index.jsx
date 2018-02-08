@@ -8,7 +8,7 @@ import * as sidebarActions from 'actions/sidebar';
 import styles from './styles.styl';
 
 class component extends PureComponent {
-  static displayName = 'Navigation';
+  static displayName = 'MobileNavigation';
   static defaultProps = {
     color: 'black',
     panelColor: 'transparent',
@@ -45,6 +45,7 @@ class component extends PureComponent {
         >
           {Object.keys(links).map(key => (
             <NavLink
+              key={key}
               to={links[key].to}
               exact={links[key].exact}
               className={styles.link}

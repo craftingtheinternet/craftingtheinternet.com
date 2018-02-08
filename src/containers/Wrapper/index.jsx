@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Sidebar from 'react-sidebar';
 import App from 'containers/App';
 import MobileNavigation from 'containers/MobileNavigation';
+import HamburgerMenu from 'components/HamburgerMenu';
 import * as sidebarActions from 'actions/sidebar';
 import { contentClassName } from 'manifests/sidebar.json';
 
@@ -44,7 +45,17 @@ class component extends PureComponent {
       onSetOpen: toggleSidebar,
       contentClassName,
     } : {};
-    return React.createElement(mobile ? Sidebar : Fragment, { ...sidebarProps }, <App />);
+    return (
+      <Fragment>
+        {React.createElement(mobile ? Sidebar : Fragment, { ...sidebarProps }, <App />)}
+        {mobile && (
+          <HamburgerMenu
+            sidebarOpen={sidebarOpen}
+            toggleSidebar={toggleSidebar}
+          />
+        )}
+      </Fragment>
+    );
   }
 }
 
