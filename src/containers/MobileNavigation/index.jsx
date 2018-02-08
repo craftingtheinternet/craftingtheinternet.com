@@ -23,10 +23,8 @@ class component extends PureComponent {
     const { closeSidebar } = this.props;
     const container = document.querySelector(`.${contentClassName}`);
     if (container) {
-      container.scrollTop = 0;
-    }
-    if (requestIdleCallback) {
-      requestIdleCallback(() => {
+      requestAnimationFrame(() => {
+        container.scrollTop = 0;
         closeSidebar();
       });
     } else {
@@ -43,7 +41,7 @@ class component extends PureComponent {
       <nav className={styles.nav} style={{ backgroundColor: panelColor }}>
         <div
           className={styles.list}
-          style={{ maxHeight: `${Object.keys(links).length * 3}rem` }}
+          style={{ maxHeight: `${Object.keys(links).length * 2.5}rem` }}
         >
           {Object.keys(links).map(key => (
             <NavLink
