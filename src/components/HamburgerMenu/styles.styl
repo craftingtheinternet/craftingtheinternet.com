@@ -24,6 +24,21 @@
   height 2px
   background-color white
   transform translateY(-50%)
+  transition transform 0.2s, opacity 0.2s
 
-  .isOpen &
-    //
+  &:first-child
+    transform-origin 0 0
+  
+  &:last-child
+    transform-origin 0 100%
+
+  .open &
+    &:first-child
+      transform translateX(25%) rotate(45deg)
+
+    &:not(:first-child):not(:last-child)
+      transform translateX(0.5rem)
+      opacity 0
+
+    &:last-child
+      transform  translateX(25%) translateY(-50%) rotate(-45deg)
