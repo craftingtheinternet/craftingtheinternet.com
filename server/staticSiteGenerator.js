@@ -35,7 +35,7 @@ const renderRoute = async (slug) => {
 };
 
 const renderRoutes = async (routes) => {
-  const resolvedRoutes = (typeof routes === 'function') ? await routes() : routes;
+  const resolvedRoutes = typeof routes === 'function' ? await routes() : routes;
   for (const route of resolvedRoutes) {
     await renderRoute(route);
   }

@@ -6,20 +6,13 @@ import { connectRoutes } from 'redux-first-router';
 import routesMap from './routesMap';
 import * as reducers from './reducers';
 
-const composeEnhancers = (...args) => (
-  typeof window !== 'undefined' ? composeWithDevTools({})(...args) : compose(...args)
-);
+const composeEnhancers = (...args) =>
+  (typeof window !== 'undefined' ? composeWithDevTools({})(...args) : compose(...args));
 
 export default (history, preloadedState) => {
   const {
-    reducer,
-    middleware,
-    enhancer,
-    thunk,
-  } = connectRoutes(
-    history,
-    routesMap,
-  );
+    reducer, middleware, enhancer, thunk,
+  } = connectRoutes(history, routesMap);
 
   const rootReducer = combineReducers({ ...reducers, location: reducer });
   const middlewares = applyMiddleware(middleware);
@@ -32,8 +25,11 @@ export default (history, preloadedState) => {
 
   if (module.hot && process.env.NODE_ENV === 'development') {
     module.hot.accept('./reducers/index', () => {
-      // eslint-disable-next-line global-require
-      const reloadedRootReducer = combineReducers({ ...require('./reducers/index'), location: reducer });
+      const reloadedRootReducer = combineReducers({
+        // eslint-disable-next-line global-require
+        ...require('./reducers/index'),
+        location: reducer,
+      });
       store.replaceReducer(reloadedRootReducer);
     });
   }

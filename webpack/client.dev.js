@@ -38,7 +38,8 @@ module.exports = {
                 modules: true,
                 localIdentName: '[name]__[local]--[hash:base64:5]',
               },
-            }, {
+            },
+            {
               loader: 'stylus-loader',
               options: {
                 use: [nib()],
