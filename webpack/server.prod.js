@@ -7,12 +7,14 @@ const res = p => path.resolve(__dirname, p);
 
 const externals = fs
   .readdirSync(res('../node_modules'))
-  .filter(x =>
-    !/\.bin|react-universal-component|require-universal-module|webpack-flush-chunks/.test(x))
-  .reduce((acc, key) => ({
-    ...acc,
-    [key]: `commonjs ${key}`,
-  }), {});
+  .filter(x => !/\.bin|react-universal-component|require-universal-module|webpack-flush-chunks/.test(x))
+  .reduce(
+    (acc, key) => ({
+      ...acc,
+      [key]: `commonjs ${key}`,
+    }),
+    {},
+  );
 
 module.exports = {
   name: 'server',
@@ -41,7 +43,8 @@ module.exports = {
               modules: true,
               localIdentName: '[name]__[local]--[hash:base64:5]',
             },
-          }, {
+          },
+          {
             loader: 'stylus-loader',
             options: {
               use: [nib()],

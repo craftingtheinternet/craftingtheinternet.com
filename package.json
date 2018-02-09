@@ -11,16 +11,21 @@
     "serve": "cross-env NODE_ENV=production node buildServer/index.js",
     "serve:ssg": "serve buildStatic",
     "build": "npm run build:client && npm run build:server && npm run build:node",
-    "build:client": "rimraf buildClient && cross-env NODE_ENV=production webpack --progress -p --config webpack/client.prod.js",
-    "build:server": "rimraf buildServer && cross-env NODE_ENV=production webpack --progress -p --config webpack/server.prod.js",
+    "build:client":
+      "rimraf buildClient && cross-env NODE_ENV=production webpack --progress -p --config webpack/client.prod.js",
+    "build:server":
+      "rimraf buildServer && cross-env NODE_ENV=production webpack --progress -p --config webpack/server.prod.js",
     "build:node": "cross-env NODE_ENV=production babel server/index.js -o buildServer/index.js",
-    "ssg": "rimraf buildStatic && cross-env NODE_ENV=production babel-node server/staticSiteGenerator.js",
+    "ssg":
+      "rimraf buildStatic && cross-env NODE_ENV=production babel-node server/staticSiteGenerator.js",
     "postssg": "ncp buildClient buildStatic/static",
     "clean": "rimraf buildClient buildServer",
     "lint": "eslint --fix src server webpack",
-    "format": "prettier --single-quote --semi=false --write '{src,server,webpack}/**/*.js' && npm run lint",
     "predeploy": "npm run build && npm run ssg",
-    "deploy": "firebase deploy"
+    "deploy": "firebase deploy",
+    "validate": "npm ls",
+    "format":
+      "prettier-eslint --write 'package.json' '{src,server,webpack}/**/*.js' && npm run lint"
   },
   "dependencies": {
     "babel-polyfill": "^6.23.0",
@@ -73,7 +78,8 @@
     "fs-extra": "^5.0.0",
     "ncp": "^2.0.0",
     "nib": "^1.1.2",
-    "prettier": "^1.4.4",
+    "precommit-hook": "^3.0.0",
+    "prettier-eslint-cli": "^4.7.0",
     "rimraf": "^2.6.1",
     "serve": "^6.4.9",
     "stats-webpack-plugin": "^0.6.1",
@@ -84,5 +90,6 @@
     "webpack-hot-middleware": "^2.18.2",
     "webpack-hot-server-middleware": "^0.2.0",
     "write-file-webpack-plugin": "^4.1.0"
-  }
+  },
+  "pre-commit": ["format"]
 }
