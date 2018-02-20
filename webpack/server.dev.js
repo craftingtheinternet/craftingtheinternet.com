@@ -31,9 +31,14 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         use: 'babel-loader',
+      },
+      {
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        use: 'ts-loader',
       },
       {
         test: /\.styl$/,

@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "module": "commonjs",
+    "target": "es5",
+    "moduleResolution": "node",
+    "experimentalDecorators": false,
+    "jsx": "react",
+    "allowJs": false,
+    "baseUrl": "./src/"
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts"
+  ]
+}

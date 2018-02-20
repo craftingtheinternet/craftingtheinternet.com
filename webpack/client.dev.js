@@ -24,9 +24,14 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         use: 'babel-loader',
+      },
+      {
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        use: 'ts-loader',
       },
       {
         test: /\.styl$/,
@@ -53,7 +58,7 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['.jsx', '.js', '.json', '.styl'],
+    extensions: ['.tsx', '.ts', '.jsx', '.js', '.json', '.styl'],
     alias: {
       components: path.resolve(__dirname, '../src/components'),
       containers: path.resolve(__dirname, '../src/containers'),

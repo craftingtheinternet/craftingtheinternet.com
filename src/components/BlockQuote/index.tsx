@@ -1,26 +1,32 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as PropTypes from 'prop-types';
+import * as React from 'react';
+
 import styles from './styles.styl';
 
-const component = ({
+export interface Props {
+  attribution?: string;
+  children: string;
+}
+
+const component: React.SFC<Props> = ({
   children,
   attribution,
 }) => (
-  <blockquote className={styles.blockquote}>
-    <p>{children}</p>
-    {attribution && (
-      <footer>{`— ${attribution}`}</footer>
-    )}
-  </blockquote>
-);
+    <blockquote className={styles.blockquote}>
+      <p>{children}</p>
+      {attribution && (
+        <footer>{`— ${attribution}`}</footer>
+      )}
+    </blockquote>
+  );
 
 component.displayName = 'BlockQuote';
 component.defaultProps = {
   attribution: undefined,
 };
 component.propTypes = {
-  children: PropTypes.string.isRequired,
   attribution: PropTypes.string,
+  children: PropTypes.string.isRequired,
 };
 
 export default component;
