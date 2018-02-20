@@ -1,25 +1,50 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { TransitionGroup, Transition } from 'transition-group';
-import universal from 'react-universal-component';
-import * as selectors from 'selectors';
+import * as PropTypes from "prop-types";
+import * as React from "react";
+import { connect } from "react-redux";
+import { Transition, TransitionGroup } from "transition-group";
 
-import styles from 'containers/Switcher/styles.styl';
+import universal from "react-universal-component";
+import * as selectors from "selectors";
+
+import styles from "containers/Switcher/styles.styl";
+
+export interface Props {
+  page: string;
+  pathname: string;
+  typeColor?: string;
+  isLoading: boolean;
+}
+
+export interface MappedProps {
+  isLoading: boolean;
+  page: string;
+  location: {
+    pathname: string;
+  };
+}
+
+export interface UniversalComponentProps {
+  page: string;
+  isLoading: boolean;
+  typeColor: string;
+}
 
 const DURATION = 300;
 
-const UniversalComponent = universal(({ page }) => import(`routes/${page}`), {
-  minDelay: 500,
-  loading: () => <div>...</div>,
-  error: () => <div>PAGE NOT FOUND - 404</div>,
-});
+const UniversalComponent: React.SFC<UniversalComponentProps> = universal(
+  ({ page }) => import(`routes/${page}`),
+  {
+    error: () => <div>PAGE NOT FOUND - 404</div>,
+    loading: () => <div>...</div>,
+    minDelay: 500
+  }
+);
 
-const component = ({
+const component: React.SFC<Props> = ({
   page,
   pathname,
   typeColor,
-  isLoading,
+  isLoading
 }) => (
   <TransitionGroup
     component="div"
@@ -38,20 +63,20 @@ const component = ({
 );
 
 component.defaultProps = {
-  typeColor: 'black',
   isLoading: false,
+  typeColor: "black"
 };
 component.propTypes = {
+  isLoading: PropTypes.bool,
   page: PropTypes.string.isRequired,
   pathname: PropTypes.string.isRequired,
-  typeColor: PropTypes.string,
-  isLoading: PropTypes.bool,
+  typeColor: PropTypes.string
 };
 
-export const mapStateToProps = state => ({
-  page: state.page,
-  pathname: state.location.pathname,
+export const mapStateToProps = (state: MappedProps) => ({
   isLoading: selectors.isLoading(state),
+  page: state.page,
+  pathname: state.location.pathname
 });
 
 export { component };

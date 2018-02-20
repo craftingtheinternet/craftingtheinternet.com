@@ -1,8 +1,8 @@
-import * as React from 'react';
-import * as PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import * as PropTypes from "prop-types";
+import * as React from "react";
+import { connect } from "react-redux";
 
-import styles from './styles.styl';
+import styles from "./styles.styl";
 
 export interface Props {
   giant: boolean;
@@ -21,55 +21,61 @@ export interface ReduxProps {
   };
 }
 
-const removeOrphans = (text: string): string => text
-  .split(' ')
-  .slice(0, text.split(' ').length - 2)
-  .concat(text
-    .split(' ')
-    .slice(-2)
-    .join('\xa0'))
-  .join(' ');
+const removeOrphans = (text: string): string =>
+  text
+    .split(" ")
+    .slice(0, text.split(" ").length - 2)
+    .concat(
+      text
+        .split(" ")
+        .slice(-2)
+        .join("\xa0")
+    )
+    .join(" ");
 
 const component: React.SFC<Props> = ({
   giant,
   level,
   children,
   mediaType,
-  mobile,
-}) => (
-    children ? (
-      React.createElement(
+  mobile
+}) =>
+  children
+    ? React.createElement(
         `h${level}`,
-        { className: [styles[`h${level}`], mediaType, giant ? styles.giant : ''].join(' ') },
-        mobile ? children : removeOrphans(children),
+        {
+          className: [
+            styles[`h${level}`],
+            mediaType,
+            giant ? styles.giant : ""
+          ].join(" ")
+        },
+        mobile ? children : removeOrphans(children)
       )
-    ) : (
-        null
-      )
-  );
+    : null;
 
-component.displayName = 'Header';
+component.displayName = "Header";
 component.defaultProps = {
   giant: false,
   level: 1,
-  mediaType: '',
-  mobile: false,
+  mediaType: "",
+  mobile: false
 };
 component.propTypes = {
-  giant: PropTypes.bool,
-  level: PropTypes.oneOf([1, 2, 3, 4, 5]),
   children: PropTypes.oneOfType([
     PropTypes.element,
     PropTypes.string,
-    PropTypes.number,
+    PropTypes.number
   ]).isRequired,
+  giant: PropTypes.bool,
+  level: PropTypes.oneOf([1, 2, 3, 4, 5]),
   mediaType: PropTypes.string.isRequired,
-  mobile: PropTypes.bool,
+  mobile: PropTypes.bool
 };
 
 const mapStateToProps = (state: ReduxProps) => ({
   mediaType: state.breakpoint.mediaType,
-  mobile: state.breakpoint.lessThan.medium,
+  mobile: state.breakpoint.lessThan.medium
 });
 
 export { component };

@@ -7,13 +7,9 @@
     "experimentalDecorators": false,
     "jsx": "react",
     "allowJs": false,
-    "baseUrl": "./src/"
+    "baseUrl": "./src/",
+    "lib": ["es2015", "dom"]
   },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "node_modules",
-    "**/*.spec.ts"
-  ]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "**/*.spec.ts"]
 }

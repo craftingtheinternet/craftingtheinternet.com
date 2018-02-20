@@ -1,22 +1,25 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import universal from 'react-universal-component';
+import * as PropTypes from "prop-types";
+import * as React from "react";
+import universal from "react-universal-component";
 
-const asyncImage = src => universal(import(`images/${src}`), {
-  loading: () => null,
-  error: () => null,
-});
+interface Props {
+  src: string;
+}
 
-const component = ({ src, ...props }) => {
+const asyncImage = (src: string): React.SFC =>
+  universal(import(`images/${src}`), {
+    error: (): null => null,
+    loading: (): null => null
+  });
+
+const component: React.SFC<Props> = ({ src, ...props }) => {
   const AsyncImage = asyncImage(src);
-  return (
-    <AsyncImage {...props} />
-  );
+  return <AsyncImage {...props} />;
 };
 
-component.displayName = 'Image';
+component.displayName = "Image";
 component.propTypes = {
-  src: PropTypes.string.isRequired,
+  src: PropTypes.string.isRequired
 };
 
 export default component;

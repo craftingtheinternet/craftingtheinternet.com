@@ -1,10 +1,10 @@
-import * as PropTypes from 'prop-types';
-import * as React from 'react';
-import { connect } from 'react-redux';
+import * as PropTypes from "prop-types";
+import * as React from "react";
+import { connect } from "react-redux";
 
-import BlockQuote from 'components/BlockQuote';
-import RichText from 'components/RichText';
-import Header from 'containers/Header';
+import BlockQuote from "components/BlockQuote";
+import RichText from "components/RichText";
+import Header from "containers/Header";
 
 export interface Props {
   title?: string;
@@ -28,40 +28,36 @@ const component: React.SFC<Props> = ({
   content,
   quote,
   quoteAttribution,
-  typeColor,
+  typeColor
 }) => (
-    <div style={{ color: typeColor }}>
-      <Header giant={true}>{title}</Header>
-      {quote && (
-        <BlockQuote attribution={quoteAttribution}>{quote}</BlockQuote>
-      )}
-      <RichText>
-        {content}
-      </RichText>
-    </div>
-  );
+  <div style={{ color: typeColor }}>
+    <Header giant={true}>{title}</Header>
+    {quote && <BlockQuote attribution={quoteAttribution}>{quote}</BlockQuote>}
+    <RichText>{content}</RichText>
+  </div>
+);
 
-component.displayName = 'About';
+component.displayName = "About";
 component.defaultProps = {
   content: undefined,
   quote: undefined,
   quoteAttribution: undefined,
   title: undefined,
-  typeColor: 'black',
+  typeColor: "black"
 };
 component.propTypes = {
   content: PropTypes.string,
   quote: PropTypes.string,
   quoteAttribution: PropTypes.string,
   title: PropTypes.string,
-  typeColor: PropTypes.string,
+  typeColor: PropTypes.string
 };
 
 const mapStateToProps = (state: ReduxProps) => ({
   content: state.about.content,
   quote: state.about.quote,
   quoteAttribution: state.about.quoteAttribution,
-  title: state.about.title,
+  title: state.about.title
 });
 
 export { component };

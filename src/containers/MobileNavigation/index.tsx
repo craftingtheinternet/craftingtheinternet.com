@@ -1,42 +1,35 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { NavLink } from 'redux-first-router-link';
-import links from 'manifests/links.json';
-import { contentClassName } from 'manifests/sidebar.json';
-import * as sidebarActions from 'actions/sidebar';
-import styles from './styles.styl';
+import * as PropTypes from "prop-types";
+import * as React from "react";
+import { connect } from "react-redux";
+import { NavLink } from "redux-first-router-link";
 
-class component extends PureComponent {
-  static displayName = 'MobileNavigation';
-  static defaultProps = {
-    color: 'black',
-    panelColor: 'transparent',
+import { close, closeType } from "actions/sidebar";
+
+import links from "manifests/links.json";
+import { contentClassName } from "manifests/sidebar.json";
+
+import styles from "./styles.styl";
+
+interface Props {
+  closeSidebar: closeType;
+  color?: string;
+  panelColor?: string;
+}
+
+class ReactComponent extends React.PureComponent<Props> {
+  public static displayName = "MobileNavigation";
+  public static defaultProps = {
+    color: "black",
+    panelColor: "transparent"
   };
-  static propTypes = {
-    color: PropTypes.string,
-    panelColor: PropTypes.string,
+  public static propTypes = {
     closeSidebar: PropTypes.func.isRequired,
+    color: PropTypes.string,
+    panelColor: PropTypes.string
   };
 
-  onLinkClick = () => {
-    const { closeSidebar } = this.props;
-    const container = document.querySelector(`.${contentClassName}`);
-    if (container) {
-      requestAnimationFrame(() => {
-        container.scrollTop = 0;
-        closeSidebar();
-      });
-    } else {
-      closeSidebar();
-    }
-  }
-
-  render() {
-    const {
-      color,
-      panelColor,
-    } = this.props;
+  public render() {
+    const { color, panelColor } = this.props;
     return (
       <nav className={styles.nav} style={{ backgroundColor: panelColor }}>
         <div
@@ -60,12 +53,25 @@ class component extends PureComponent {
       </nav>
     );
   }
+
+  private onLinkClick = () => {
+    const { closeSidebar } = this.props;
+    const container = document.querySelector(`.${contentClassName}`);
+    if (container) {
+      requestAnimationFrame(() => {
+        container.scrollTop = 0;
+        closeSidebar();
+      });
+    } else {
+      closeSidebar();
+    }
+  };
 }
 
 const mapDispatchToProps = {
-  closeSidebar: sidebarActions.close,
+  closeSidebar: close
 };
 
-export { component };
+export { ReactComponent };
 
-export default connect(null, mapDispatchToProps)(component);
+export default connect(null, mapDispatchToProps)(ReactComponent);
