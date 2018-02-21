@@ -1,72 +1,82 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import { NavLink } from 'redux-first-router-link';
-import links from 'manifests/links.json';
-import styles from './styles.styl';
+import * as PropTypes from "prop-types";
+import * as React from "react";
+import { NavLink } from "redux-first-router-link";
+
+import links from "manifests/links.json";
+
+import styles from "./styles.styl";
 
 const BAR_SIZE = 200;
-const HORIZONTAL = 'horizontal';
-const VERTICAL = 'vertical';
+const HORIZONTAL = "horizontal";
+const VERTICAL = "vertical";
 
-class component extends PureComponent {
-  static displayName = 'Navigation';
-  static defaultProps = {
-    color: 'black',
-    orientation: HORIZONTAL,
-  };
-  static propTypes = {
-    color: PropTypes.string,
-    orientation: PropTypes.oneOf([HORIZONTAL, VERTICAL]),
-  };
+export interface Props {
+  color: string;
+  orientation: "horizontal" | "vertical";
+}
 
-  constructor() {
-    super();
-    this.listItems = {};
+export interface State {
+  hoveredListItemIsVisible: boolean;
+  hoveredListItemOffset: number;
+  hoveredListItemSize: number;
+}
+
+export interface ListItems {
+  [key: string]: any;
+}
+
+class ReactComponent extends React.PureComponent<Props, State> {
+  public static displayName = "Navigation";
+  public static defaultProps = {
+    color: "black",
+    orientation: HORIZONTAL
+  };
+  private listItems: ListItems = {};
+
+  constructor(props: Props) {
+    super(props);
     this.state = {
-      hoveredListItemOffset: null,
-      hoveredListItemSize: null,
       hoveredListItemIsVisible: false,
+      hoveredListItemOffset: null,
+      hoveredListItemSize: null
     };
   }
 
-  onMouseEnter = key => () => {
+  public onMouseEnter = (key: string) => () => {
     const { orientation } = this.props;
-    const offsetDimension = orientation === HORIZONTAL ? 'Left' : 'Top';
-    const sizeDimension = orientation === HORIZONTAL ? 'Width' : 'Height';
+    const offsetDimension = orientation === HORIZONTAL ? "Left" : "Top";
+    const sizeDimension = orientation === HORIZONTAL ? "Width" : "Height";
     if (this.listItems[key]) {
       this.setState(() => ({
-        hoveredListItemOffset: this.listItems[key][`offset${offsetDimension}`],
-        hoveredListItemSize: this.listItems[key][`client${sizeDimension}`],
         hoveredListItemIsVisible: true,
+        hoveredListItemOffset: this.listItems[key][`offset${offsetDimension}`],
+        hoveredListItemSize: this.listItems[key][`client${sizeDimension}`]
       }));
     }
-  }
+  };
 
-  onMouseLeave = () => {
+  public onMouseLeave = () => {
     this.setState(() => ({
-      hoveredListItemIsVisible: false,
+      hoveredListItemIsVisible: false
     }));
-  }
+  };
 
-  assignListItem = key => (el) => {
+  public assignListItem = (key: string) => (el: HTMLElement) => {
     this.listItems[key] = el;
-  }
+  };
 
-  render() {
-    const {
-      color,
-      orientation,
-    } = this.props;
+  public render() {
+    const { color, orientation } = this.props;
     const {
       hoveredListItemOffset,
       hoveredListItemSize,
-      hoveredListItemIsVisible,
+      hoveredListItemIsVisible
     } = this.state;
-    const dimension = orientation === HORIZONTAL ? 'X' : 'Y';
-    const literalDimension = orientation === HORIZONTAL ? 'width' : 'height';
+    const dimension = orientation === HORIZONTAL ? "X" : "Y";
+    const literalDimension = orientation === HORIZONTAL ? "width" : "height";
     return (
       <nav
-        className={[styles.nav, styles[orientation]].join(' ')}
+        className={[styles.nav, styles[orientation]].join(" ")}
         onMouseLeave={this.onMouseLeave}
       >
         <ul className={styles.list}>
@@ -93,9 +103,10 @@ class component extends PureComponent {
           className={styles.bar}
           style={{
             [literalDimension]: BAR_SIZE,
-            opacity: hoveredListItemIsVisible ? 1 : 0,
             backgroundColor: color,
-            transform: `translate${dimension}(${hoveredListItemOffset || 0}px) scale${dimension}(${hoveredListItemSize / BAR_SIZE})`,
+            opacity: hoveredListItemIsVisible ? 1 : 0,
+            transform: `translate${dimension}(${hoveredListItemOffset ||
+              0}px) scale${dimension}(${hoveredListItemSize / BAR_SIZE})`
           }}
         />
       </nav>
@@ -103,4 +114,4 @@ class component extends PureComponent {
   }
 }
 
-export default component;
+export default ReactComponent;

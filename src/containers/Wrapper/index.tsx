@@ -14,35 +14,31 @@ export interface Props {
   mobile: boolean;
   panelColor?: string;
   sidebarOpen: boolean;
-  toggleSidebar: toggleType;
   typeColor?: string;
 }
 
-export interface MappedProps {
+export interface DispatchProps {
+  toggleSidebar: toggleType;
+}
+
+export interface ReduxProps {
   breakpoint: {
     lessThan: {
       medium: boolean;
     };
   };
-  panelColor: string;
+  panelColor?: string;
   sidebar: {
     open: boolean;
   };
-  typeColor: string;
+  typeColor?: string;
 }
 
-class ReactComponent extends React.PureComponent<Props & MappedProps> {
+class ReactComponent extends React.PureComponent<Props & DispatchProps> {
   public static displayName = "Wrapper";
   public static defaultProps = {
     mobile: false,
     sidebarOpen: false
-  };
-  public static propTypes = {
-    mobile: PropTypes.bool,
-    panelColor: PropTypes.string,
-    sidebarOpen: PropTypes.bool,
-    toggleSidebar: PropTypes.func.isRequired,
-    typeColor: PropTypes.string
   };
 
   public render() {
@@ -78,7 +74,7 @@ class ReactComponent extends React.PureComponent<Props & MappedProps> {
   }
 }
 
-const mapStateToProps = (state: MappedProps) => ({
+const mapStateToProps = (state: ReduxProps): Props => ({
   mobile: state.breakpoint.lessThan.medium,
   panelColor: state.panelColor,
   sidebarOpen: state.sidebar.open,

@@ -1,24 +1,23 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Image from 'components/Image';
-import styles from './styles.styl';
+import * as PropTypes from "prop-types";
+import * as React from "react";
 
-const component = ({ disableAnimation }) => (
-  <div className={[styles.ident, styles.padded].join(' ')}>
-    <Image
-      src="Crafting"
-      color="white"
-      disableAnimation={disableAnimation}
-    />
+import Image from "components/Image";
+
+import styles from "./styles.styl";
+
+export interface Props {
+  disableAnimation: boolean;
+}
+
+const component: React.SFC<Props> = ({ disableAnimation }) => (
+  <div className={[styles.ident, styles.padded].join(" ")}>
+    <Image src="Crafting" color="white" disableAnimation={disableAnimation} />
   </div>
 );
 
-component.displayName = 'BrandIdent';
+component.displayName = "BrandIdent";
 component.defaultProps = {
-  disableAnimation: false,
-};
-component.propTypes = {
-  disableAnimation: PropTypes.bool,
+  disableAnimation: false
 };
 
 export default component;

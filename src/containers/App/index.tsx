@@ -1,39 +1,63 @@
-import React, { PureComponent, Fragment } from 'react';
-import PropTypes from 'prop-types';
-import Helmet from 'react-helmet';
-import { connect } from 'react-redux';
-import Switcher from 'containers/Switcher';
-import BrandIdent from 'components/BrandIdent';
-import Strapline from 'components/Strapline';
-import Image from 'components/Image';
-import Navigation from 'components/Navigation';
-import styles from './styles.styl';
+import * as PropTypes from "prop-types";
+import * as React from "react";
+import Helmet from "react-helmet";
+import { connect } from "react-redux";
 
-class component extends PureComponent {
-  static displayName = 'App';
-  static defaultProps = {
-    panelColor: undefined,
-    pageIdent: undefined,
-    typeColor: undefined,
-    hasPreviousLocation: false,
+import Switcher from "containers/Switcher";
+
+import BrandIdent from "components/BrandIdent";
+import Image from "components/Image";
+import Navigation from "components/Navigation";
+import Strapline from "components/Strapline";
+
+import styles from "./styles.styl";
+
+interface Props {
+  desktop: boolean;
+  hasPreviousLocation: boolean;
+  mediaType?: string;
+  mobile: boolean;
+  page: string;
+  pageIdent?: string;
+  panelColor?: string;
+  tablet: boolean;
+  typeColor?: string;
+}
+
+interface ReduxProps {
+  page: string;
+  panelColor?: string;
+  pageIdent?: string;
+  typeColor?: string;
+  location: {
+    prev: {
+      pathname?: string;
+    };
+  };
+  breakpoint: {
+    greaterThan: {
+      medium: boolean;
+    };
+    is: {
+      medium: boolean;
+    };
+    lessThan: {
+      medium: boolean;
+    };
+    mediaType?: string;
+  };
+}
+
+class ReactComponent extends React.PureComponent<Props> {
+  public static displayName = "App";
+  public static defaultProps = {
     desktop: false,
-    tablet: false,
+    hasPreviousLocation: false,
     mobile: false,
-    mediaType: undefined,
-  };
-  static propTypes = {
-    page: PropTypes.string.isRequired,
-    panelColor: PropTypes.string,
-    pageIdent: PropTypes.string,
-    typeColor: PropTypes.string,
-    hasPreviousLocation: PropTypes.bool,
-    desktop: PropTypes.bool,
-    tablet: PropTypes.bool,
-    mobile: PropTypes.bool,
-    mediaType: PropTypes.string,
+    tablet: false
   };
 
-  render() {
+  public render() {
     const {
       page,
       panelColor,
@@ -43,13 +67,16 @@ class component extends PureComponent {
       desktop,
       tablet,
       mobile,
-      mediaType,
+      mediaType
     } = this.props;
     return (
-      <Fragment>
+      <React.Fragment>
         <Helmet>
           <meta charSet="utf-8" />
-          <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, minimum-scale=1"
+          />
           <meta name="theme-color" content={panelColor} />
           <meta name="robots" content="noindex, nofollow" />
           <style>{`body { background-color: ${panelColor}; }`}</style>
@@ -63,26 +90,22 @@ class component extends PureComponent {
             <figure className={styles.mobilePageIdent}>
               {pageIdent && (
                 <Image
-                  src={pageIdent}
                   color={typeColor}
                   disableAnimation={!hasPreviousLocation}
+                  src={pageIdent}
                 />
               )}
             </figure>
           </div>
         )}
         {desktop && (
-          <Fragment>
+          <React.Fragment>
             <div className={styles.heraldry}>
               <div className={styles.left}>
                 <BrandIdent disableAnimation={hasPreviousLocation} />
               </div>
-              <div className={[styles.right, styles.fill].join(' ')}>
-                <Navigation
-                  current={page}
-                  color={typeColor}
-                  orientation="horizontal"
-                />
+              <div className={[styles.right, styles.fill].join(" ")}>
+                <Navigation color={typeColor} orientation="horizontal" />
               </div>
             </div>
             <div className={styles.heraldry}>
@@ -90,55 +113,49 @@ class component extends PureComponent {
                 <Strapline disableAnimation={hasPreviousLocation} />
               </div>
             </div>
-          </Fragment>
+          </React.Fragment>
         )}
-        <div className={[styles.contentPane, mediaType].join(' ')}>
+        <div className={[styles.contentPane, mediaType].join(" ")}>
           {!mobile && (
             <div className={styles.left}>
               {tablet && (
-                <Fragment>
+                <React.Fragment>
                   <BrandIdent disableAnimation={hasPreviousLocation} />
                   <Strapline disableAnimation={hasPreviousLocation} />
-                  <Navigation
-                    current={page}
-                    color={typeColor}
-                    orientation="vertical"
-                  />
-                </Fragment>
+                  <Navigation color={typeColor} orientation="vertical" />
+                </React.Fragment>
               )}
               <figure className={styles.pageIdent}>
-                {pageIdent && (
-                  <Image
-                    src={pageIdent}
-                    color={typeColor}
-                  />
-                )}
+                {pageIdent && <Image src={pageIdent} color={typeColor} />}
               </figure>
             </div>
           )}
           <main
-            className={[styles.content, mobile ? styles.mobileContent : styles.right].join(' ')}
+            className={[
+              styles.content,
+              mobile ? styles.mobileContent : styles.right
+            ].join(" ")}
           >
             <Switcher typeColor={typeColor} />
           </main>
         </div>
-      </Fragment>
+      </React.Fragment>
     );
   }
 }
 
-const mapStateToProps = state => ({
-  page: state.page,
-  panelColor: state.panelColor,
-  pageIdent: state.pageIdent,
-  typeColor: state.typeColor,
-  hasPreviousLocation: !!state.location.prev.pathname,
+const mapStateToProps = (state: ReduxProps): Props => ({
   desktop: state.breakpoint.greaterThan.medium,
-  tablet: state.breakpoint.is.medium,
-  mobile: state.breakpoint.lessThan.medium,
+  hasPreviousLocation: !!state.location.prev.pathname,
   mediaType: state.breakpoint.mediaType,
+  mobile: state.breakpoint.lessThan.medium,
+  page: state.page,
+  pageIdent: state.pageIdent,
+  panelColor: state.panelColor,
+  tablet: state.breakpoint.is.medium,
+  typeColor: state.typeColor
 });
 
-export { component };
+export { ReactComponent };
 
-export default connect(mapStateToProps)(component);
+export default connect(mapStateToProps)(ReactComponent);

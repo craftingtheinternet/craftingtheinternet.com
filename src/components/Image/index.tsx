@@ -4,6 +4,7 @@ import universal from "react-universal-component";
 
 interface Props {
   src: string;
+  [others: string]: any;
 }
 
 const asyncImage = (src: string): React.SFC =>
@@ -18,8 +19,5 @@ const component: React.SFC<Props> = ({ src, ...props }) => {
 };
 
 component.displayName = "Image";
-component.propTypes = {
-  src: PropTypes.string.isRequired
-};
 
 export default component;

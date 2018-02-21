@@ -6,8 +6,8 @@ import styles from "./styles.styl";
 
 export interface Props {
   giant: boolean;
-  level?: number;
-  children: any;
+  level?: 1 | 2 | 3 | 4 | 5 | 6;
+  children: string;
   mediaType: string;
   mobile: boolean;
 }
@@ -61,17 +61,6 @@ component.defaultProps = {
   mediaType: "",
   mobile: false
 };
-component.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.element,
-    PropTypes.string,
-    PropTypes.number
-  ]).isRequired,
-  giant: PropTypes.bool,
-  level: PropTypes.oneOf([1, 2, 3, 4, 5]),
-  mediaType: PropTypes.string.isRequired,
-  mobile: PropTypes.bool
-};
 
 const mapStateToProps = (state: ReduxProps) => ({
   mediaType: state.breakpoint.mediaType,
@@ -80,4 +69,4 @@ const mapStateToProps = (state: ReduxProps) => ({
 
 export { component };
 
-export default connect(mapStateToProps)(component);
+export default connect(mapStateToProps, null)(component);
