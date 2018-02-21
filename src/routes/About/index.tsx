@@ -7,11 +7,14 @@ import RichText from "components/RichText";
 import Header from "containers/Header";
 
 export interface Props {
-  title?: string;
+  typeColor?: string;
+}
+
+export interface MappedProps {
   content?: string;
   quote?: string;
   quoteAttribution?: string;
-  typeColor?: string;
+  title?: string;
 }
 
 export interface ReduxProps {
@@ -23,7 +26,7 @@ export interface ReduxProps {
   };
 }
 
-const component: React.SFC<Props> = ({
+const component: React.SFC<Props & MappedProps> = ({
   title,
   content,
   quote,
@@ -53,7 +56,7 @@ component.propTypes = {
   typeColor: PropTypes.string
 };
 
-const mapStateToProps = (state: ReduxProps) => ({
+const mapStateToProps = (state: ReduxProps): MappedProps => ({
   content: state.about.content,
   quote: state.about.quote,
   quoteAttribution: state.about.quoteAttribution,

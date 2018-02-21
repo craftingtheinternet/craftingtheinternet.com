@@ -12,7 +12,7 @@ import Strapline from "components/Strapline";
 
 import styles from "./styles.styl";
 
-interface Props {
+interface MappedProps {
   desktop: boolean;
   hasPreviousLocation: boolean;
   mediaType?: string;
@@ -48,7 +48,7 @@ interface ReduxProps {
   };
 }
 
-class ReactComponent extends React.PureComponent<Props> {
+class ReactComponent extends React.PureComponent<MappedProps> {
   public static displayName = "App";
   public static defaultProps = {
     desktop: false,
@@ -144,7 +144,7 @@ class ReactComponent extends React.PureComponent<Props> {
   }
 }
 
-const mapStateToProps = (state: ReduxProps): Props => ({
+const mapStateToProps = (state: ReduxProps): MappedProps => ({
   desktop: state.breakpoint.greaterThan.medium,
   hasPreviousLocation: !!state.location.prev.pathname,
   mediaType: state.breakpoint.mediaType,

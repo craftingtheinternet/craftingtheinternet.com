@@ -8,6 +8,9 @@ export interface Props {
   giant: boolean;
   level?: 1 | 2 | 3 | 4 | 5 | 6;
   children: string;
+}
+
+export interface MappedProps {
   mediaType: string;
   mobile: boolean;
 }
@@ -33,7 +36,7 @@ const removeOrphans = (text: string): string =>
     )
     .join(" ");
 
-const component: React.SFC<Props> = ({
+const component: React.SFC<Props & MappedProps> = ({
   giant,
   level,
   children,
@@ -62,11 +65,11 @@ component.defaultProps = {
   mobile: false
 };
 
-const mapStateToProps = (state: ReduxProps) => ({
+const mapStateToProps = (state: ReduxProps): MappedProps => ({
   mediaType: state.breakpoint.mediaType,
   mobile: state.breakpoint.lessThan.medium
 });
 
 export { component };
 
-export default connect(mapStateToProps, null)(component);
+export default connect(mapStateToProps)(component);
