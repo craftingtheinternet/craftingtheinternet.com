@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import styles from "./styles.styl";
 
 export interface Props {
-  giant: boolean;
+  giant?: boolean;
   level?: 1 | 2 | 3 | 4 | 5 | 6;
   children: string;
 }

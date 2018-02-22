@@ -9,13 +9,16 @@ import * as selectors from "selectors";
 import styles from "containers/Switcher/styles.styl";
 
 export interface Props {
-  page: string;
-  pathname: string;
   typeColor?: string;
-  isLoading: boolean;
 }
 
 export interface MappedProps {
+  page: string;
+  pathname: string;
+  isLoading: boolean;
+}
+
+export interface ReduxProps {
   isLoading: boolean;
   page: string;
   location: {
@@ -40,7 +43,7 @@ const UniversalComponent: React.SFC<UniversalComponentProps> = universal(
   }
 );
 
-const component: React.SFC<Props> = ({
+const component: React.SFC<Props & MappedProps> = ({
   page,
   pathname,
   typeColor,
@@ -73,7 +76,7 @@ component.propTypes = {
   typeColor: PropTypes.string
 };
 
-export const mapStateToProps = (state: MappedProps) => ({
+export const mapStateToProps = (state: ReduxProps): MappedProps => ({
   isLoading: selectors.isLoading(state),
   page: state.page,
   pathname: state.location.pathname

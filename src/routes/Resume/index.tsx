@@ -1,52 +1,87 @@
-import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import dateFormat from 'dateformat';
-import Header from 'containers/Header';
-import RichText from 'components/RichText';
-import styles from './styles.styl';
+import * as dateFormat from "dateformat";
+import * as PropTypes from "prop-types";
+import * as React from "react";
+import { connect } from "react-redux";
 
-const DATE_FORMAT = 'mmm yyyy';
+import RichText from "components/RichText";
+import Header from "containers/Header";
 
-const descendingDate = (a, b) => new Date(b.from).getTime() - new Date(a.from).getTime();
+import styles from "./styles.styl";
 
-const component = ({
+export type EducationType = {
+  additionalNotes: string;
+  degree: string;
+  placeOfStudy: string;
+};
+
+export type WorkEligibilityType = {
+  title: string;
+  value: string;
+};
+
+export type WorkHistoryType = {
+  company: string;
+  position: string;
+  description: string;
+  from: string;
+  to: string;
+};
+
+export interface Props {
+  typeColor?: string;
+}
+
+export interface MappedProps {
+  title: string;
+  abstract: string;
+  education: EducationType;
+  workEligibility: WorkEligibilityType[];
+  workHistory: WorkHistoryType[];
+}
+
+export interface ReduxProps {
+  resume: {
+    title: string;
+    abstract: string;
+    education: EducationType;
+    workEligibility: WorkEligibilityType[];
+    workHistory: WorkHistoryType[];
+  };
+}
+
+const DATE_FORMAT = "mmm yyyy";
+
+const descendingDate = (a: WorkHistoryType, b: WorkHistoryType): number =>
+  new Date(b.from).getTime() - new Date(a.from).getTime();
+
+const component: React.SFC<Props & MappedProps> = ({
   title,
   abstract,
   typeColor,
   education,
   workEligibility,
-  workHistory,
+  workHistory
 }) => (
   <div style={{ color: typeColor }}>
-    <Header giant>{title}</Header>
+    <Header giant={true}>{title}</Header>
     <Header level={2}>In Brief</Header>
-    <RichText columns={2}>
-      {abstract}
-    </RichText>
+    <RichText>{abstract}</RichText>
     <div className={styles.separator} />
     <Header level={2}>Education</Header>
     {education && (
-      <Fragment>
-        <div className={styles.degree}>
-          {education.degree}
-        </div>
-        <div className={styles.placeOfStudy}>
-          {education.placeOfStudy}
-        </div>
+      <React.Fragment>
+        <div className={styles.degree}>{education.degree}</div>
+        <div className={styles.placeOfStudy}>{education.placeOfStudy}</div>
         <div className={styles.additionalNotes}>
           {education.additionalNotes}
         </div>
-      </Fragment>
+      </React.Fragment>
     )}
     <div className={styles.separator} />
     <Header level={2}>Work Eligibility</Header>
     <ul className={styles.workEligibility}>
       {workEligibility.map(eligibility => (
-        <li
-          key={eligibility.title}
-          className={styles.workEligibilityItem}
-        >
+        <li key={eligibility.title} className={styles.workEligibilityItem}>
           <div className={styles.workEligibilityTitle}>{eligibility.title}</div>
           <div className={styles.workEligibilityValue}>{eligibility.value}</div>
         </li>
@@ -56,17 +91,21 @@ const component = ({
     <Header level={2}>Professional History</Header>
     <ul className={styles.workHistory}>
       {workHistory.sort(descendingDate).map(job => (
-        <li
-          key={job.company}
-          className={styles.workHistoryItem}
-        >
+        <li key={job.company} className={styles.workHistoryItem}>
           <div className={styles.dates}>
-            {`${dateFormat(job.from, DATE_FORMAT)} — ${dateFormat(job.to, DATE_FORMAT)}`}
+            {`${dateFormat(job.from, DATE_FORMAT)} — ${dateFormat(
+              job.to,
+              DATE_FORMAT
+            )}`}
           </div>
-          {job.company.toLowerCase() === 'freelance' ? (
-            <div className={styles.position}>{job.company} {job.position}</div>
+          {job.company.toLowerCase() === "freelance" ? (
+            <div className={styles.position}>
+              {job.company} {job.position}
+            </div>
           ) : (
-            <div className={styles.position}>{job.position} at {job.company}</div>
+            <div className={styles.position}>
+              {job.position} at {job.company}
+            </div>
           )}
           <div className={styles.description}>{job.description}</div>
         </li>
@@ -75,43 +114,22 @@ const component = ({
   </div>
 );
 
-component.displayName = 'Resume';
+component.displayName = "Resume";
 component.defaultProps = {
-  title: undefined,
   abstract: undefined,
-  typeColor: 'black',
   education: undefined,
+  title: undefined,
+  typeColor: "black",
   workEligibility: [],
-  workHistory: [],
-};
-component.propTypes = {
-  title: PropTypes.string,
-  abstract: PropTypes.string,
-  typeColor: PropTypes.string,
-  education: PropTypes.shape({
-    additionalNotes: PropTypes.string,
-    degree: PropTypes.string,
-    placeOfStudy: PropTypes.string,
-  }),
-  workEligibility: PropTypes.arrayOf(PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    value: PropTypes.string.isRequired,
-  })),
-  workHistory: PropTypes.arrayOf(PropTypes.shape({
-    company: PropTypes.string.isRequired,
-    position: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    from: PropTypes.string.isRequired,
-    to: PropTypes.string.isRequired,
-  })),
+  workHistory: []
 };
 
-const mapStateToProps = state => ({
-  title: state.resume.title,
+const mapStateToProps = (state: ReduxProps): MappedProps => ({
   abstract: state.resume.abstract,
   education: state.resume.education,
+  title: state.resume.title,
   workEligibility: state.resume.workEligibility,
-  workHistory: state.resume.workHistory,
+  workHistory: state.resume.workHistory
 });
 
 export { component };
