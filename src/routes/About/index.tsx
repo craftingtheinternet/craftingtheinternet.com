@@ -1,4 +1,3 @@
-import * as PropTypes from "prop-types";
 import * as React from "react";
 import { connect } from "react-redux";
 
@@ -47,13 +46,6 @@ component.defaultProps = {
   quoteAttribution: undefined,
   title: undefined,
   typeColor: "black"
-};
-component.propTypes = {
-  content: PropTypes.string,
-  quote: PropTypes.string,
-  quoteAttribution: PropTypes.string,
-  title: PropTypes.string,
-  typeColor: PropTypes.string
 };
 
 const mapStateToProps = (state: ReduxProps): MappedProps => ({

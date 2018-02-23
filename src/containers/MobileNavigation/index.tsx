@@ -1,4 +1,3 @@
-import * as PropTypes from "prop-types";
 import * as React from "react";
 import { connect } from "react-redux";
 import { NavLink } from "redux-first-router-link";
@@ -21,11 +20,6 @@ class ReactComponent extends React.PureComponent<Props> {
   public static defaultProps = {
     color: "black",
     panelColor: "transparent"
-  };
-  public static propTypes = {
-    closeSidebar: PropTypes.func.isRequired,
-    color: PropTypes.string,
-    panelColor: PropTypes.string
   };
 
   public render() {

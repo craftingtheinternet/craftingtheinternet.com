@@ -1,8 +1,17 @@
-import colors from '../manifests/colors.json';
+import colors from "../manifests/colors.json";
 
-const components = {
-  ABOUT: colors.armadillo,
-  RESUME: colors.white,
+export type ActionType = {
+  type: string;
 };
 
-export default (state = 'ABOUT', action = {}) => components[action.type] || state;
+export type TypeColorsType = {
+  [key: string]: string;
+};
+
+const typeColors: TypeColorsType = {
+  ABOUT: colors.armadillo,
+  RESUME: colors.white
+};
+
+export default (state = "ABOUT", action: ActionType) =>
+  typeColors[action.type] || state;

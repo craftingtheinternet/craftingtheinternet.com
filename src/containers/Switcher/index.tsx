@@ -1,4 +1,3 @@
-import * as PropTypes from "prop-types";
 import * as React from "react";
 import { connect } from "react-redux";
 import { Transition, TransitionGroup } from "transition-group";
@@ -68,12 +67,6 @@ const component: React.SFC<Props & MappedProps> = ({
 component.defaultProps = {
   isLoading: false,
   typeColor: "black"
-};
-component.propTypes = {
-  isLoading: PropTypes.bool,
-  page: PropTypes.string.isRequired,
-  pathname: PropTypes.string.isRequired,
-  typeColor: PropTypes.string
 };
 
 export const mapStateToProps = (state: ReduxProps): MappedProps => ({

@@ -1,12 +1,20 @@
-const initialState = {
-  open: false,
+export type StateType = {
+  open: boolean;
 };
 
-export default (state = initialState, action) => {
+export type ActionType = {
+  type: "OPEN" | "CLOSE";
+};
+
+const initialState: StateType = {
+  open: false
+};
+
+export default (state = initialState, action: ActionType) => {
   switch (action.type) {
-    case 'OPEN':
+    case "OPEN":
       return { open: true };
-    case 'CLOSE':
+    case "CLOSE":
       return { open: false };
     default:
       return state;

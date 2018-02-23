@@ -1,5 +1,4 @@
 import * as dateFormat from "dateformat";
-import * as PropTypes from "prop-types";
 import * as React from "react";
 import { connect } from "react-redux";
 
