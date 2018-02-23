@@ -56,10 +56,8 @@ export default ({ clientStats }: WebpackManifestType) => async (
   if (process.env.NODE_ENV !== "production") {
     // tslint:disable-next-line no-console
     console.log(
-      "REQUESTED PATH:",
-      req.path,
-      "CHUNK NAMES RENDERED",
-      chunkNames
+      `REQUESTED PATH: ${req.path}`,
+      `\nCHUNK NAMES RENDERED: ${chunkNames}`
     );
   }
 
@@ -72,10 +70,10 @@ export default ({ clientStats }: WebpackManifestType) => async (
           ${helmet.meta.toString()}
         </head>
         <body>
-          <script>window.REDUX_STATE = ${stateJson}</script>
           <div id="root">${appString}</div>
           ${cssHash}
           <script type='text/javascript' src='/static/vendor.js'></script>
+          <script>window.REDUX_STATE = ${stateJson}</script>
           ${js}
         </body>
       </html>`);
