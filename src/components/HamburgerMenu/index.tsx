@@ -12,11 +12,12 @@ export interface Props {
 const component: React.SFC<Props> = ({ sidebarOpen, toggleSidebar }) => {
   const onClick = () => toggleSidebar(!sidebarOpen);
   return (
-    <button
+    <span
       className={[styles.hamburgerMenu, sidebarOpen ? styles.open : ""].join(
         " "
       )}
       onClick={onClick}
+      title="Menu"
     >
       <span className={styles.hamburgerBap}>
         {[0, 1, 2, 3].map((n, i, l) => (
@@ -27,7 +28,7 @@ const component: React.SFC<Props> = ({ sidebarOpen, toggleSidebar }) => {
           />
         ))}
       </span>
-    </button>
+    </span>
   );
 };
 
