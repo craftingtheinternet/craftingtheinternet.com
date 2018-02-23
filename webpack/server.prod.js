@@ -1,84 +1,89 @@
-const fs = require('fs');
-const path = require('path');
-const webpack = require('webpack');
-const nib = require('nib');
+const fs = require("fs");
+const path = require("path");
+const webpack = require("webpack");
+const nib = require("nib");
 
 const res = p => path.resolve(__dirname, p);
 
 const externals = fs
-  .readdirSync(res('../node_modules'))
-  .filter(x => !/\.bin|react-universal-component|require-universal-module|webpack-flush-chunks/.test(x))
+  .readdirSync(res("../node_modules"))
+  .filter(
+    x =>
+      !/\.bin|react-universal-component|require-universal-module|webpack-flush-chunks/.test(
+        x
+      )
+  )
   .reduce(
     (acc, key) => ({
       ...acc,
-      [key]: `commonjs ${key}`,
+      [key]: `commonjs ${key}`
     }),
-    {},
+    {}
   );
 
 module.exports = {
-  name: 'server',
-  target: 'node',
-  entry: [res('../server/render.jsx')],
+  name: "server",
+  target: "node",
+  entry: [res("../server/render.tsx")],
   externals,
   output: {
-    path: res('../buildServer'),
-    filename: '[name].js',
-    libraryTarget: 'commonjs2',
+    path: res("../buildServer"),
+    filename: "[name].js",
+    libraryTarget: "commonjs2"
   },
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.tsx?$/,
         exclude: /node_modules/,
-        use: 'babel-loader',
+        use: "ts-loader"
       },
       {
         test: /\.styl$/,
         exclude: /node_modules/,
         use: [
           {
-            loader: 'css-loader/locals',
+            loader: "css-loader/locals",
             options: {
               modules: true,
-              localIdentName: '[name]__[local]--[hash:base64:5]',
-            },
+              localIdentName: "[name]__[local]--[hash:base64:5]"
+            }
           },
           {
-            loader: 'stylus-loader',
+            loader: "stylus-loader",
             options: {
               use: [nib()],
-              import: ['~nib/lib/nib/index.styl'],
-              preferPathResolver: 'webpack',
-            },
-          },
-        ],
-      },
-    ],
+              import: ["~nib/lib/nib/index.styl"],
+              preferPathResolver: "webpack"
+            }
+          }
+        ]
+      }
+    ]
   },
   resolve: {
-    extensions: ['.jsx', '.js', '.json', '.styl'],
+    extensions: [".tsx", ".ts", ".js", ".json", ".styl"],
     alias: {
-      components: path.resolve(__dirname, '../src/components'),
-      containers: path.resolve(__dirname, '../src/containers'),
-      routes: path.resolve(__dirname, '../src/routes'),
-      manifests: path.resolve(__dirname, '../src/manifests'),
-      images: path.resolve(__dirname, '../src/images'),
-      actions: path.resolve(__dirname, '../src/actions'),
-      reducers: path.resolve(__dirname, '../src/reducers'),
-      selectors: path.resolve(__dirname, '../src/selectors'),
-    },
+      components: path.resolve(__dirname, "../src/components"),
+      containers: path.resolve(__dirname, "../src/containers"),
+      routes: path.resolve(__dirname, "../src/routes"),
+      manifests: path.resolve(__dirname, "../src/manifests"),
+      images: path.resolve(__dirname, "../src/images"),
+      actions: path.resolve(__dirname, "../src/actions"),
+      reducers: path.resolve(__dirname, "../src/reducers"),
+      selectors: path.resolve(__dirname, "../src/selectors")
+    }
   },
   plugins: [
     new webpack.optimize.LimitChunkCountPlugin({
-      maxChunks: 1,
+      maxChunks: 1
     }),
 
     new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify('production'),
-        CRAFTING_CONTENT: JSON.stringify(process.env.CRAFTING_CONTENT),
-      },
-    }),
-  ],
+      "process.env": {
+        NODE_ENV: JSON.stringify("production"),
+        CRAFTING_CONTENT: JSON.stringify(process.env.CRAFTING_CONTENT)
+      }
+    })
+  ]
 };
