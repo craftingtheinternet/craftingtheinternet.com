@@ -7,19 +7,28 @@ import {
   Store
 } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension/logOnlyInProduction";
-import { connectRoutes } from "redux-first-router";
+import { connectRoutes, RoutesMap, RouteThunk } from "redux-first-router";
 import { createResponsiveStoreEnhancer } from "redux-responsive";
 
 import routesMap from "./routesMap";
 
 import * as reducers from "./reducers";
 
+export type StoreProps = {
+  [key: string]: any;
+};
+
+export interface PrimedStore {
+  store: Store<StoreProps>;
+  thunk: (store: Store<StoreProps>) => Promise<RouteThunk<object>>;
+}
+
 const composeEnhancers: any = (...args: any[]) =>
   typeof window !== "undefined"
     ? composeWithDevTools({})(...args)
     : compose(...args);
 
-export default (history: History, preloadedState: object) => {
+export default (history: History, preloadedState?: object): PrimedStore => {
   const { reducer, middleware, enhancer, thunk } = connectRoutes(
     history,
     routesMap

@@ -1,9 +1,10 @@
-import createHistory from 'history/createMemoryHistory';
-import { NOT_FOUND } from 'redux-first-router';
-import configureStore from '../src/configureStore';
+import createHistory from "history/createMemoryHistory";
+import { NOT_FOUND } from "redux-first-router";
+
+import configureStore from "../src/configureStore";
 
 const doesRedirect = ({ kind, pathname }, res) => {
-  if (kind === 'redirect') {
+  if (kind === "redirect") {
     res.redirect(302, pathname);
     return true;
   }
@@ -17,7 +18,9 @@ export default async (req, res) => {
   await thunk(store);
 
   const { location } = store.getState();
-  if (doesRedirect(location, res)) return false;
+  if (doesRedirect(location, res)) {
+    return false;
+  }
 
   const status = location.type === NOT_FOUND ? 404 : 200;
   res.status(status);

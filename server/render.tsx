@@ -1,14 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom/server';
-import { Provider } from 'react-redux';
-import Helmet from 'react-helmet';
-import { flushChunkNames } from 'react-universal-component/server';
-import flushChunks from 'webpack-flush-chunks';
-import { DOMParser } from 'xmldom';
-import Wrapper from '../src/containers/Wrapper';
-import configureStore from './configureStore';
+import * as React from "react";
+import ReactDOM from "react-dom/server";
+import Helmet from "react-helmet";
+import { Provider } from "react-redux";
+import { flushChunkNames } from "react-universal-component/server";
+import flushChunks from "webpack-flush-chunks";
+import { DOMParser } from "xmldom";
 
-global.DOMParser = DOMParser;
+import Wrapper from "../src/containers/Wrapper";
+
+import configureStore from "./configureStore";
+
+(global as any).DOMParser = DOMParser;
 
 const createApp = (EntryPoint, store) => (
   <Provider store={store}>
@@ -18,7 +20,9 @@ const createApp = (EntryPoint, store) => (
 
 export default ({ clientStats }) => async (req, res) => {
   const store = await configureStore(req, res);
-  if (!store) return;
+  if (!store) {
+    return;
+  }
 
   const app = createApp(Wrapper, store);
   const appString = ReactDOM.renderToString(app);
@@ -28,11 +32,11 @@ export default ({ clientStats }) => async (req, res) => {
   const chunkNames = flushChunkNames();
   const { js, styles, cssHash } = flushChunks(clientStats, { chunkNames });
 
-  if (process.env.NODE_ENV !== 'production') {
-    // eslint-disable-next-line no-console
-    console.log('REQUESTED PATH:', req.path);
-    // eslint-disable-next-line no-console
-    console.log('CHUNK NAMES RENDERED', chunkNames);
+  if (process.env.NODE_ENV !== "production") {
+    // tslint:disable-next-line no-console
+    console.log("REQUESTED PATH:", req.path);
+    // tslint:disable-next-line no-console
+    console.log("CHUNK NAMES RENDERED", chunkNames);
   }
 
   res.send(`<!doctype html>

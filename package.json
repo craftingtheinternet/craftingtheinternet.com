@@ -6,15 +6,21 @@
   "author": "Benjamin Ceglowski",
   "license": "BSD-2-Clause",
   "scripts": {
-    "start": "npm run clean && cross-env NODE_ENV=development babel-watch server/index.js",
+    "start":
+      "npm run clean && cross-env NODE_ENV=development tsc server/index.ts --watch --noEmit",
     "start:prod": "npm run build && npm run serve",
     "serve": "cross-env NODE_ENV=production node buildServer/index.js",
     "serve:ssg": "serve buildStatic",
-    "build": "npm run build:client && npm run build:server && npm run build:node",
-    "build:client": "rimraf buildClient && cross-env NODE_ENV=production webpack --progress -p --config webpack/client.prod.js",
-    "build:server": "rimraf buildServer && cross-env NODE_ENV=production webpack --progress -p --config webpack/server.prod.js",
-    "build:node": "cross-env NODE_ENV=production babel server/index.js -o buildServer/index.js",
-    "ssg": "rimraf buildStatic && cross-env NODE_ENV=production babel-node server/staticSiteGenerator.js",
+    "build":
+      "npm run build:client && npm run build:server && npm run build:node",
+    "build:client":
+      "rimraf buildClient && cross-env NODE_ENV=production webpack --progress -p --config webpack/client.prod.js",
+    "build:server":
+      "rimraf buildServer && cross-env NODE_ENV=production webpack --progress -p --config webpack/server.prod.js",
+    "build:node":
+      "cross-env NODE_ENV=production tsc server/index.ts -o buildServer/index.js",
+    "ssg":
+      "rimraf buildStatic && cross-env NODE_ENV=production tsc server/staticSiteGenerator.ts --noEmit",
     "postssg": "ncp buildClient buildStatic/static",
     "clean": "rimraf buildClient buildServer",
     "predeploy": "npm run build && npm run ssg",
@@ -35,7 +41,7 @@
     "react-hot-loader": "^3.1.1",
     "react-redux": "^5.0.7",
     "react-sidebar": "^2.3.2",
-    "react-universal-component": "^2.8.2",
+    "react-universal-component": "^2.8.3",
     "redux": "^3.7.0",
     "redux-devtools-extension": "^2.13.2",
     "redux-first-router": "^1.9.15",
@@ -48,6 +54,7 @@
   },
   "devDependencies": {
     "@types/dateformat": "^1.0.1",
+    "@types/express": "^4.11.1",
     "@types/history": "^4.6.2",
     "@types/isomorphic-fetch": "^0.0.34",
     "@types/prop-types": "^15.5.2",
@@ -71,13 +78,12 @@
     "chalk": "^2.3.1",
     "compression": "^1.7.2",
     "cross-env": "^5.0.1",
-    "css-loader": "^0.28.7",
+    "css-loader": "^0.28.10",
     "extract-css-chunks-webpack-plugin": "^2.0.15",
     "firebase-tools": "^3.17.4",
     "fs-extra": "^5.0.0",
     "ncp": "^2.0.0",
     "nib": "^1.1.2",
-    "precommit-hook": "^3.0.0",
     "prettier": "^1.10.2",
     "rimraf": "^2.6.1",
     "serve": "^6.4.11",
@@ -90,7 +96,7 @@
     "tslint-react": "^3.5.1",
     "typescript": "^2.7.2",
     "webpack": "^3.11.0",
-    "webpack-dev-middleware": "^2.0.5",
+    "webpack-dev-middleware": "^2.0.6",
     "webpack-hot-middleware": "^2.18.2",
     "webpack-hot-server-middleware": "^0.4.0",
     "write-file-webpack-plugin": "^4.1.0"
