@@ -1,7 +1,15 @@
-const components = {
-  ABOUT: 'SelfPortrait',
-  RESUME: 'Typewriter',
+export type ActionType = {
+  type: string;
 };
 
-export default (state = 'HOME', action = {}) =>
-  (components[action.type] !== undefined ? components[action.type] : state);
+export type ComponentsType = {
+  [key: string]: string;
+};
+
+const components: ComponentsType = {
+  ABOUT: "SelfPortrait",
+  RESUME: "Typewriter"
+};
+
+export default (state = "ABOUT", action: ActionType) =>
+  components[action.type] !== undefined ? components[action.type] : state;

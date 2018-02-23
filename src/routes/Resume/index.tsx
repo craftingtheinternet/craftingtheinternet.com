@@ -6,25 +6,14 @@ import { connect } from "react-redux";
 import RichText from "components/RichText";
 import Header from "containers/Header";
 
+import { WorkEligibilityType, WorkHistoryType } from "reducers/resume";
+
 import styles from "./styles.styl";
 
 export type EducationType = {
   additionalNotes: string;
   degree: string;
   placeOfStudy: string;
-};
-
-export type WorkEligibilityType = {
-  title: string;
-  value: string;
-};
-
-export type WorkHistoryType = {
-  company: string;
-  position: string;
-  description: string;
-  from: string;
-  to: string;
 };
 
 export interface Props {

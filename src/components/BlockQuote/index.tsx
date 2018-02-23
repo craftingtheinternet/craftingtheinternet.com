@@ -1,4 +1,3 @@
-import * as PropTypes from "prop-types";
 import * as React from "react";
 
 import * as styles from "./styles.styl";
@@ -18,10 +17,6 @@ const component: React.SFC<Props> = ({ children, attribution }) => (
 component.displayName = "BlockQuote";
 component.defaultProps = {
   attribution: undefined
-};
-component.propTypes = {
-  attribution: PropTypes.string,
-  children: PropTypes.string.isRequired
 };
 
 export default component;

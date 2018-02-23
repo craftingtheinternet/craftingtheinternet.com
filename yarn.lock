@@ -96,6 +96,10 @@
   version "4.6.2"
   resolved "https://registry.yarnpkg.com/@types/history/-/history-4.6.2.tgz#12cfaba693ba20f114ed5765467ff25fdf67ddb0"
 
+"@types/isomorphic-fetch@^0.0.34":
+  version "0.0.34"
+  resolved "https://registry.yarnpkg.com/@types/isomorphic-fetch/-/isomorphic-fetch-0.0.34.tgz#3c3483e606c041378438e951464f00e4e60706d6"
+
 "@types/node@*":
   version "9.4.6"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-9.4.6.tgz#d8176d864ee48753d053783e4e463aec86b8d82e"
@@ -3035,6 +3039,10 @@ forwarded@~0.1.0, forwarded@~0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/forwarded/-/forwarded-0.1.2.tgz#98c23dab1175657b8c0573e8ceccd91b0ff18c84"
 
+fp-ts@^1.0.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/fp-ts/-/fp-ts-1.1.0.tgz#641c780a4c38f5a35ca471afb859ec6a5023e610"
+
 fragment-cache@^0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/fragment-cache/-/fragment-cache-0.2.1.tgz#4290fad27f13e89be7f33799c6bc5a0abfff0d19"
@@ -3713,6 +3721,12 @@ invariant@^2.0.0, invariant@^2.2.1, invariant@^2.2.2:
 invert-kv@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/invert-kv/-/invert-kv-1.0.0.tgz#104a8e4aaca6d3d8cd157a8ef8bfab2d7a3ffdb6"
+
+io-ts@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/io-ts/-/io-ts-1.0.3.tgz#ffcb6c91c01ebf00ea02bf08936321c99cb3de66"
+  dependencies:
+    fp-ts "^1.0.0"
 
 ip@1.1.5:
   version "1.1.5"

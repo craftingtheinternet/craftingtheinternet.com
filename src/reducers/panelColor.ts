@@ -1,8 +1,17 @@
-import colors from '../manifests/colors.json';
+import colors from "../manifests/colors.json";
 
-const components = {
-  ABOUT: colors.wattle,
-  RESUME: colors.fuchsiaBlue,
+export type ActionType = {
+  type: string;
 };
 
-export default (state = 'ABOUT', action = {}) => components[action.type] || state;
+export type PanelColorsType = {
+  [key: string]: string;
+};
+
+const panelColors: PanelColorsType = {
+  ABOUT: colors.wattle,
+  RESUME: colors.fuchsiaBlue
+};
+
+export default (state = "ABOUT", action: ActionType) =>
+  panelColors[action.type] || state;
