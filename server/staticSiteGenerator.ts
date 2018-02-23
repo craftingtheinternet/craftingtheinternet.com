@@ -1,7 +1,8 @@
 import chalk from "chalk";
 import fs from "fs-extra";
 import path from "path";
-import clientConfig from "../webpack/client.dev";
+
+import * as clientConfig from "../webpack/client.dev";
 
 const outputPath = clientConfig.output.path;
 
@@ -12,7 +13,7 @@ const serverRender = require("../buildServer/main.js").default;
 
 const render = serverRender({ clientStats, outputPath });
 
-const writeFile = slug => async contents => {
+const writeFile = (slug: string) => async (contents: string) => {
   const filePath = path.join(
     __dirname,
     "..",
@@ -31,13 +32,12 @@ const writeFile = slug => async contents => {
   }
 };
 
-const renderRoute = async slug => {
+const renderRoute = async (slug: string) => {
   await render({ path: slug }, { send: writeFile(slug), status: () => 200 });
 };
 
-const renderRoutes = async routes => {
-  const resolvedRoutes = typeof routes === "function" ? await routes() : routes;
-  for (const route of resolvedRoutes) {
+const renderRoutes = async (routes: string[]) => {
+  for (const route of routes) {
     await renderRoute(route);
   }
 };

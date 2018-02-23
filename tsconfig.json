@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
     "noImplicitAny": true,
-    "module": "commonjs",
+    "module": "esnext",
     "target": "es5",
+    "importHelpers": true,
     "moduleResolution": "node",
     "experimentalDecorators": false,
     "jsx": "react",
