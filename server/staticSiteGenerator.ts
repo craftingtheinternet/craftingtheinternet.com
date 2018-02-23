@@ -1,6 +1,6 @@
 import chalk from "chalk";
-import fs from "fs-extra";
-import path from "path";
+import * as fs from "fs-extra";
+import * as path from "path";
 
 import * as clientConfig from "../webpack/client.dev";
 

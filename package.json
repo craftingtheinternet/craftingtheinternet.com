@@ -6,22 +6,27 @@
   "author": "Benjamin Ceglowski",
   "license": "BSD-2-Clause",
   "scripts": {
-    "start": "npm run clean && npm run build:node && cross-env NODE_ENV=development node buildServer/index.js",
+    "start":
+      "npm run clean && npm run build:node && cross-env NODE_ENV=development node buildServer/index.js",
     "start:prod": "npm run build && npm run serve",
     "serve": "cross-env NODE_ENV=production node buildServer/index.js",
     "serve:ssg": "serve buildStatic",
-    "build": "npm run build:client && npm run build:server && npm run build:node",
-    "build:client": "rimraf buildClient && cross-env NODE_ENV=production webpack --progress -p --config webpack/client.prod.js",
-    "build:server": "rimraf buildServer && cross-env NODE_ENV=production webpack --progress -p --config webpack/server.prod.js",
-    "build:node": "cross-env NODE_ENV=production tsc server/index.ts --outDir buildServer/",
-    "ssg": "rimraf buildStatic && cross-env NODE_ENV=production ts-node --O '{\"module\":\"commonjs\"}' server/staticSiteGenerator.ts",
+    "build":
+      "npm run build:client && npm run build:server && npm run build:node",
+    "build:client":
+      "rimraf buildClient && cross-env NODE_ENV=production webpack --progress -p --config webpack/client.prod.js",
+    "build:server":
+      "rimraf buildServer && cross-env NODE_ENV=production webpack --progress -p --config webpack/server.prod.js",
+    "build:node":
+      "cross-env NODE_ENV=production tsc server/index.ts --outDir buildServer/",
+    "ssg":
+      "rimraf buildStatic && cross-env NODE_ENV=production ts-node --O '{\"module\":\"commonjs\"}' server/staticSiteGenerator.ts",
     "postssg": "ncp buildClient buildStatic/static",
     "clean": "rimraf buildClient buildServer",
     "predeploy": "npm run build && npm run ssg",
     "deploy": "firebase deploy"
   },
   "dependencies": {
-    "@types/react-helmet": "^5.0.4",
     "babel-plugin-universal-import": "^1.4.0",
     "dateformat": "^3.0.3",
     "express": "^4.15.2",
@@ -48,13 +53,16 @@
     "xmldom": "^0.1.27"
   },
   "devDependencies": {
+    "@types/chalk": "^2.2.0",
     "@types/dateformat": "^1.0.1",
     "@types/express": "^4.11.1",
+    "@types/fs-extra": "^5.0.0",
     "@types/history": "^4.6.2",
     "@types/isomorphic-fetch": "^0.0.34",
     "@types/prop-types": "^15.5.2",
     "@types/react": "^16.0.38",
     "@types/react-dom": "^16.0.4",
+    "@types/react-helmet": "^5.0.4",
     "@types/react-hot-loader": "^3.0.6",
     "@types/react-redux": "^5.0.15",
     "@types/react-sidebar": "^2.2.3",
