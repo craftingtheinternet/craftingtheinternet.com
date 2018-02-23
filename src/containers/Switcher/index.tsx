@@ -6,10 +6,17 @@ import universal from "react-universal-component";
 import * as selectors from "selectors";
 import { ReduxState as SelectorsReduxState } from "selectors/isLoading";
 
+import importCss from "babel-plugin-universal-import/importCss.js";
+
 import * as styles from "containers/Switcher/styles.styl";
 
 export interface Props {
   typeColor?: string;
+}
+
+export interface RouteProps {
+  page: string;
+  [key: string]: any;
 }
 
 export interface MappedProps {
@@ -35,11 +42,17 @@ export interface UniversalComponentProps {
 const DURATION = 300;
 
 const UniversalComponent: React.SFC<UniversalComponentProps> = universal(
-  ({ page }) => import(`routes/${page}`),
+  ({ page }: RouteProps): PromiseLike<any> =>
+    Promise.all([
+      import(/* webpackChunkName: '[request]' */ `routes/${page}`),
+      importCss(page)
+    ]).then(promises => promises[0]),
   {
+    chunkName: ({ page }: RouteProps) => page,
     error: () => <div>PAGE NOT FOUND - 404</div>,
     loading: () => <div>...</div>,
-    minDelay: 500
+    minDelay: 500,
+    resolve: ({ page }: RouteProps) => require.resolveWeak(`routes/${page}`)
   }
 );
 
