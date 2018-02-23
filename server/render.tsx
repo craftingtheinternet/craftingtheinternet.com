@@ -72,6 +72,7 @@ export default ({ clientStats }: WebpackManifestType) => async (
         <body>
           <div id="root">${appString}</div>
           ${cssHash}
+          <script type='text/javascript' src='//cdn.polyfill.io/v2/polyfill.min.js'></script>
           <script type='text/javascript' src='/static/vendor.js'></script>
           <script>window.REDUX_STATE = ${stateJson}</script>
           ${js}
