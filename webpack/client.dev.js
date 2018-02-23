@@ -10,10 +10,9 @@ module.exports = {
   target: "web",
   devtool: "cheap-module-source-map",
   entry: [
-    "babel-polyfill",
     "webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=false&quiet=false&noInfo=false",
     "react-hot-loader/patch",
-    path.resolve(__dirname, "../src/index.jsx")
+    path.resolve(__dirname, "../src/index.tsx")
   ],
   output: {
     filename: "[name].js",
@@ -53,7 +52,7 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: [".tsx", ".ts", ".jsx", ".js", ".json", ".styl"],
+    extensions: [".tsx", ".ts", ".js", ".json", ".styl"],
     alias: {
       components: path.resolve(__dirname, "../src/components"),
       containers: path.resolve(__dirname, "../src/containers"),
@@ -95,8 +94,7 @@ module.exports = {
           "transition-group",
           "redux-first-router",
           "redux-first-router-link",
-          "babel-polyfill",
-          "redux-devtools-extension/logOnlyInProduction"
+          "redux-devtools-extension"
         ]
       }
     })

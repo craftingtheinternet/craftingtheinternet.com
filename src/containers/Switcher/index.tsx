@@ -6,7 +6,7 @@ import universal from "react-universal-component";
 import * as selectors from "selectors";
 import { ReduxState as SelectorsReduxState } from "selectors/isLoading";
 
-import styles from "containers/Switcher/styles.styl";
+import * as styles from "containers/Switcher/styles.styl";
 
 export interface Props {
   typeColor?: string;

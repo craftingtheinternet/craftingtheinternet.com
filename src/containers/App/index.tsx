@@ -9,7 +9,7 @@ import Image from "components/Image";
 import Navigation from "components/Navigation";
 import Strapline from "components/Strapline";
 
-import styles from "./styles.styl";
+import * as styles from "./styles.styl";
 
 interface MappedProps {
   desktop: boolean;

@@ -24,7 +24,7 @@ const externals = fs
 module.exports = {
   name: "server",
   target: "node",
-  entry: [res("../server/render.jsx")],
+  entry: [res("../server/render.tsx")],
   externals,
   output: {
     path: res("../buildServer"),
@@ -62,7 +62,7 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: [".jsx", ".js", ".json", ".styl"],
+    extensions: [".tsx", ".ts", ".js", ".json", ".styl"],
     alias: {
       components: path.resolve(__dirname, "../src/components"),
       containers: path.resolve(__dirname, "../src/containers"),

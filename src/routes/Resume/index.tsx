@@ -7,7 +7,7 @@ import Header from "containers/Header";
 
 import { WorkEligibilityType, WorkHistoryType } from "reducers/resume";
 
-import styles from "./styles.styl";
+import * as styles from "./styles.styl";
 
 export type EducationType = {
   additionalNotes: string;

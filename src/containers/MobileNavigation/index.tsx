@@ -2,15 +2,15 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { NavLink } from "redux-first-router-link";
 
-import { close, closeType } from "actions/sidebar";
+import { ActionCreatorType, close } from "actions/sidebar";
 
-import links from "manifests/links.json";
+import * as links from "manifests/links.json";
 import { contentClassName } from "manifests/sidebar.json";
 
-import styles from "./styles.styl";
+import * as styles from "./styles.styl";
 
 interface Props {
-  closeSidebar: closeType;
+  closeSidebar: ActionCreatorType;
   color?: string;
   panelColor?: string;
 }

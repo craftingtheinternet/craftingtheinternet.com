@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { ToggleType } from "actions/sidebar";
 
-import styles from "./styles.styl";
+import * as styles from "./styles.styl";
 
 export interface Props {
   sidebarOpen?: boolean;

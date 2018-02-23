@@ -1,7 +1,7 @@
 import * as React from "react";
-import ReactDOM from "react-dom/server";
+import * as ReactDOM from "react-dom/server";
 import Helmet from "react-helmet";
-import { Provider } from "react-redux";
+import { Provider, Store } from "react-redux";
 import { flushChunkNames } from "react-universal-component/server";
 import flushChunks from "webpack-flush-chunks";
 import { DOMParser } from "xmldom";
@@ -10,15 +10,35 @@ import Wrapper from "../src/containers/Wrapper";
 
 import configureStore from "./configureStore";
 
+interface ReqProps {
+  path: string;
+  [key: string]: any;
+}
+
+interface ResProps {
+  status: (statusCode: number) => void;
+  send: (output: string) => void;
+  redirect: (statusCode: number, output: string) => void;
+  [key: string]: any;
+}
+
+type WebpackManifestType = {
+  clientStats: object;
+  [key: string]: any;
+};
+
 (global as any).DOMParser = DOMParser;
 
-const createApp = (EntryPoint, store) => (
+const createApp = (EntryPoint: typeof Wrapper, store: Store<object>) => (
   <Provider store={store}>
     <EntryPoint />
   </Provider>
 );
 
-export default ({ clientStats }) => async (req, res) => {
+export default ({ clientStats }: WebpackManifestType) => async (
+  req: ReqProps,
+  res: ResProps
+) => {
   const store = await configureStore(req, res);
   if (!store) {
     return;

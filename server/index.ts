@@ -1,15 +1,14 @@
-import "babel-polyfill";
 import * as express from "express";
-import webpack from "webpack";
-import webpackDevMiddleware from "webpack-dev-middleware";
-import webpackHotMiddleware from "webpack-hot-middleware";
-import webpackHotServerMiddleware from "webpack-hot-server-middleware";
+import * as webpack from "webpack";
+import * as webpackDevMiddleware from "webpack-dev-middleware";
+import * as webpackHotMiddleware from "webpack-hot-middleware";
+import * as webpackHotServerMiddleware from "webpack-hot-server-middleware/src";
 
-import clientConfig from "../webpack/client.dev";
-import serverConfig from "../webpack/server.dev";
+import * as clientConfig from "../webpack/client.dev";
+import * as serverConfig from "../webpack/server.dev";
 
 const DEV = process.env.NODE_ENV === "development";
-const { publicPath } = clientConfig.output;
+const publicPath = clientConfig.output.publicPath;
 const outputPath = clientConfig.output.path;
 const app = express();
 
@@ -20,11 +19,9 @@ if (DEV) {
   app.use(webpackDevMiddleware(multiCompiler, { publicPath }));
   app.use(webpackHotMiddleware(clientCompiler));
   // keeps serverRender updated with arg: { clientStats, outputPath }
-  app.use(
-    webpackHotServerMiddleware(multiCompiler, {
-      serverRendererOptions: { outputPath }
-    })
-  );
+  app.use(webpackHotServerMiddleware(multiCompiler, {
+    serverRendererOptions: { outputPath }
+  }) as any);
 } else {
   // tslint:disable-next-line no-var-requires
   const clientStats = require("../buildClient/stats.json");

@@ -1,7 +1,7 @@
 import * as React from "react";
 import activeHtml from "react-active-html";
 
-import styles from "./styles.styl";
+import * as styles from "./styles.styl";
 
 export interface Props {
   children: string;

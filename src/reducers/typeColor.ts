@@ -1,4 +1,4 @@
-import colors from "../manifests/colors.json";
+import * as colors from "manifests/colors.json";
 
 export type ActionType = {
   type: string;

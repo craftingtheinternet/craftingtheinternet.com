@@ -6,7 +6,7 @@ import {
   createStore,
   Store
 } from "redux";
-import { composeWithDevTools } from "redux-devtools-extension/logOnlyInProduction";
+import { composeWithDevTools } from "redux-devtools-extension";
 import { connectRoutes, RoutesMap, RouteThunk } from "redux-first-router";
 import { createResponsiveStoreEnhancer } from "redux-responsive";
 

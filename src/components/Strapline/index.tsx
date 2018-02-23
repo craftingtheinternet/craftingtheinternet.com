@@ -2,7 +2,7 @@ import * as React from "react";
 
 import Image from "components/Image";
 
-import styles from "./styles.styl";
+import * as styles from "./styles.styl";
 
 export interface Props {
   disableAnimation: boolean;

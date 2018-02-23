@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { g, viewBox } from "./svg.json";
 
-import styles from "./styles.styl";
+import * as styles from "./styles.styl";
 
 export interface Props {
   color?: string;

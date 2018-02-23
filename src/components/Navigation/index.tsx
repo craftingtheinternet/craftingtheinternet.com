@@ -1,9 +1,9 @@
 import * as React from "react";
 import { NavLink } from "redux-first-router-link";
 
-import links from "manifests/links.json";
+import * as links from "manifests/links.json";
 
-import styles from "./styles.styl";
+import * as styles from "./styles.styl";
 
 const BAR_SIZE = 200;
 const HORIZONTAL = "horizontal";

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { connect } from "react-redux";
 
-import styles from "./styles.styl";
+import * as styles from "./styles.styl";
 
 export interface Props {
   giant?: boolean;

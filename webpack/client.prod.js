@@ -23,7 +23,7 @@ const uglify = new webpack.optimize.UglifyJsPlugin({
 module.exports = {
   name: "client",
   target: "web",
-  entry: ["babel-polyfill", path.resolve(__dirname, "../src/index.jsx")],
+  entry: [path.resolve(__dirname, "../src/index.tsx")],
   output: {
     filename: "[name].[chunkhash].js",
     chunkFilename: "[name].[chunkhash].js",
@@ -62,7 +62,7 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: [".jsx", ".js", ".json", ".styl"],
+    extensions: [".tsx", ".ts", ".js", ".json", ".styl"],
     alias: {
       components: path.resolve(__dirname, "../src/components"),
       containers: path.resolve(__dirname, "../src/containers"),
@@ -111,8 +111,7 @@ module.exports = {
           "transition-group",
           "redux-first-router",
           "redux-first-router-link",
-          "babel-polyfill",
-          "redux-devtools-extension/logOnlyInProduction"
+          "redux-devtools-extension"
         ]
       }
     })

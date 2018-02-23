@@ -25,7 +25,7 @@ module.exports = {
   name: "server",
   target: "node",
   devtool: "eval",
-  entry: ["babel-polyfill", res("../server/render.jsx")],
+  entry: [res("../server/render.tsx")],
   externals,
   output: {
     path: res("../buildServer"),
@@ -64,7 +64,7 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: [".jsx", ".js", ".json", ".styl"],
+    extensions: [".tsx", ".ts", ".js", ".json", ".styl"],
     alias: {
       components: path.resolve(__dirname, "../src/components"),
       containers: path.resolve(__dirname, "../src/containers"),
