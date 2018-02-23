@@ -1,12 +1,12 @@
 import * as React from "react";
 
-import { toggleType } from "actions/sidebar";
+import { ToggleType } from "actions/sidebar";
 
 import styles from "./styles.styl";
 
 export interface Props {
   sidebarOpen?: boolean;
-  toggleSidebar: toggleType;
+  toggleSidebar: ToggleType;
 }
 
 const component: React.SFC<Props> = ({ sidebarOpen, toggleSidebar }) => {

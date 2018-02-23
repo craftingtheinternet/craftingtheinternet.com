@@ -6,7 +6,7 @@ import HamburgerMenu from "components/HamburgerMenu";
 import App from "containers/App";
 import MobileNavigation from "containers/MobileNavigation";
 
-import { toggle, toggleType } from "actions/sidebar";
+import { toggle, ToggleType } from "actions/sidebar";
 import { contentClassName } from "manifests/sidebar.json";
 
 export interface Props {
@@ -17,7 +17,7 @@ export interface Props {
 }
 
 export interface DispatchProps {
-  toggleSidebar: toggleType;
+  toggleSidebar: ToggleType;
 }
 
 export interface ReduxProps {

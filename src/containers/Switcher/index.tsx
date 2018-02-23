@@ -4,6 +4,7 @@ import { Transition, TransitionGroup } from "transition-group";
 
 import universal from "react-universal-component";
 import * as selectors from "selectors";
+import { ReduxState as SelectorsReduxState } from "selectors/isLoading";
 
 import styles from "containers/Switcher/styles.styl";
 
@@ -69,7 +70,9 @@ component.defaultProps = {
   typeColor: "black"
 };
 
-export const mapStateToProps = (state: ReduxProps): MappedProps => ({
+export const mapStateToProps = (
+  state: ReduxProps & SelectorsReduxState
+): MappedProps => ({
   isLoading: selectors.isLoading(state),
   page: state.page,
   pathname: state.location.pathname
