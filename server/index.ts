@@ -18,10 +18,11 @@ if (DEV) {
 
   app.use(webpackDevMiddleware(multiCompiler, { publicPath }));
   app.use(webpackHotMiddleware(clientCompiler));
-  // keeps serverRender updated with arg: { clientStats, outputPath }
-  app.use(webpackHotServerMiddleware(multiCompiler, {
-    serverRendererOptions: { outputPath }
-  }) as any);
+  app.use(
+    webpackHotServerMiddleware(multiCompiler, {
+      serverRendererOptions: { outputPath }
+    })
+  );
 } else {
   // tslint:disable-next-line no-var-requires
   const clientStats = require("../buildClient/stats.json");
