@@ -13,10 +13,12 @@
     "serve:ssg": "serve buildStatic",
     "build":
       "npm run build:client && npm run build:server && npm run build:node",
+    "prebuild:client": "rimraf buildClient",
     "build:client":
-      "rimraf buildClient && cross-env NODE_ENV=production webpack --progress -p --config webpack/client.prod.js",
+      "cross-env NODE_ENV=production webpack --progress -p --config webpack/client.prod.js",
+    "prebuild:server": "rimraf buildServer",
     "build:server":
-      "rimraf buildServer && cross-env NODE_ENV=production webpack --progress -p --config webpack/server.prod.js",
+      "cross-env NODE_ENV=production webpack --progress -p --config webpack/server.prod.js",
     "build:node":
       "cross-env NODE_ENV=production tsc server/index.ts --outDir buildServer/",
     "ssg":
