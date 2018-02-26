@@ -3,6 +3,8 @@ const webpack = require("webpack");
 const ExtractCssChunks = require("extract-css-chunks-webpack-plugin");
 const StatsPlugin = require("stats-webpack-plugin");
 const AutoDllPlugin = require("autodll-webpack-plugin");
+const PrepackWebpackPlugin = require("prepack-webpack-plugin").default;
+const OptimizeJsPlugin = require("optimize-js-plugin");
 const nib = require("nib");
 
 const uglify = new webpack.optimize.UglifyJsPlugin({
@@ -17,7 +19,7 @@ const uglify = new webpack.optimize.UglifyJsPlugin({
     screw_ie8: true,
     comments: false
   },
-  sourceMap: true
+  sourceMap: false
 });
 
 module.exports = {
@@ -78,7 +80,7 @@ module.exports = {
     new StatsPlugin("stats.json"),
     new ExtractCssChunks(),
     new webpack.optimize.CommonsChunkPlugin({
-      names: ["bootstrap"], // needed to put webpack bootstrap code before chunks
+      names: ["bootstrap"], // need to put webpack bootstrap code before chunks
       filename: "[name].[chunkhash].js",
       minChunks: Infinity
     }),
@@ -88,17 +90,25 @@ module.exports = {
         CRAFTING_CONTENT: JSON.stringify(process.env.CRAFTING_CONTENT)
       }
     }),
+    new PrepackWebpackPlugin(),
     uglify,
+    new OptimizeJsPlugin({
+      sourceMap: false
+    }),
     new webpack.HashedModuleIdsPlugin(), // not needed for strategy to work (just good practice)
     new AutoDllPlugin({
       context: path.join(__dirname, ".."),
       filename: "[name].js",
       plugins: [
-        uglify,
         new webpack.DefinePlugin({
           "process.env": {
             NODE_ENV: JSON.stringify("production")
           }
+        }),
+        new PrepackWebpackPlugin(),
+        uglify,
+        new OptimizeJsPlugin({
+          sourceMap: false
         })
       ],
       entry: {

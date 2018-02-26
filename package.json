@@ -28,6 +28,9 @@
     "predeploy": "npm run build && npm run ssg",
     "deploy": "firebase deploy"
   },
+  "resolutions": {
+    "prepack": "0.2.6"
+  },
   "dependencies": {
     "babel-plugin-universal-import": "^1.4.0",
     "dateformat": "^3.0.3",
@@ -83,6 +86,8 @@
     "fs-extra": "^5.0.0",
     "ncp": "^2.0.0",
     "nib": "^1.1.2",
+    "optimize-js-plugin": "^0.0.4",
+    "prepack-webpack-plugin": "^1.1.0",
     "prettier": "^1.10.2",
     "rimraf": "^2.6.1",
     "serve": "^6.4.11",
