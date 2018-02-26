@@ -14,92 +14,92 @@
   "prefer_related_applications": false,
   "icons": [
     {
-      "src": "/images/031d2ff5-c721-10c0-30d6-5e05c7037440.webPlatform.png",
+      "src": "/icons/031d2ff5-c721-10c0-30d6-5e05c7037440.webPlatform.png",
       "sizes": "48x48",
       "type": "image/png"
     },
     {
-      "src": "/images/8326d420-1260-98b8-fa61-b776688077ba.webPlatform.png",
+      "src": "/icons/8326d420-1260-98b8-fa61-b776688077ba.webPlatform.png",
       "sizes": "1240x600",
       "type": "image/png"
     },
     {
-      "src": "/images/f0736b5d-e41b-a2cd-41d1-9ec5253bfce5.webPlatform.png",
+      "src": "/icons/f0736b5d-e41b-a2cd-41d1-9ec5253bfce5.webPlatform.png",
       "sizes": "300x300",
       "type": "image/png"
     },
     {
-      "src": "/images/ce201119-c760-0e30-7805-217c9804fe73.webPlatform.png",
+      "src": "/icons/ce201119-c760-0e30-7805-217c9804fe73.webPlatform.png",
       "sizes": "150x150",
       "type": "image/png"
     },
     {
-      "src": "/images/54337500-0a3c-28df-fe38-50434180b272.webPlatform.png",
+      "src": "/icons/54337500-0a3c-28df-fe38-50434180b272.webPlatform.png",
       "sizes": "88x88",
       "type": "image/png"
     },
     {
-      "src": "/images/803c31ce-a0cf-2fa0-aeca-6e07a9f8db0f.webPlatform.png",
+      "src": "/icons/803c31ce-a0cf-2fa0-aeca-6e07a9f8db0f.webPlatform.png",
       "sizes": "24x24",
       "type": "image/png"
     },
     {
-      "src": "/images/fadbe5db-361d-3c24-6443-f232e114ba6e.webPlatform.png",
+      "src": "/icons/fadbe5db-361d-3c24-6443-f232e114ba6e.webPlatform.png",
       "sizes": "50x50",
       "type": "image/png"
     },
     {
-      "src": "/images/04019238-c7b9-a6b1-444d-e20a23eb6225.webPlatform.png",
+      "src": "/icons/04019238-c7b9-a6b1-444d-e20a23eb6225.webPlatform.png",
       "sizes": "620x300",
       "type": "image/png"
     },
     {
-      "src": "/images/1a688012-acc7-b554-0379-d7cca387013c.webPlatform.png",
+      "src": "/icons/1a688012-acc7-b554-0379-d7cca387013c.webPlatform.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/images/81b6f6b8-091d-784a-3f64-d4ea55e8073c.webPlatform.png",
+      "src": "/icons/81b6f6b8-091d-784a-3f64-d4ea55e8073c.webPlatform.png",
       "sizes": "144x144",
       "type": "image/png"
     },
     {
-      "src": "/images/3a9e35ae-2142-9750-f8b4-195abaae6756.webPlatform.png",
+      "src": "/icons/3a9e35ae-2142-9750-f8b4-195abaae6756.webPlatform.png",
       "sizes": "96x96",
       "type": "image/png"
     },
     {
-      "src": "/images/548136bb-f473-392d-16f4-f85d3488e68c.webPlatform.png",
+      "src": "/icons/548136bb-f473-392d-16f4-f85d3488e68c.webPlatform.png",
       "sizes": "72x72",
       "type": "image/png"
     },
     {
-      "src": "/images/1284b396-9d1a-5297-5b9d-42eead72e313.webPlatform.png",
+      "src": "/icons/1284b396-9d1a-5297-5b9d-42eead72e313.webPlatform.png",
       "sizes": "36x36",
       "type": "image/png"
     },
     {
-      "src": "/images/51dae88e-b13b-c12c-4549-e77daef50b2b.webPlatform.png",
+      "src": "/icons/51dae88e-b13b-c12c-4549-e77daef50b2b.webPlatform.png",
       "sizes": "1024x1024",
       "type": "image/png"
     },
     {
-      "src": "/images/462ce537-cdfe-6545-3ec4-ae31caf86e3b.webPlatform.png",
+      "src": "/icons/462ce537-cdfe-6545-3ec4-ae31caf86e3b.webPlatform.png",
       "sizes": "180x180",
       "type": "image/png"
     },
     {
-      "src": "/images/48599f0a-135e-900a-b890-25405d8ee580.webPlatform.png",
+      "src": "/icons/48599f0a-135e-900a-b890-25405d8ee580.webPlatform.png",
       "sizes": "152x152",
       "type": "image/png"
     },
     {
-      "src": "/images/5a5e870b-53f8-1843-d8a6-ebe1898c90d5.webPlatform.png",
+      "src": "/icons/5a5e870b-53f8-1843-d8a6-ebe1898c90d5.webPlatform.png",
       "sizes": "120x120",
       "type": "image/png"
     },
     {
-      "src": "/images/26dd2340-edb2-dedc-7e6b-23c1e71ca390.webPlatform.png",
+      "src": "/icons/26dd2340-edb2-dedc-7e6b-23c1e71ca390.webPlatform.png",
       "sizes": "76x76",
       "type": "image/png"
     }

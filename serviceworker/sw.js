@@ -1,5 +1,5 @@
 self.addEventListener("install", function(event) {
-  var indexPage = new Request("index.html");
+  var indexPage = new Request("/");
   event.waitUntil(
     fetch(indexPage).then(function(response) {
       return caches.open("sw-offline").then(function(cache) {
