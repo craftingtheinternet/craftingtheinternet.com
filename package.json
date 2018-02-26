@@ -23,8 +23,10 @@
       "cross-env NODE_ENV=production tsc server/index.ts --outDir buildServer/",
     "ssg":
       "rimraf buildStatic && cross-env NODE_ENV=production ts-node --O '{\"module\":\"commonjs\"}' server/staticSiteGenerator.ts",
-    "postssg": "ncp buildClient buildStatic/static",
+    "postssg":
+      "ncp buildClient buildStatic/static && ncp serviceworker/ buildStatic/",
     "clean": "rimraf buildClient buildServer",
+    "stage": "npm run build && npm run ssg && npm run serve:ssg",
     "predeploy": "npm run build && npm run ssg",
     "deploy": "firebase deploy"
   },
