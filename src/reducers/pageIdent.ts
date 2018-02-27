@@ -8,7 +8,7 @@ export type ComponentsType = {
 
 const components: ComponentsType = {
   ABOUT: "SelfPortrait",
-  CONTACT: "SelfPortrait",
+  CONTACT: "Typewriter",
   RESUME: "Typewriter"
 };
 

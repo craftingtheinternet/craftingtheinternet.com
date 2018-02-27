@@ -78,7 +78,8 @@ module.exports = {
     new webpack.DefinePlugin({
       "process.env": {
         NODE_ENV: JSON.stringify("development"),
-        CRAFTING_CONTENT: JSON.stringify(process.env.CRAFTING_CONTENT)
+        CRAFTING_CONTENT: JSON.stringify(process.env.CRAFTING_CONTENT),
+        CRAFTING_FORMSPREE_ID: JSON.stringify(process.env.CRAFTING_FORMSPREE_ID)
       }
     }),
     new AutoDllPlugin({

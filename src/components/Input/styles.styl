@@ -1,0 +1,70 @@
+json('../../manifests/colors.json')
+
+.inputContainer
+  position relative
+  padding 0.5rem
+  line-height 0
+
+.textArea
+.input
+  border 0
+  background-color white
+  padding 1.25rem 1rem
+  font-family 'Montserrat', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif
+  font-smoothing antialiased
+  color armadillo
+  appearance none
+  position relative
+  width 100%
+  z-index 1
+  outline 0
+
+  &:focus ~ .border
+    background-color rgba(black, 0.15)
+    transform scale(1)
+
+.border
+  absolute top left bottom right
+  background-color transparent
+  transition background-color 0.175s, transform 0.175s
+  z-index 0
+  transform scale(0.9)
+
+.input
+  &
+  & ~ .label
+    font-size 1.1rem
+    line-height 1
+
+.textArea
+  resize vertical
+
+.textArea
+  &
+  & ~ .label
+    font-size 1rem
+    line-height 1.5
+
+.label
+  pointer-events none
+  position absolute
+  top 1.75rem
+  left 1.5rem
+  color armadillo
+  z-index 2
+  transform-origin left top
+  transition transform 0.175s, color 0.175s
+  transform scale(1) translate3d(0, 0, 0)
+
+  &.error
+    color pomegranate
+
+.input:focus
+.textArea:focus
+.hasValue
+  ~ .label
+    transform scale(0.6) translate3d(0, -1.5rem, 0)
+    color seaGreen
+
+    &.error
+      color pomegranate
