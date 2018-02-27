@@ -1,15 +1,15 @@
 {
   "dir": "ltr",
   "lang": "en",
-  "name": "Crafting the Internet — Ben Ceglowski",
+  "name": "Crafting the Internet",
   "scope": "/",
   "display": "standalone",
   "start_url": "https://craftingtheinternet.com/",
-  "short_name": "Crafting",
+  "short_name": "Crafting the Internet",
   "theme_color": "#DCD74E",
   "description": "Top-notch web software architecture in London, UK",
   "orientation": "any",
-  "background_color": "transparent",
+  "background_color": "#DCD74E",
   "related_applications": [],
   "prefer_related_applications": false,
   "icons": [
