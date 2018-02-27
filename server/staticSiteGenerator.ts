@@ -42,4 +42,4 @@ const renderRoutes = async (routes: string[]) => {
   }
 };
 
-renderRoutes(["/", "/resume"]);
+renderRoutes(["/", "/resume", "/contact"]);

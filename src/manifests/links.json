@@ -11,14 +11,10 @@
     },
     "exact": true
   },
-  "Portfolio": {
-    "to": {
-      "type": "PORTFOLIO"
-    }
-  },
   "Contact": {
     "to": {
       "type": "CONTACT"
-    }
+    },
+    "exact": true
   }
 }
