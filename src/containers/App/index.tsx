@@ -87,7 +87,7 @@ class ReactComponent extends React.PureComponent<MappedProps> {
           <meta name="robots" content="index, follow" />
           <meta
             property="og:image"
-            content={`https://craftingtheinternet.com/${openGraphImage}`}
+            content={`https://craftingtheinternet.com/opengraph/${openGraphImage}`}
           />
           <link rel="manifest" href="/manifest.json" />
           <link rel="icon" type="image/png" href="/favicon.png" />

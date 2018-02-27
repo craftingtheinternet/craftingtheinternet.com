@@ -5,11 +5,11 @@ export type ActionType = {
 export default (state = "ABOUT", action: ActionType) => {
   switch (action.type) {
     case "ABOUT":
-      return "/opengraph/about.png";
+      return "about.png";
     case "CONTACT":
-      return "/opengraph/contact.png";
+      return "contact.png";
     case "RESUME":
-      return "/opengraph/resume.png";
+      return "resume.png";
     default:
       return state;
   }
