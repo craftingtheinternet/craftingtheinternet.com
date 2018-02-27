@@ -19,20 +19,13 @@ interface MappedProps {
   page: string;
   pageIdent?: string;
   panelColor?: string;
+  openGraphImage?: string;
   tablet: boolean;
+  title: string;
   typeColor?: string;
 }
 
 interface ReduxProps {
-  page: string;
-  panelColor?: string;
-  pageIdent?: string;
-  typeColor?: string;
-  location: {
-    prev: {
-      pathname?: string;
-    };
-  };
   breakpoint: {
     greaterThan: {
       medium: boolean;
@@ -45,6 +38,17 @@ interface ReduxProps {
     };
     mediaType?: string;
   };
+  location: {
+    prev: {
+      pathname?: string;
+    };
+  };
+  openGraphImage?: string;
+  page: string;
+  panelColor?: string;
+  pageIdent?: string;
+  title: string;
+  typeColor?: string;
 }
 
 class ReactComponent extends React.PureComponent<MappedProps> {
@@ -58,19 +62,22 @@ class ReactComponent extends React.PureComponent<MappedProps> {
 
   public render() {
     const {
+      desktop,
+      hasPreviousLocation,
+      mediaType,
+      mobile,
+      openGraphImage,
       page,
       panelColor,
       pageIdent,
-      typeColor,
-      hasPreviousLocation,
-      desktop,
       tablet,
-      mobile,
-      mediaType
+      title,
+      typeColor
     } = this.props;
     return (
       <React.Fragment>
         <Helmet>
+          <title>{title}</title>
           <meta charSet="utf-8" />
           <meta
             name="viewport"
@@ -78,6 +85,7 @@ class ReactComponent extends React.PureComponent<MappedProps> {
           />
           <meta name="theme-color" content={panelColor} />
           <meta name="robots" content="index, follow" />
+          <meta property="og:image" content={openGraphImage} />
           <link rel="manifest" href="/manifest.json" />
           <link rel="icon" type="image/png" href="/favicon.png" />
           <style>{`body { background-color: ${panelColor}; }`}</style>
@@ -150,10 +158,12 @@ const mapStateToProps = (state: ReduxProps): MappedProps => ({
   hasPreviousLocation: !!state.location.prev.pathname,
   mediaType: state.breakpoint.mediaType,
   mobile: state.breakpoint.lessThan.medium,
+  openGraphImage: state.openGraphImage,
   page: state.page,
   pageIdent: state.pageIdent,
   panelColor: state.panelColor,
   tablet: state.breakpoint.is.medium,
+  title: state.title,
   typeColor: state.typeColor
 });
 

@@ -64,10 +64,10 @@ export default ({ clientStats }: WebpackManifestType) => async (
   res.send(`<!doctype html>
       <html lang="en">
         <head>
-          <title>${state.title}</title>
-          ${styles}
+          ${helmet.title.toString()}
           ${helmet.style.toString()}
           ${helmet.meta.toString()}
+          ${styles}
         </head>
         <body>
           <div id="root">${appString}</div>
