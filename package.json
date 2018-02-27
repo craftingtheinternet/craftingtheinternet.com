@@ -24,7 +24,7 @@
     "ssg":
       "rimraf buildStatic && cross-env NODE_ENV=production ts-node --O '{\"module\":\"commonjs\"}' server/staticSiteGenerator.ts",
     "postssg":
-      "ncp buildClient buildStatic/static && ncp serviceworker/ buildStatic/ && ncp opengraph/ buildStatic/",
+      "ncp buildClient buildStatic/static && ncp serviceworker/ buildStatic/ && ncp opengraph/ buildStatic/opengraph/",
     "clean": "rimraf buildClient buildServer",
     "stage": "npm run build && npm run ssg && npm run serve:ssg",
     "predeploy": "npm run build && npm run ssg",
