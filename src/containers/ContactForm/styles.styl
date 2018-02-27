@@ -22,22 +22,6 @@
 .submitButton
   display inline-block
   position relative
-  
-  &:after
-    content ''
-    display block
-    position absolute
-    top 100%
-    left 0.5rem
-    right 0.5rem
-    height 0.3125rem
-    background-color white
-    transform scale(1, 0)
-    transform-origin 0 0
-    transition transform 0.175s
-  
-  &:hover:after
-    transform scale(1, 1)
 
 .submit
   display inline-block
@@ -52,3 +36,21 @@
   margin-top 0.5rem
   color white
   cursor pointer
+  outline 0
+
+  &:hover ~ .submitBaseline
+  &:focus ~ .submitBaseline
+    transform scale(1, 1)
+
+.submitBaseline
+  content ''
+  display block
+  position absolute
+  top 100%
+  left 0.5rem
+  right 0.5rem
+  height 0.3125rem
+  background-color white
+  transform scale(1, 0)
+  transform-origin 0 0
+  transition transform 0.175s

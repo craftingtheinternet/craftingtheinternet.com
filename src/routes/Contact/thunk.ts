@@ -3,6 +3,8 @@ import { Dispatch } from "react-redux";
 
 import { schema, StateType } from "reducers/contact";
 
+import { unsetSubmitted } from "actions/contactForm";
+
 export interface DispatchArgs {
   type: string;
   payload: StateType;
@@ -15,6 +17,7 @@ export type GetState = () => {
 };
 
 export default async (dispatch: Dispatch<DispatchArgs>, getState: GetState) => {
+  dispatch(unsetSubmitted());
   if (!getState().contact.id) {
     const data = await fetch(
       `${process.env.CRAFTING_CONTENT}contact/en-US.json`

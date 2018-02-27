@@ -68,8 +68,6 @@ export default ({ clientStats }: WebpackManifestType) => async (
           ${styles}
           ${helmet.style.toString()}
           ${helmet.meta.toString()}
-          <link rel="manifest" href="/manifest.json" />
-          <link rel="icon" type="image/png" href="/favicon.png" />
         </head>
         <body>
           <div id="root">${appString}</div>

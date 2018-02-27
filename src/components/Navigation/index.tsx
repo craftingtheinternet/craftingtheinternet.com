@@ -41,7 +41,7 @@ class ReactComponent extends React.PureComponent<Props, State> {
     };
   }
 
-  public onMouseEnter = (key: string) => () => {
+  public onHover = (key: string) => () => {
     const { orientation } = this.props;
     const offsetDimension = orientation === HORIZONTAL ? "Left" : "Top";
     const sizeDimension = orientation === HORIZONTAL ? "Width" : "Height";
@@ -54,7 +54,7 @@ class ReactComponent extends React.PureComponent<Props, State> {
     }
   };
 
-  public onMouseLeave = () => {
+  public onLeave = () => {
     this.setState(() => ({
       hoveredListItemIsVisible: false
     }));
@@ -76,7 +76,8 @@ class ReactComponent extends React.PureComponent<Props, State> {
     return (
       <nav
         className={[styles.nav, styles[orientation]].join(" ")}
-        onMouseLeave={this.onMouseLeave}
+        onMouseLeave={this.onLeave}
+        onBlur={this.onLeave}
       >
         <ul className={styles.list}>
           {Object.keys(links).map(key => (
@@ -84,7 +85,8 @@ class ReactComponent extends React.PureComponent<Props, State> {
               key={key}
               className={styles.listItem}
               ref={this.assignListItem(key)}
-              onMouseEnter={this.onMouseEnter(key)}
+              onMouseEnter={this.onHover(key)}
+              onFocus={this.onHover(key)}
             >
               <NavLink
                 to={links[key].to}

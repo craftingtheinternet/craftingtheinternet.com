@@ -77,7 +77,9 @@ class ReactComponent extends React.PureComponent<MappedProps> {
             content="width=device-width, initial-scale=1, minimum-scale=1"
           />
           <meta name="theme-color" content={panelColor} />
-          <meta name="robots" content="noindex, nofollow" />
+          <meta name="robots" content="index, follow" />
+          <link rel="manifest" href="/manifest.json" />
+          <link rel="icon" type="image/png" href="/favicon.png" />
           <style>{`body { background-color: ${panelColor}; }`}</style>
         </Helmet>
         {mobile && (

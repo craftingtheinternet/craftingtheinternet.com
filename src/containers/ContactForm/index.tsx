@@ -10,11 +10,14 @@ import * as yup from "yup";
 
 import Input from "components/Input";
 
+import { ActionCreatorType } from "actions/contactForm";
+
 import * as styles from "./styles.styl";
 
 interface Props {
   isClient: boolean;
   mobile: boolean;
+  setSubmitted: ActionCreatorType;
 }
 
 interface Fields {
@@ -36,6 +39,7 @@ const component: React.SFC<
 > = ({
   errors,
   isClient,
+  isSubmitting,
   handleBlur,
   handleChange,
   handleSubmit,
@@ -87,7 +91,13 @@ const component: React.SFC<
     />
     <div className={styles.submitContainer}>
       <div className={styles.submitButton}>
-        <input className={styles.submit} type="submit" value="Send" />
+        <input
+          className={styles.submit}
+          disabled={isSubmitting}
+          type="submit"
+          value={`Send${isSubmitting ? "ing" : ""}`}
+        />
+        <span className={styles.submitBaseline} />
       </div>
     </div>
   </form>
@@ -99,8 +109,6 @@ component.defaultProps = {
   mobile: true
 };
 
-export { component };
-
 const Form: React.ComponentType<any> = withFormik({
   handleSubmit: (values, { props, setSubmitting, setErrors }) =>
     fetch(FORM_ACTION, {
@@ -111,13 +119,12 @@ const Form: React.ComponentType<any> = withFormik({
       },
       method: FORM_METHOD
     })
-      .then(response => {
-        // tslint:disable-next-line no-console
-        console.log(response);
+      .then(() => {
+        setSubmitting(false);
+        (props as Props).setSubmitted();
       })
-      .catch(response => {
-        // tslint:disable-next-line no-console
-        console.log(response);
+      .catch(() => {
+        setSubmitting(false);
       }),
   mapPropsToValues: props => ({ name: "", email: "", message: "" }),
   validateOnBlur: false,
@@ -131,5 +138,7 @@ const Form: React.ComponentType<any> = withFormik({
     name: yup.string().required("Please enter your name")
   })
 })(component);
+
+export { component };
 
 export default Form;

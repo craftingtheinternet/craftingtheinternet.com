@@ -5,20 +5,32 @@ import RichText from "components/RichText";
 import ContactForm from "containers/ContactForm";
 import Header from "containers/Header";
 
+import * as actions from "actions/contactForm";
+
 export interface Props {
   typeColor?: string;
 }
 
 export interface MappedProps {
   content?: string;
+  hasSubmitted: boolean;
   mobile: boolean;
+  successfulSubmissionMessage?: string;
   title?: string;
+}
+
+export interface DispatchProps {
+  setSubmitted: typeof actions.setSubmitted;
 }
 
 export interface ReduxProps {
   contact: {
     title?: string;
     content?: string;
+    successfulSubmissionMessage?: string;
+  };
+  contactForm: {
+    hasSubmitted: boolean;
   };
   breakpoint: {
     lessThan: {
@@ -27,16 +39,21 @@ export interface ReduxProps {
   };
 }
 
-const component: React.SFC<Props & MappedProps> = ({
+const component: React.SFC<Props & MappedProps & DispatchProps> = ({
   content,
+  hasSubmitted,
   mobile,
+  setSubmitted,
+  successfulSubmissionMessage,
   title,
   typeColor
 }) => (
   <div style={{ color: typeColor }}>
     <Header giant={true}>{title}</Header>
-    <RichText>{content}</RichText>
-    <ContactForm mobile={mobile} />
+    <RichText>{hasSubmitted ? successfulSubmissionMessage : content}</RichText>
+    {!hasSubmitted && (
+      <ContactForm mobile={mobile} setSubmitted={setSubmitted} />
+    )}
   </div>
 );
 
@@ -50,10 +67,16 @@ component.defaultProps = {
 
 const mapStateToProps = (state: ReduxProps): MappedProps => ({
   content: state.contact.content,
+  hasSubmitted: state.contactForm.hasSubmitted,
   mobile: state.breakpoint.lessThan.medium,
+  successfulSubmissionMessage: state.contact.successfulSubmissionMessage,
   title: state.contact.title
 });
 
+const mapDispatchToProps = {
+  setSubmitted: actions.setSubmitted
+};
+
 export { component };
 
-export default connect(mapStateToProps)(component);
+export default connect(mapStateToProps, mapDispatchToProps)(component);

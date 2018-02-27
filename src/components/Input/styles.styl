@@ -53,7 +53,7 @@ json('../../manifests/colors.json')
   color armadillo
   z-index 2
   transform-origin left top
-  transition transform 0.175s, color 0.175s
+  transition transform 0.175s, color 0.175s, font-weight 0s 0.05s
   transform scale(1) translate3d(0, 0, 0)
 
   &.error
@@ -63,7 +63,8 @@ json('../../manifests/colors.json')
 .textArea:focus
 .hasValue
   ~ .label
-    transform scale(0.6) translate3d(0, -1.5rem, 0)
+    transform scale(0.6875) translate3d(0, -1.25rem, 0)
+    font-weight bold
     color seaGreen
 
     &.error
