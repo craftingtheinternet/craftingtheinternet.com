@@ -68,6 +68,8 @@ export default ({ clientStats }: WebpackManifestType) => async (
           ${styles}
           ${helmet.style.toString()}
           ${helmet.meta.toString()}
+          <link rel="manifest" href="/manifest.json" />
+          <link rel="icon" type="image/png" href="/favicon.png" />
         </head>
         <body>
           <div id="root">${appString}</div>
@@ -76,6 +78,14 @@ export default ({ clientStats }: WebpackManifestType) => async (
           <script type='text/javascript' src='/static/vendor.js'></script>
           <script>window.REDUX_STATE = ${stateJson}</script>
           ${js}
+          <script src="/manup.js"></script>
+          <script>
+            if (navigator.serviceWorker && !navigator.serviceWorker.controller) {
+              navigator.serviceWorker.register('/sw.js', {
+                scope: './'
+              });
+            }
+          </script>
         </body>
       </html>`);
 };
