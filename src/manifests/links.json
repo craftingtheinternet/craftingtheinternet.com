@@ -16,11 +16,6 @@
       "type": "PORTFOLIO"
     }
   },
-  "Blog": {
-    "to": {
-      "type": "BLOG"
-    }
-  },
   "Contact": {
     "to": {
       "type": "CONTACT"

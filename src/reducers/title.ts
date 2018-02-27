@@ -8,6 +8,8 @@ export default (state = "ABOUT", action: ActionType) => {
   switch (action.type) {
     case "ABOUT":
       return "Crafting the Internet — Ben Ceglowski";
+    case "CONTACT":
+      return "Get in Touch — Crafting the Internet";
     case "RESUME":
       return "Resume — Crafting the Internet";
     case NOT_FOUND:

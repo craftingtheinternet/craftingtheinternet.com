@@ -78,14 +78,20 @@ export default ({ clientStats }: WebpackManifestType) => async (
           <script type='text/javascript' src='/static/vendor.js'></script>
           <script>window.REDUX_STATE = ${stateJson}</script>
           ${js}
-          <script src="/manup.js"></script>
-          <script>
-            if (navigator.serviceWorker && !navigator.serviceWorker.controller) {
-              navigator.serviceWorker.register('/sw.js', {
-                scope: './'
-              });
-            }
-          </script>
+          ${
+            process.env.NODE_ENV === "production"
+              ? `
+            <script src="/manup.js"></script>
+            <script>
+              if (navigator.serviceWorker && !navigator.serviceWorker.controller) {
+                navigator.serviceWorker.register('/sw.js', {
+                  scope: './'
+                });
+              }
+            </script>
+          `
+              : ""
+          }
         </body>
       </html>`);
 };

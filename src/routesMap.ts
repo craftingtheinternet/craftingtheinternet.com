@@ -1,4 +1,5 @@
 import aboutThunk from "routes/About/thunk";
+import contactThunk from "routes/Contact/thunk";
 import resumeThunk from "routes/Resume/thunk";
 
 import { Dispatch } from "react-redux";
@@ -22,6 +23,10 @@ const routesMap: RoutesMap = {
   ABOUT: {
     path: "/",
     thunk: aboutThunk
+  },
+  CONTACT: {
+    path: "/contact",
+    thunk: contactThunk
   },
   RESUME: {
     path: "/resume",

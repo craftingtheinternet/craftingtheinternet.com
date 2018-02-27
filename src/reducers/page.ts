@@ -10,6 +10,7 @@ export type PagesType = {
 
 export const pages: PagesType = {
   ABOUT: "About",
+  CONTACT: "Contact",
   RESUME: "Resume",
   [NOT_FOUND]: "NotFound"
 };
