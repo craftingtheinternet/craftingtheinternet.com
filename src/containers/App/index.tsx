@@ -85,7 +85,10 @@ class ReactComponent extends React.PureComponent<MappedProps> {
           />
           <meta name="theme-color" content={panelColor} />
           <meta name="robots" content="index, follow" />
-          <meta property="og:image" content={openGraphImage} />
+          <meta
+            property="og:image"
+            content={`https://craftingtheinternet.com/${openGraphImage}`}
+          />
           <link rel="manifest" href="/manifest.json" />
           <link rel="icon" type="image/png" href="/favicon.png" />
           <style>{`body { background-color: ${panelColor}; }`}</style>
