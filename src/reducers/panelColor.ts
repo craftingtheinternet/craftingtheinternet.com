@@ -10,6 +10,7 @@ export type PanelColorsType = {
 
 const panelColors: PanelColorsType = {
   ABOUT: colors.wattle,
+  CONTACT: colors.seaGreen,
   RESUME: colors.fuchsiaBlue
 };
 

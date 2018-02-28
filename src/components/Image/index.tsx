@@ -16,6 +16,9 @@ const AsyncImage: React.SFC<Props> = universal(
     ]).then(promises => promises[0]),
   {
     chunkName: ({ src }: Props) => src,
+    error: (): null => null,
+    loading: (): null => null,
+    minDelay: 0,
     resolve: ({ src }: Props) => require.resolveWeak(`images/${src}`)
   }
 );

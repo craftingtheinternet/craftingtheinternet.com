@@ -30,19 +30,30 @@ class ReactComponent extends React.PureComponent<Props> {
           className={styles.list}
           style={{ maxHeight: `${Object.keys(links).length * 2.5}rem` }}
         >
-          {Object.keys(links).map(key => (
-            <NavLink
-              key={key}
-              to={links[key].to}
-              exact={links[key].exact}
-              className={styles.link}
-              activeClassName={styles.active}
-              style={{ color }}
-              onClick={this.onLinkClick}
-            >
-              {key}
-            </NavLink>
-          ))}
+          {Object.keys(links).map(
+            key =>
+              links[key].available ? (
+                <NavLink
+                  key={key}
+                  to={links[key].to}
+                  exact={links[key].exact}
+                  className={styles.link}
+                  activeClassName={styles.active}
+                  style={{ color }}
+                  onClick={this.onLinkClick}
+                >
+                  {key}
+                </NavLink>
+              ) : (
+                <span
+                  key={key}
+                  className={[styles.link, styles.strikethrough].join(" ")}
+                  style={{ color }}
+                >
+                  {key}
+                </span>
+              )
+          )}
         </div>
       </nav>
     );

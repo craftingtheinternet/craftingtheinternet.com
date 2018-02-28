@@ -10,6 +10,7 @@ export type TypeColorsType = {
 
 const typeColors: TypeColorsType = {
   ABOUT: colors.armadillo,
+  CONTACT: colors.white,
   RESUME: colors.white
 };
 

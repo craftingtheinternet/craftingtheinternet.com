@@ -64,12 +64,10 @@ export default ({ clientStats }: WebpackManifestType) => async (
   res.send(`<!doctype html>
       <html lang="en">
         <head>
-          <title>${state.title}</title>
-          ${styles}
+          ${helmet.title.toString()}
           ${helmet.style.toString()}
           ${helmet.meta.toString()}
-          <link rel="manifest" href="/manifest.json" />
-          <link rel="icon" type="image/png" href="/favicon.png" />
+          ${styles}
         </head>
         <body>
           <div id="root">${appString}</div>
@@ -78,14 +76,20 @@ export default ({ clientStats }: WebpackManifestType) => async (
           <script type='text/javascript' src='/static/vendor.js'></script>
           <script>window.REDUX_STATE = ${stateJson}</script>
           ${js}
-          <script src="/manup.js"></script>
-          <script>
-            if (navigator.serviceWorker && !navigator.serviceWorker.controller) {
-              navigator.serviceWorker.register('/sw.js', {
-                scope: './'
-              });
-            }
-          </script>
+          ${
+            process.env.NODE_ENV === "production"
+              ? `
+            <script src="/manup.js"></script>
+            <script>
+              if (navigator.serviceWorker && !navigator.serviceWorker.controller) {
+                navigator.serviceWorker.register('/sw.js', {
+                  scope: './'
+                });
+              }
+            </script>
+          `
+              : ""
+          }
         </body>
       </html>`);
 };

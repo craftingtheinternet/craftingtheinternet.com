@@ -1,8 +1,10 @@
 .nav
   display flex
   width 100%
+  user-select none
 
   &.horizontal
+    flex 1 0 auto
     align-items flex-end
     height 100%
     position sticky
@@ -44,9 +46,14 @@
   transition color 0.2s
   text-decoration none
   align-items flex-end
-  
+  outline 0
+
   .vertical &
     width 100%
+  
+  &.strikethrough
+    opacity 0.25
+    text-decoration line-through
 
 .active
   font-weight 600

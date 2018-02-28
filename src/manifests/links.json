@@ -3,27 +3,35 @@
     "to": {
       "type": "ABOUT"
     },
-    "exact": true
+    "exact": true,
+    "available": true
   },
   "Résumé": {
     "to": {
       "type": "RESUME"
     },
-    "exact": true
+    "exact": true,
+    "available": true
   },
   "Portfolio": {
     "to": {
       "type": "PORTFOLIO"
-    }
+    },
+    "exact": true,
+    "available": false
   },
   "Blog": {
     "to": {
       "type": "BLOG"
-    }
+    },
+    "exact": true,
+    "available": false
   },
   "Contact": {
     "to": {
       "type": "CONTACT"
-    }
+    },
+    "exact": true,
+    "available": true
   }
 }

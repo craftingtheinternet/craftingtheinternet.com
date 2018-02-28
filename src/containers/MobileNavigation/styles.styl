@@ -6,6 +6,7 @@
   padding 3rem 0 0
   flex 1 0 auto
   transition background-color 0.3s
+  user-select none
 
 .list
   display flex
@@ -27,6 +28,10 @@
   align-items flex-end
   width 100%
   padding 0 2rem
+
+  &.strikethrough
+    opacity 0.25
+    text-decoration line-through
 
 .active
   font-weight 600
