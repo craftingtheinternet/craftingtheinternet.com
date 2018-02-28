@@ -45,7 +45,7 @@ class ReactComponent extends React.PureComponent<Props, State> {
     const { orientation } = this.props;
     const offsetDimension = orientation === HORIZONTAL ? "Left" : "Top";
     const sizeDimension = orientation === HORIZONTAL ? "Width" : "Height";
-    if (this.listItems[key]) {
+    if (this.listItems[key] && links[key].available) {
       this.setState(() => ({
         hoveredListItemIsVisible: true,
         hoveredListItemOffset: this.listItems[key][`offset${offsetDimension}`],
@@ -88,15 +88,24 @@ class ReactComponent extends React.PureComponent<Props, State> {
               onMouseEnter={this.onHover(key)}
               onFocus={this.onHover(key)}
             >
-              <NavLink
-                to={links[key].to}
-                exact={links[key].exact}
-                className={styles.link}
-                activeClassName={styles.active}
-                style={{ color }}
-              >
-                {key}
-              </NavLink>
+              {links[key].available ? (
+                <NavLink
+                  to={links[key].to}
+                  exact={links[key].exact}
+                  className={styles.link}
+                  activeClassName={styles.active}
+                  style={{ color }}
+                >
+                  {key}
+                </NavLink>
+              ) : (
+                <span
+                  className={[styles.link, styles.strikethrough].join(" ")}
+                  style={{ color }}
+                >
+                  {key}
+                </span>
+              )}
             </li>
           ))}
         </ul>
