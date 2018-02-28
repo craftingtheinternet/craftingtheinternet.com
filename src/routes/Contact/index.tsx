@@ -14,7 +14,6 @@ export interface Props {
 export interface MappedProps {
   content?: string;
   hasSubmitted: boolean;
-  mobile: boolean;
   successfulSubmissionMessage?: string;
   title?: string;
 }
@@ -42,7 +41,6 @@ export interface ReduxProps {
 const component: React.SFC<Props & MappedProps & DispatchProps> = ({
   content,
   hasSubmitted,
-  mobile,
   setSubmitted,
   successfulSubmissionMessage,
   title,
@@ -51,16 +49,13 @@ const component: React.SFC<Props & MappedProps & DispatchProps> = ({
   <div style={{ color: typeColor }}>
     <Header giant={true}>{title}</Header>
     <RichText>{hasSubmitted ? successfulSubmissionMessage : content}</RichText>
-    {!hasSubmitted && (
-      <ContactForm mobile={mobile} setSubmitted={setSubmitted} />
-    )}
+    {!hasSubmitted && <ContactForm setSubmitted={setSubmitted} />}
   </div>
 );
 
 component.displayName = "About";
 component.defaultProps = {
   content: undefined,
-  mobile: true,
   title: undefined,
   typeColor: "white"
 };
@@ -68,7 +63,6 @@ component.defaultProps = {
 const mapStateToProps = (state: ReduxProps): MappedProps => ({
   content: state.contact.content,
   hasSubmitted: state.contactForm.hasSubmitted,
-  mobile: state.breakpoint.lessThan.medium,
   successfulSubmissionMessage: state.contact.successfulSubmissionMessage,
   title: state.contact.title
 });

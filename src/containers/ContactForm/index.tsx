@@ -16,7 +16,6 @@ import * as styles from "./styles.styl";
 
 interface Props {
   isClient: boolean;
-  mobile: boolean;
   setSubmitted: ActionCreatorType;
 }
 
@@ -43,13 +42,12 @@ const component: React.SFC<
   handleBlur,
   handleChange,
   handleSubmit,
-  mobile,
   touched,
   values
 }) => (
   <form
     action={isClient ? undefined : FORM_ACTION}
-    className={[styles.form, mobile ? styles.mobile : ""].join(" ")}
+    className={styles.form}
     onSubmit={isClient ? handleSubmit : undefined}
     method={isClient ? undefined : FORM_METHOD}
     noValidate={isClient ? true : undefined}
@@ -105,8 +103,7 @@ const component: React.SFC<
 
 component.displayName = "ContactForm";
 component.defaultProps = {
-  isClient: typeof window !== "undefined",
-  mobile: true
+  isClient: typeof window !== "undefined"
 };
 
 const Form: React.ComponentType<any> = withFormik({

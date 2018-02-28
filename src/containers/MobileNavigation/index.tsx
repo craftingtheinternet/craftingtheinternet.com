@@ -46,6 +46,7 @@ class ReactComponent extends React.PureComponent<Props> {
                 </NavLink>
               ) : (
                 <span
+                  key={key}
                   className={[styles.link, styles.strikethrough].join(" ")}
                   style={{ color }}
                 >
