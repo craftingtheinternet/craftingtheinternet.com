@@ -11,7 +11,6 @@ module.exports = {
   target: "web",
   devtool: "cheap-module-source-map",
   entry: [
-    "webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=false&quiet=false&noInfo=false",
     "react-hot-loader/patch",
     path.resolve(__dirname, "../src/index.tsx")
   ],
@@ -20,6 +19,9 @@ module.exports = {
     chunkFilename: "[name].js",
     path: path.resolve(__dirname, "../buildClient"),
     publicPath: "/static/"
+  },
+  serve: {
+    publicPath: '/static/',
   },
   module: {
     rules: [
@@ -82,15 +84,11 @@ module.exports = {
   plugins: [
     new WriteFilePlugin(), // used so you can see what chunks are produced in dev
     new ExtractCssChunks(),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
-    new webpack.DefinePlugin({
-      "process.env": {
-        NODE_ENV: JSON.stringify("development"),
-        CRAFTING_CONTENT: JSON.stringify(process.env.CRAFTING_CONTENT),
-        CRAFTING_FORMSPREE_ID: JSON.stringify(process.env.CRAFTING_FORMSPREE_ID)
-      }
-    }),
+    new webpack.EnvironmentPlugin([
+      "NODE_ENV",
+      "CRAFTING_CONTENT",
+      "CRAFTING_FORMSPREE_ID"
+    ]),
     new AutoDllPlugin({
       context: path.join(__dirname, ".."),
       filename: "[name].js",

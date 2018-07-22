@@ -4,6 +4,7 @@ import Helmet from "react-helmet";
 import { Provider } from "react-redux";
 import { flushChunkNames } from "react-universal-component/server";
 import { Store } from "redux";
+import * as webpack from "webpack";
 import flushChunks from "webpack-flush-chunks";
 import { DOMParser } from "xmldom";
 
@@ -52,7 +53,7 @@ export default ({ clientStats }: WebpackManifestType) => async (
   const state: any = store.getState();
   const stateJson = JSON.stringify(state);
   const chunkNames = flushChunkNames();
-  const { js, styles, cssHash } = flushChunks(clientStats, { chunkNames });
+  const { js, styles, cssHash } = flushChunks(clientStats as webpack.Stats, { chunkNames });
 
   if (process.env.NODE_ENV !== "production") {
     // tslint:disable-next-line no-console
@@ -78,8 +79,8 @@ export default ({ clientStats }: WebpackManifestType) => async (
           <script>window.REDUX_STATE = ${stateJson}</script>
           ${js}
           ${
-            process.env.NODE_ENV === "production"
-              ? `
+    process.env.NODE_ENV === "production"
+      ? `
             <script src="/manup.js"></script>
             <script>
               if (navigator.serviceWorker && !navigator.serviceWorker.controller) {
@@ -89,8 +90,8 @@ export default ({ clientStats }: WebpackManifestType) => async (
               }
             </script>
           `
-              : ""
-          }
+      : ""
+    }
         </body>
       </html>`);
 };

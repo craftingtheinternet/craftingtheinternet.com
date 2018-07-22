@@ -78,13 +78,11 @@ module.exports = {
   plugins: [
     new StatsPlugin("stats.json"),
     new ExtractCssChunks(),
-    new webpack.DefinePlugin({
-      "process.env": {
-        NODE_ENV: JSON.stringify("production"),
-        CRAFTING_CONTENT: JSON.stringify(process.env.CRAFTING_CONTENT),
-        CRAFTING_FORMSPREE_ID: JSON.stringify(process.env.CRAFTING_FORMSPREE_ID)
-      }
-    }),
+    new webpack.EnvironmentPlugin([
+      "NODE_ENV",
+      "CRAFTING_CONTENT",
+      "CRAFTING_FORMSPREE_ID"
+    ]),
     new webpack.HashedModuleIdsPlugin(), // not needed for strategy to work (just good practice)
     new AutoDllPlugin({
       context: path.join(__dirname, ".."),
