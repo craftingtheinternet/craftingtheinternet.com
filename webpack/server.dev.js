@@ -22,6 +22,7 @@ const externals = fs
   );
 
 module.exports = {
+  mode: "development",
   name: "server",
   target: "node",
   devtool: "eval",
@@ -80,13 +81,10 @@ module.exports = {
     new webpack.optimize.LimitChunkCountPlugin({
       maxChunks: 1
     }),
-
-    new webpack.DefinePlugin({
-      "process.env": {
-        NODE_ENV: JSON.stringify("development"),
-        CRAFTING_CONTENT: JSON.stringify(process.env.CRAFTING_CONTENT),
-        CRAFTING_FORMSPREE_ID: JSON.stringify(process.env.CRAFTING_FORMSPREE_ID)
-      }
-    })
+    new webpack.EnvironmentPlugin([
+      "NODE_ENV",
+      "CRAFTING_CONTENT",
+      "CRAFTING_FORMSPREE_ID"
+    ]),
   ]
 };

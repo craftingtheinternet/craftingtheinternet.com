@@ -1,5 +1,5 @@
-import * as fetch from "isomorphic-fetch";
-import { Dispatch } from "react-redux";
+import fetch from "cross-fetch";
+import { Dispatch } from "redux";
 
 import { schema, StateType } from "reducers/contact";
 
@@ -7,7 +7,6 @@ import { unsetSubmitted } from "actions/contactForm";
 
 export interface DispatchArgs {
   type: string;
-  payload: StateType;
 }
 
 export type GetState = () => {
