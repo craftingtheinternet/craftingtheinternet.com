@@ -1,7 +1,7 @@
 import * as React from "react";
 import { NavLink } from "redux-first-router-link";
 
-import * as links from "manifests/links.json";
+import links from "manifests/links.json";
 
 import * as styles from "./styles.styl";
 

@@ -4,7 +4,7 @@ import { NavLink } from "redux-first-router-link";
 
 import { ActionCreatorType, close } from "actions/sidebar";
 
-import * as links from "manifests/links.json";
+import links from "manifests/links.json";
 import { contentClassName } from "manifests/sidebar.json";
 
 import * as styles from "./styles.styl";
@@ -79,4 +79,7 @@ const mapDispatchToProps = {
 
 export { ReactComponent };
 
-export default connect(null, mapDispatchToProps)(ReactComponent);
+export default connect(
+  null,
+  mapDispatchToProps
+)(ReactComponent);
