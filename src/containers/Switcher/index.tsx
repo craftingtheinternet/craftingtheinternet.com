@@ -6,8 +6,6 @@ import universal from "react-universal-component";
 import * as selectors from "selectors";
 import { ReduxState as SelectorsReduxState } from "selectors/isLoading";
 
-import importCss from "babel-plugin-universal-import/importCss.js";
-
 import * as styles from "containers/Switcher/styles.styl";
 
 export interface Props {
@@ -45,7 +43,6 @@ const UniversalComponent: React.SFC<UniversalComponentProps> = universal(
   ({ page }: RouteProps): PromiseLike<any> =>
     Promise.all([
       import(/* webpackChunkName: '[request]' */ `routes/${page}`),
-      importCss(page)
     ]).then(promises => promises[0]),
   {
     chunkName: ({ page }: RouteProps) => page,

@@ -6,6 +6,7 @@ const ExtractCssChunks = require("extract-css-chunks-webpack-plugin");
 const nib = require("nib");
 
 module.exports = {
+  mode: "development",
   name: "client",
   target: "web",
   devtool: "cheap-module-source-map",
@@ -29,25 +30,24 @@ module.exports = {
       },
       {
         test: /\.styl$/,
-        use: ExtractCssChunks.extract({
-          use: [
-            {
-              loader: "css-loader",
-              options: {
-                modules: true,
-                localIdentName: "[name]__[local]--[hash:base64:5]"
-              }
-            },
-            {
-              loader: "stylus-loader",
-              options: {
-                use: [nib()],
-                import: ["~nib/lib/nib/index.styl"],
-                preferPathResolver: "webpack"
-              }
+        use: [
+          ExtractCssChunks.loader,
+          {
+            loader: "css-loader",
+            options: {
+              modules: true,
+              localIdentName: "[name]__[local]--[hash:base64:5]"
             }
-          ]
-        })
+          },
+          {
+            loader: "stylus-loader",
+            options: {
+              use: [nib()],
+              import: ["~nib/lib/nib/index.styl"],
+              preferPathResolver: "webpack"
+            }
+          }
+        ]
       }
     ]
   },
@@ -64,15 +64,24 @@ module.exports = {
       selectors: path.resolve(__dirname, "../src/selectors")
     }
   },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        vendors: {
+          test: /bootstrap/,
+          priority: -10
+        },
+        default: {
+          minChunks: Infinity,
+          priority: -20,
+          reuseExistingChunk: true
+        }
+      }
+    }
+  },
   plugins: [
     new WriteFilePlugin(), // used so you can see what chunks are produced in dev
     new ExtractCssChunks(),
-    new webpack.optimize.CommonsChunkPlugin({
-      names: ["bootstrap"], // needed to put webpack bootstrap code before chunks
-      filename: "[name].js",
-      minChunks: Infinity
-    }),
-
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({

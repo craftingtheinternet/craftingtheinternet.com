@@ -22,6 +22,7 @@ const externals = fs
   );
 
 module.exports = {
+  mode: "production",
   name: "server",
   target: "node",
   entry: [res("../server/render.tsx")],

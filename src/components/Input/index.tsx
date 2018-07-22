@@ -3,7 +3,7 @@ import * as React from "react";
 import * as styles from "./styles.styl";
 
 interface Props {
-  error: string | false;
+  error: {} | string | false;
   label: string;
   name: string;
   onBlur: (e: any) => void;

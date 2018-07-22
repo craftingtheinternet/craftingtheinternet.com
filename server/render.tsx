@@ -1,8 +1,9 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom/server";
 import Helmet from "react-helmet";
-import { Provider, Store } from "react-redux";
+import { Provider } from "react-redux";
 import { flushChunkNames } from "react-universal-component/server";
+import { Store } from "redux";
 import flushChunks from "webpack-flush-chunks";
 import { DOMParser } from "xmldom";
 

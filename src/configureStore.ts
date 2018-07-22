@@ -1,4 +1,4 @@
-import { History } from "history";
+import { History, LocationState } from "history";
 import {
   applyMiddleware,
   combineReducers,
@@ -45,7 +45,7 @@ export default (history: History, preloadedState?: object): PrimedStore => {
 
   if (module.hot && process.env.NODE_ENV === "development") {
     module.hot.accept("./reducers/index", () => {
-      const reloadedRootReducer = combineReducers({
+      const reloadedRootReducer = combineReducers<LocationState>({
         ...require("./reducers/index"),
         location: reducer
       });

@@ -2,7 +2,7 @@ import aboutThunk from "routes/About/thunk";
 import contactThunk from "routes/Contact/thunk";
 import resumeThunk from "routes/Resume/thunk";
 
-import { Dispatch } from "react-redux";
+import { Dispatch } from "redux";
 
 export interface DispatchArgs {
   type: string;
@@ -13,7 +13,7 @@ export interface RoutesMap {
   [key: string]: {
     path: string;
     thunk?: (
-      dispatch: Dispatch<DispatchArgs>,
+      dispatch: Dispatch,
       getState?: () => object
     ) => PromiseLike<void>;
   };

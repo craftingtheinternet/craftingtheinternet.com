@@ -1,5 +1,5 @@
 import * as fetch from "isomorphic-fetch";
-import { Dispatch } from "react-redux";
+import { Dispatch } from "redux";
 
 import { schema, StateType } from "reducers/resume";
 
