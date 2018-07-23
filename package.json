@@ -6,25 +6,18 @@
   "author": "Benjamin Ceglowski",
   "license": "BSD-2-Clause",
   "scripts": {
-    "start":
-      "npm run clean && npm run build:node && cross-env NODE_ENV=development node buildServer",
+    "start": "npm run clean && npm run build:node && cross-env NODE_ENV=development node buildServer",
     "start:prod": "npm run build && npm run serve",
     "serve": "cross-env NODE_ENV=production node buildServer",
     "serve:ssg": "serve buildStatic",
-    "build":
-      "npm run build:client && npm run build:server && npm run build:node",
+    "build": "npm run build:client && npm run build:server && npm run build:node",
     "prebuild:client": "rimraf buildClient",
-    "build:client":
-      "cross-env NODE_ENV=production webpack --progress --config webpack/client.prod.js",
+    "build:client": "cross-env NODE_ENV=production webpack --progress --config webpack/client.prod.js",
     "prebuild:server": "rimraf buildServer",
-    "build:server":
-      "cross-env NODE_ENV=production webpack --progress --config webpack/server.prod.js",
-    "build:node":
-      "cross-env NODE_ENV=production tsc server/index.ts --outDir buildServer/ --lib DOM,ES5,ES6,ES7,ScriptHost",
-    "ssg":
-      "rimraf buildStatic && cross-env NODE_ENV=production ts-node --O '{\"module\":\"commonjs\"}' ./server/staticSiteGenerator.ts",
-    "postssg":
-      "ncp buildClient buildStatic/static && ncp serviceworker/ buildStatic/ && ncp opengraph/ buildStatic/opengraph/",
+    "build:server": "cross-env NODE_ENV=production webpack --progress --config webpack/server.prod.js",
+    "build:node": "cross-env NODE_ENV=production tsc server/index.ts --outDir buildServer/ --lib DOM,ES5,ES6,ES7,ScriptHost",
+    "ssg": "rimraf buildStatic && cross-env NODE_ENV=production ts-node --O '{\"module\":\"commonjs\"}' ./server/staticSiteGenerator.ts",
+    "postssg": "ncp buildClient buildStatic/static && ncp serviceworker/ buildStatic/ && ncp opengraph/ buildStatic/opengraph/",
     "clean": "rimraf buildClient buildServer",
     "stage": "npm run build && npm run ssg && npm run serve:ssg",
     "predeploy": "npm run build && npm run ssg",
@@ -103,7 +96,7 @@
     "tslint-config-prettier": "^1.9.0",
     "tslint-react": "^3.5.1",
     "typescript": "^2.7.2",
-    "webpack": "^4.16.1",
+    "webpack": "^4.16.2",
     "webpack-cli": "^3.1.0",
     "webpack-dev-middleware": "^3.1.3",
     "webpack-hot-middleware": "^2.22.3",
