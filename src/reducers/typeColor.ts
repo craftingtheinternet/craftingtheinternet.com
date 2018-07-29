@@ -9,9 +9,9 @@ export type TypeColorsType = {
 };
 
 const typeColors: TypeColorsType = {
-  ABOUT: colors.armadillo,
+  ABOUT: colors.white,
   CONTACT: colors.white,
-  RESUME: colors.white
+  RESUME: colors.armadillo
 };
 
 export default (state = "ABOUT", action: ActionType) =>

@@ -7,9 +7,9 @@ export type ComponentsType = {
 };
 
 const components: ComponentsType = {
-  ABOUT: "SelfPortrait",
+  ABOUT: "Tiffy",
   CONTACT: "Typewriter",
-  RESUME: "Typewriter"
+  RESUME: "SelfPortrait"
 };
 
 export default (state = "ABOUT", action: ActionType) =>

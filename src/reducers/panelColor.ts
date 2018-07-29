@@ -9,9 +9,9 @@ export type PanelColorsType = {
 };
 
 const panelColors: PanelColorsType = {
-  ABOUT: colors.wattle,
-  CONTACT: colors.seaGreen,
-  RESUME: colors.fuchsiaBlue
+  ABOUT: colors.seaGreen,
+  CONTACT: colors.fuchsiaBlue,
+  RESUME: colors.wattle
 };
 
 export default (state = "ABOUT", action: ActionType) =>
