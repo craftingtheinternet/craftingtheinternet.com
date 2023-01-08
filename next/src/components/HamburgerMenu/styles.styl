@@ -1,0 +1,45 @@
+.hamburgerMenu
+  display block
+  position fixed
+  top 0
+  right 0
+  width 3rem
+  height 3rem
+  padding 1rem
+  z-index 2
+  background-color transparent
+  border 0
+  outline 0
+  appearance none
+
+.hamburgerBap
+  display block
+  position relative
+  width 1rem
+  height 1rem
+
+.hamburgerTopping
+  display block
+  position absolute
+  width 100%
+  height 2px
+  background-color white
+  transform translateY(-50%)
+  transition transform 0.2s, opacity 0.2s
+
+  &:first-child
+    transform-origin 0 0
+  
+  &:last-child
+    transform-origin 0 100%
+
+  .open &
+    &:first-child
+      transform translateX(25%) rotate(45deg)
+
+    &:not(:first-child):not(:last-child)
+      transform translateX(0.5rem)
+      opacity 0
+
+    &:last-child
+      transform  translateX(25%) translateY(-50%) rotate(-45deg)

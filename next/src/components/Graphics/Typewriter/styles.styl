@@ -1,0 +1,21 @@
+.s_0
+  stroke-dasharray 1300 1300
+  stroke-dashoffset 1300
+  animation s_draw 1500ms ease-in-out 0ms 1 normal forwards running
+
+.disableAnimation
+  stroke-dashoffset 0 !important
+  stroke-opacity 1 !important
+  animation none !important
+
+@keyframes s_draw
+  100%
+    stroke-dashoffset 0
+
+@keyframes s_fade
+  0%
+    stroke-opacity 1
+  97.1830985915493%
+    stroke-opacity 1
+  100%
+    stroke-opacity 0

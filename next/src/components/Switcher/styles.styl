@@ -1,0 +1,39 @@
+.switcher
+  display flex
+  position relative
+  flex 1 0 auto
+  flex-direction column
+
+  > div
+    width 100%
+
+.transition
+  &:global(-enter)
+    position absolute
+    transform scale(1.075)
+    opacity 0
+    transform-origin 0 0
+  &:global(-enter-active)
+    transition 0.3s
+    transform scale(1);
+    opacity 1
+  &:global(-leave)
+    transform scale(1);
+    opacity 1
+    transform-origin 0 0
+  &:global(-leave-active)
+    transition 0.3s
+    transform scale(0.95)
+    opacity 0
+
+.notFound
+  background #141414
+  border 1px solid rgb(30,30,30)
+  box-sizing border-box
+  padding 10px
+  color red !important
+  font-size 32px
+  text-shadow 1px 1px 1px black
+  display flex
+  align-items center
+  justify-content center

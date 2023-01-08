@@ -1,0 +1,53 @@
+.form
+  max-width 48rem
+  margin-left -0.5rem
+
+.personalFields
+  display flex
+  flex-direction row
+  flex-wrap wrap
+  margin-top 2rem
+
+.personalField
+  flex 1 1 50%
+  min-width 20rem
+
+.submitContainer
+  display flex
+  justify-content flex-end
+
+.submitButton
+  display inline-block
+  position relative
+
+.submit
+  display inline-block
+  appearance none
+  background transparent
+  border 0
+  padding 0.5rem
+  margin 0
+  font-family 'Montserrat', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif
+  font-weight bold
+  font-size 1.5rem
+  margin-top 0.5rem
+  color white
+  cursor pointer
+  outline 0
+
+  &:hover ~ .submitBaseline
+  &:focus ~ .submitBaseline
+    transform scale(1, 1)
+
+.submitBaseline
+  content ''
+  display block
+  position absolute
+  top 100%
+  left 0.5rem
+  right 0.5rem
+  height 0.3125rem
+  background-color white
+  transform scale(1, 0)
+  transform-origin 0 0
+  transition transform 0.175s
